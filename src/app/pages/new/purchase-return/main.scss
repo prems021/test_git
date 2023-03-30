@@ -1,0 +1,114 @@
+
+
+table { border-collapse: collapse; border-spacing: 0 } 
+table th, table td { padding: .5em; border: 1px solid #999; } 
+table caption { text-align: ceil($number: 0) }
+table th { text-align: center; background-color: #e8d3fc; }
+table th,table td { padding: 1px } 
+
+@media screen and (max-width : 1920px){
+  .mobile{
+    display: none;
+  }
+}
+@media screen and (max-width : 906px){
+ .desk{
+  display: none;
+  }
+ .mobile{
+  display: block;
+  }
+}
+
+// th, td {
+//     border: 1px solid black;
+//   }
+  
+//   tr:nth-child(even) {
+//     background-color: #8bc5e3;
+//     color: #041d27
+//   }
+//   tr:nth-child(odd) {
+//     background-color:#6e79ab;
+//     color: skyblue;
+    
+//   }
+  .modal {
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 1; /* Sit on top */
+      left: 0;
+      top: 0;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: hidden; /* Enable scroll if needed */
+      background-color: rgb(0,0,0); /* Fallback color */
+      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+    
+    /* Modal Content/Box */
+    .modal-content {
+      background-color: #cce6e0;
+      margin: 15% auto;
+      padding: 15px;
+      border: 1px solid #231a1a;
+      width: 80%;
+    }
+    
+    /* The Close Button */
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+    
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    
+    
+    .footer {
+      position: sticky;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      background-color: red;
+      color: white;
+      text-align: center;
+      border-top: 1px solid gold;
+    }
+
+
+    
+    #printable { display: none; }
+  
+    @media print
+    {   
+         
+        #non-printable { display: none; }
+        #printable { display: block; }
+    }
+    
+
+    
+.input_grove
+{
+  
+    display: inline-flex;
+    position: sticky;
+    z-index: 1;
+  
+}
+
+
+.save_td > button:focus
+{
+  background-color: rgb(67, 216, 9);
+  color: black;
+  border-color: #F9F9F9;
+  
+}

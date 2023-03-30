@@ -1,0 +1,82 @@
+<a href="javascript:void(0)" (click)="closeFunction()"><mat-icon>close</mat-icon> </a>
+
+
+<section class="row" style="background-color: #f8f9fd;">
+    
+    <div class="col-12 col-md-4 col-sm-4">
+    <mat-form-field style="color: blue; font-weight: 500; width: 90%">
+        <input
+          matInput
+          [matDatepicker]="picker2"         
+          [(ngModel)]="this.date"
+          placeholder="Pay Date"
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="picker2"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker
+        ><mat-error>Select a date</mat-error>
+      </mat-form-field>
+     </div>
+
+
+
+     <div class="col-12 col-md-3 col-sm-3">
+
+     <mat-form-field style="width: 90%">
+      <mat-label> Pay mode  </mat-label>
+      <mat-select [(ngModel)]="mode" >
+
+        <mat-option value="CASH">Cash</mat-option>
+        <mat-option value="CHEQUE">Cheque</mat-option>
+        <mat-option value="NEFT">NEFT/RTGS</mat-option>
+        <mat-option value="SWIFT">Swift</mat-option>
+        <mat-option value="UPI">Upi</mat-option>
+        <mat-option value="OTHER">Other</mat-option>
+        
+      </mat-select><mat-error>Please select a type</mat-error>
+      </mat-form-field><br>
+
+     </div>
+
+     <div class="col-12 col-md-3 col-sm-3">
+     <mat-form-field class="example-full-width" style="width: 90%">
+      <mat-label> Ref No  </mat-label>
+      <input type="text"
+        placeholder="Ref No"
+         matInput
+        [(ngModel)]="this.ref_no" >
+     
+    </mat-form-field>
+  </div>
+
+  <div class="col-12 col-md-3 col-sm-3">
+    <mat-form-field class="example-full-width" style="width: 90%">
+     <mat-label> Amount  </mat-label>
+     <input type="number"
+       placeholder="Ref No"
+        matInput
+       [(ngModel)]="this.add_amt" >
+    
+   </mat-form-field>
+ </div>
+
+
+
+
+
+        <div class="col-12 col-md-3 col-sm-3">
+        <button *ngIf="push_disabled_enter ==1" class="btn btn-warning pull-right" 
+        (click)="add_new_single_payment()" type="button"><span class="glyphicon glyphicon-ok"></span> Add </button>
+        
+        <button  *ngIf="push_disabled_enter == 2" class="buttonload btn pull-right">
+          <i class="fa fa-spinner fa-spin"></i>Saving..
+        </button>
+        
+        <button [disabled]="true" *ngIf="push_disabled_enter == 3" class="btn btn-warning pull-right" 
+         type="button"><span class="glyphicon glyphicon-ok"></span> Saved </button>
+  </div>
+
+
+</section>

@@ -1,0 +1,193 @@
+  
+    <form id="login-form" class="form" [formGroup]="ComForm">
+  <div class="row">
+
+    <h2 style="text-align: center;width: 100%;">  Update Company details </h2>
+
+
+  
+<div class="col-12 col-md-4 col-sm-6">
+    <div class="input-group input-group-sm mb-6" style="padding-top: 4px;">
+      <div class="input-group-prepend">
+       <span class="input-group-text" id="inputGroup-sizing-sm"> Name </span>
+      </div>
+    <input formControlName="company_name" type="text" class="form-control" 
+    aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+    </div>
+    </div>
+
+    <div class="col-12 col-md-4 col-sm-6">
+      <div class="input-group input-group-sm mb-6" style="padding-top: 4px;">
+        <div class="input-group-prepend">
+         <span class="input-group-text" id="inputGroup-sizing-sm"> Gstin </span>
+        </div>
+      <input  formControlName="company_gstin"   type="text" class="form-control" 
+      aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+      </div>
+      </div>
+
+      <div class="col-12 col-md-4 col-sm-6">
+        <div class="input-group input-group-sm mb-6" style="padding-top: 4px;">
+          <div class="input-group-prepend">
+           <span class="input-group-text" id="inputGroup-sizing-sm"> Email </span>
+          </div>
+        <input  type="email" class="form-control"  formControlName="company_email"
+        aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+        </div>
+        </div>
+    
+    
+    <div class="col-12 col-md-4 col-sm-6">
+      <div class="input-group input-group-sm mb-6" style="padding-top: 4px;">
+        <div class="input-group-prepend">
+         <span class="input-group-text" id="inputGroup-sizing-sm"> Street </span>
+        </div>
+      <input formControlName="company_street" type="text" class="form-control" 
+      aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+      </div>
+      </div>
+
+      <div class="col-12 col-md-4 col-sm-6">
+        <div class="input-group input-group-sm mb-6" style="padding-top: 4px;">
+          <div class="input-group-prepend">
+           <span class="input-group-text" id="inputGroup-sizing-sm"> Address 1 </span>
+          </div>
+        <input formControlName="company_address_1"  type="text" class="form-control" 
+        aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+        </div>
+        </div>
+
+        <div class="col-12 col-md-4 col-sm-6">
+          <div class="input-group input-group-sm mb-6" style="padding-top: 4px;">
+            <div class="input-group-prepend">
+             <span class="input-group-text" id="inputGroup-sizing-sm"> Address 2 </span>
+            </div>
+          <input formControlName="company_address_2"   type="text" class="form-control" 
+          aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+          </div>
+          </div>
+
+           
+      <div class="col-12 col-md-4 col-sm-6">
+        <div class="input-group input-group-sm mb-6" style="padding-top: 4px;">
+          <div class="input-group-prepend">
+           <span class="input-group-text" id="inputGroup-sizing-sm"> ph </span>
+          </div>
+        <input formControlName="company_ph_1"  type="text" class="form-control" 
+        aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+        </div>
+        </div>
+
+         
+  
+    
+      <div class="col-12 col-md-4 col-sm-6">
+        <div class="input-group input-group-sm mb-6" style="padding-top: 4px;">
+          <div class="input-group-prepend">
+           <span class="input-group-text" id="inputGroup-sizing-sm"> Mob </span>
+          </div>
+        <input formControlName="company_ph_2" type="text" class="form-control" 
+        aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+        </div>
+        </div>
+      
+    
+        <div class="col-12 col-md-4 col-sm-6">
+          <div class="input-group input-group-sm mb-6" style="padding-top: 4px;">
+            <div class="input-group-prepend">
+             <span class="input-group-text" id="inputGroup-sizing-sm"> Bank Name </span>
+            </div>
+          <input  formControlName="company_bank_name" type="text" class="form-control"
+          aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+          </div>
+          </div>
+    
+          <div class="col-12 col-md-4 col-sm-6">
+            <div class="input-group input-group-sm mb-6" style="padding-top: 4px;">
+              <div class="input-group-prepend">
+               <span class="input-group-text" id="inputGroup-sizing-sm"> A/c No </span>
+              </div>
+            <input formControlName="company_bank_ac_no"  type="text" class="form-control"
+            aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+            </div>
+            </div>
+    
+            <div class="col-12 col-md-4 col-sm-6">
+              <div class="input-group input-group-sm mb-6" style="padding-top: 4px;">
+                <div class="input-group-prepend">
+                 <span class="input-group-text" id="inputGroup-sizing-sm"> Bank Address </span>
+                </div>
+              <input  formControlName="company_bank_branch_name"  type="text" class="form-control" 
+              aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+              </div>
+              </div>
+
+              <div class="col-12 col-md-4 col-sm-6">
+                <div class="input-group input-group-sm mb-6" style="padding-top: 4px;">
+                  <div class="input-group-prepend">
+                   <span class="input-group-text" id="inputGroup-sizing-sm"> Bank IFSC </span>
+                  </div>
+                <input   formControlName="company_bank_ifsc_code" type="text" class="form-control" 
+                aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                </div>
+                </div>
+            
+
+            </div>
+          </form>
+          <br>
+
+          
+<button *ngIf="Onload ==1" class="btn btn-primary pull-right" 
+(click)="onFormSubmit()" type="button"><span class="glyphicon glyphicon-ok"></span> Update </button>
+
+<button  *ngIf="Onload == 2" class="buttonload btn pull-right">
+  <i class="fa fa-spinner fa-spin"></i>Updating..
+</button>
+
+<button [disabled]="true" *ngIf="Onload == 3" class="btn btn-warning pull-right" 
+ type="button"><span class="glyphicon glyphicon-ok"></span> Updated </button>
+
+
+<br>
+<br>
+
+
+
+
+
+
+ upload your logo (Testing)
+ 
+ <form [formGroup]="myForm" (ngSubmit)="submit()">
+     
+  <div class="form-group">
+      <label for="name">Name</label>
+      <input 
+          formControlName="name"
+          id="name" 
+          type="text" 
+          class="form-control">
+      <div *ngIf="f.name.touched && f.name.invalid" class="alert alert-danger">
+          <div *ngIf="f.name.errors.required">Name is required.</div>
+          <div *ngIf="f.name.errors.minlength">Name should be 3 character.</div>
+      </div>
+  </div>
+  
+  <div class="form-group">
+      <label for="file">File</label>
+      <input 
+          formControlName="file"
+          id="file" 
+          type="file" 
+          class="form-control"
+          (change)="onFileChange($event)">
+      <div *ngIf="f.file.touched && f.file.invalid" class="alert alert-danger">
+          <div *ngIf="f.file.errors.required">File is required.</div>
+      </div>
+  </div>
+  
+  <img [src]="imageSrc" *ngIf="imageSrc" style="height: 300px; width:500px">
+      
+  <button class="btn btn-primary" type="submit">Submit</button>
+</form>

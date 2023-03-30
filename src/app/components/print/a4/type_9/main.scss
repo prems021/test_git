@@ -1,0 +1,33 @@
+
+#printa4 { display: none; }
+
+
+
+.footer_classic {
+  position: fixed; 
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 230px;
+ 
+}
+
+
+
+@media print
+{   
+     .fulla4{
+        width: auto;
+        height: 1050px;
+      }
+      
+    #non-printablea4 { display: none; }
+    #printa4 { display: block;
+        width: auto;
+        height: 390mm;
+    
+    }
+}
+
+
+ 

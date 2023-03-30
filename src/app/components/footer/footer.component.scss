@@ -1,0 +1,18 @@
+#printable { display: none; }
+  
+@media print
+{   
+     
+    #non-printable { display: none; }
+    #printable { display: block; }
+}
+
+.footer_ {
+    position: sticky;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    text-align: center;
+    height: 20px;
+  }

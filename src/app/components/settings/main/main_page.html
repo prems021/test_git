@@ -1,0 +1,12 @@
+
+<ul class="list-group">
+    <li class="list-group-item active">Setttings</li>
+  
+ 
+    <li *ngxPermissionsOnly="['Admin']" class="list-group-item"> <a href="/#/home/update-company-dets">Update Company details</a> </li>
+    <li *ngxPermissionsOnly="['Admin', 'CounterStaff']" class="list-group-item"> <a href="/#/home/change-password"> Change Password </a> </li>
+    <li *ngxPermissionsOnly="['Admin']" class="list-group-item"> <a href="#"> Renewal Of Account </a> </li>
+    <li *ngxPermissionsOnly="['Admin']" class="list-group-item"> <a href="#">  FY Settings </a> </li>
+    <li *ngxPermissionsOnly="['Admin']" class="list-group-item"> <a href="#">  </a> </li>
+    <li *ngxPermissionsOnly="['SuperAdmin']" class="list-group-item"> <a href="https://hb7.csweb.in/hb7-new-api/get/backup"> backup data base</a></li>
+  </ul>

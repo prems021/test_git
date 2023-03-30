@@ -1,0 +1,280 @@
+
+
+
+
+
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()" novalidate>
+
+
+  <div class="container py-5"> 
+    <table class="table table-bordered table-hover" style="overflow-x: scroll;">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col" style="min-width: 200px;">From Date</th>
+          <th scope="col" style="min-width: 200px;">To Date</th>
+          <th scope="col">Type</th>
+          <th scope="col">Status</th>
+          <th scope="col">Export</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">
+            <div class="input-group">
+              
+  
+                <input class="form-control" placeholder="Select a date" angular-mydatepicker name="myDate_from" 
+                  formControlName="myDate_from"[options]="myOptions" #dp="angular-mydatepicker"/>
+  
+                <div class="input-group-append">
+                  <button type="button" class="btn btn-secondary" (click)="clearDate()">
+                    <i class="fas fa-times-circle"></i>
+  
+                  </button>
+                </div>
+  
+                <div class="input-group-append">
+                  <button type="button" class="btn btn-secondary" (click)="dp.toggleCalendar()">
+                    <i class="fas fa-calendar-alt"> </i>
+                  </button>
+                </div>
+            </div>
+          </th>
+          <td>
+             <div class="input-group">
+          
+              <input class="form-control" placeholder="Select a date" angular-mydatepicker name="myDate_to" 
+                formControlName="myDate_to"[options]="myOptions" #dpdz="angular-mydatepicker"/>
+    
+              <div class="input-group-append">
+                <button type="button" class="btn btn-secondary" (click)="clearDate_t()">
+                  <i class="fas fa-times-circle"></i>
+    
+                </button>
+              </div>
+    
+              <div class="input-group-append">
+                <button type="button" class="btn btn-secondary" (click)="dpdz.toggleCalendar()">
+                  <i class="fas fa-calendar-alt"> </i>
+                </button>
+              </div>
+          </div>
+        </td>
+          <td>  <mat-radio-group class = "tp-radio-group"  formControlName="sel_opt">
+            <mat-radio-button class = "tp-radio-button"
+               *ngFor = "let opt of options" [value] = "opt">
+               {{opt}}
+            </mat-radio-button>
+         </mat-radio-group>
+        </td>
+          <td>   <button [disabled]="!myForm.valid" *ngIf="Onload ==1" class="btn btn-primary pull-right"  type="submit"
+            (click)="onSubmit()" type="button"><span class="glyphicon glyphicon-ok"></span> Genearate </button>
+            
+            <button  *ngIf="Onload == 2" class="buttonload btn pull-right">
+              <i class="fa fa-spinner fa-spin"></i>Generating..
+            </button>
+            
+            <button [disabled]="true" *ngIf="Onload == 3" class="btn btn-warning pull-right" 
+             type="button"><span class="glyphicon glyphicon-ok"></span> Generated </button>
+
+             <button [disabled]="true" *ngIf="Onload == 5" class="btn btn-warning pull-right" 
+             type="button"><span class="glyphicon glyphicon-ok"></span> Generated </button>
+
+
+             <button [disabled]="true" *ngIf="Onload == 6" class="btn btn-warning pull-right" 
+             type="button"><span class="glyphicon glyphicon-ok"></span> Generated </button>
+
+           
+            
+             <span class="error" *ngIf="myForm.controls.myDate_from.errors"> From Date is required!</span>
+             <span class="error" *ngIf="myForm.controls.myDate_to.errors"> To Date is required!</span>
+            </td>
+
+            <td>
+              <div *ngIf="Onload == 3">
+                <button mat-raised-button color="primary" style="background-color: teal;
+                border: 2px solid black;" (click)="exportTable()">Export  </button>
+              </div>
+
+              <div *ngIf="Onload == 5">
+                <button mat-raised-button color="primary" style="background-color: teal;
+                border: 2px solid black;" (click)="exportTable_b2c()">Export  </button>
+              </div>
+
+
+              <div *ngIf="Onload == 6">
+                <button mat-raised-button color="primary" style="background-color: teal;
+                border: 2px solid black;" (click)="exportTable_hsn()">Export  </button>
+              </div>
+
+
+              </td>
+        </tr>
+      
+      </tbody>
+    </table>
+    </div>
+
+    
+
+
+
+</form>
+
+
+
+
+<div *ngIf="Onload == 2">
+      
+  <div class="box"><div class="sk-circle">
+  
+  </div>
+  <div class="spinner">
+    <div class="rect1"></div>
+    <div class="rect2"></div>
+    <div class="rect3"></div>
+    <div class="rect4"></div>
+    <div class="rect5"></div>
+  
+    </div>
+    </div>
+</div> 
+
+
+<div *ngIf="Onload == 3">
+
+  <div class="table-responsive my_t" data-pattern="priority-columns">
+    <table id="ExampleTable_"  class="table table-bordered table-hover">
+      
+      <thead class="t_h">
+        <tr>
+          <th data-priority="5">GSTIN/UIN of Recipient </th> 
+          <th data-priority="5">Receiver Name</th>
+          <th data-priority="5">Invoice Number</th>             
+          <th data-priority="5">Invoice date</th>             
+          <th data-priority="5">Invoice Value</th> 
+
+          <th data-priority="5">Place Of Supply</th> 
+          <th data-priority="5">Reverse Charge</th>          
+          <th data-priority="5">Applicable % of Tax Rate</th>
+          <th data-priority="5">Invoice Type</th> 
+          <th data-priority="5">  E-Commerce GSTIN </th> 
+          <th data-priority="5">  Rate </th> 
+          <th data-priority="5"> Taxable Value </th>
+          <th data-priority="5">  Cess Amount </th> 
+          </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor = "let items of tax_info">
+      
+              <td> {{items.GSTIN_UIN_of_Recipient}} </td>
+              <td> {{items.Receiver_Name}} </td>         
+              <td>{{items.Invoice_Number }}</td>
+              <td> {{items.Invoice_date}} </td>
+              <td> {{items.Invoice_Value}} </td>         
+              <td>{{items.Place_Of_Supply }}</td>
+              <td> {{items.Reverse_Charge}} </td>
+              <td> {{items.Applicable_percentage_of_Tax_Rate}} </td>         
+              <td>{{items.Invoice_Type }}</td>
+              <td>{{items.E_Commerce_GSTIN }}</td>
+              <td> {{items.Rate}} </td>
+              <td>{{items.Taxable_Value }}</td>
+             <td>{{items.Cess_Amount | number : '1.2-2' }}</td>
+        
+          
+
+        </tr>  
+          </tbody>
+          </table>
+          </div>
+
+</div>
+
+
+
+ <div *ngIf="Onload == 5">
+
+  <div class="table-responsive my_t" data-pattern="priority-columns">
+    <table id="ExampleTable_b2c"  class="table table-bordered table-hover">
+      
+      <thead class="t_h">
+        <tr>
+          <th data-priority="5"> Type </th> 
+          <th data-priority="5"> Place Of Supply </th>
+          <th data-priority="5"> Rate </th>             
+          <th data-priority="5">Applicable % of Tax Rate</th>             
+          <th data-priority="5">Taxable Value</th> 
+
+          <th data-priority="5">Cess Amount</th> 
+          <th data-priority="5"> E-Commerce GSTIN </th>          
+         
+          </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor = "let items of tax_info_b2c">
+      
+              <td> {{items.Type}} </td>
+              <td> {{items.Place_Of_Supply}} </td>           
+              <td>{{items.Rate }}</td>
+              <td> {{items.Applicable_percentage_of_Tax_Rate}} </td>
+              <td>{{items.Taxable_Value }}</td>
+             <td>{{items.Cess_Amount | number : '1.2-2' }}</td>
+             <td> {{items.E_Commerce_GSTIN}}  </td> 
+          
+
+        </tr>  
+          </tbody>
+          </table>
+          </div>
+
+</div> 
+
+<div *ngIf="Onload == 6">
+
+  <div class="table-responsive my_t" data-pattern="priority-columns">
+    <table id="ExampleTable_hsn"  class="table table-bordered table-hover">
+      
+      <thead class="t_h">
+        <tr>
+          <th data-priority="5"> HSN </th> 
+          <th data-priority="5"> Description </th>
+          <th data-priority="5"> UQC </th>             
+          <th data-priority="5">Total Quantity</th>             
+          <th data-priority="5">Total Value</th> 
+          <th data-priority="5">Taxable Value</th> 
+          <th data-priority="5"> Integrated Tax Amount </th>            
+          <th data-priority="5"> Central Tax Amount </th> 
+          <th data-priority="5"> State/UT Tax Amount </th>
+          <th data-priority="5"> Cess Amount </th>
+          <th data-priority="5"> Rate </th>
+         
+          </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor = "let items of items_hsn">
+      
+              <td> {{items.HSN}} </td>
+              <td> {{items.Description}} </td>           
+              <td>{{items.UQC }}</td>
+              <td> {{items.Total_Quantity}} </td>
+              <td> {{items.Total_value}} </td>
+              <td> {{items.Taxable_value}} </td>
+
+              <td>{{items.Integrated_Tax_Amount }}</td>
+             <td>{{items.Central_Tax_Amount | number : '1.2-2' }}</td>
+             <td> {{items.State_UT_Tax_Amount}}  </td> 
+             <td> {{items.Cess_Amount}}  </td> 
+             <td> {{items.Rate}}  </td> 
+          
+
+        </tr>  
+          </tbody>
+          </table>
+          </div>
+
+</div> 
+
+

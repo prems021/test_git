@@ -1,0 +1,120 @@
+
+
+
+
+
+
+
+
+
+<div id="non-printable" class="content" style="background-color: none">
+    <form class="horizontal" [formGroup]="myForm" autocomplete="off">
+      <div class="row">
+   
+  
+        <div class="col-md-12">
+          <div class="row">
+            <div class="col-md-5">
+          <mat-form-field style="color: blue; font-weight: 500; width: 30%">
+            <input
+              matInput
+              [matDatepicker]="picker2"
+              [max]="tomorrow"
+              formControlName="from_date"
+              placeholder="From Date"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker2"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker
+            ><mat-error>Select a date</mat-error>
+          </mat-form-field>
+  
+    
+          &nbsp; &nbsp;
+  
+          <mat-form-field
+            style="color: green; font-weight: 500; width: 30%"
+          >
+            <input
+              matInput
+              [matDatepicker]="picker1"
+              [max]="tomorrow"
+              formControlName="to_date"
+              placeholder="To Date"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker1"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker
+            ><mat-error>Select a date</mat-error>
+          </mat-form-field>
+          </div>
+          <div class="col-md-3">
+
+            <div style="display: inline-block;" *ngFor="let item of Options;  let i = index">
+              <mat-checkbox style="margin-left: 10px;" [checked]="selected === i" (change)="select__(i)"> {{item.name}} </mat-checkbox>
+            </div> 
+
+          </div>
+  
+          &nbsp; &nbsp;
+         
+          <div class="col-md-3">
+          <button mat-button (click)="Search()">Search</button>
+  
+          <span *ngIf="Onload == 6">
+            <button mat-raised-button color="primary" style="background-color: teal;
+            border: 2px solid black;" (click)="exportTable_sales()">Export  </button>
+          </span>
+          </div>
+          </div>
+  
+        </div>
+      </div>
+    </form>
+    <hr />
+  
+  
+  
+      </div>
+  
+  
+  
+      <!-- <div *ngIf="Onload == 6">
+  
+        <div class="table-responsive my_t" data-pattern="priority-columns">
+          <table id="ETable_sales"  class="table table-bordered table-hover">
+            
+            <thead class="t_h">
+              <tr>
+                <th data-priority="5"> HSN </th> 
+                <th data-priority="5"> Barcode </th> 
+                <th data-priority="5"> Description </th>
+                <th data-priority="5"> UQC </th>             
+                <th data-priority="5"> Quantity</th>             
+           
+       
+               
+                </tr>
+                </thead>
+      
+                <tbody>
+                  <tr *ngFor = "let items of Items_sales">
+            
+                     <td> {{items.Hsn_code}} </td>
+                    <td> {{items.Bar_code}} </td>           
+                    <td>{{items.Product_name }}</td>
+                    <td> {{items.UQC}} </td>
+                    <td> {{items.Quantity}} </td>
+                  
+                
+      
+              </tr>  
+                </tbody>
+                </table>
+                </div>
+      
+      </div>  -->

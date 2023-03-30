@@ -1,0 +1,26 @@
+<div class="wrapper default-theme" [ngClass]="getClasses()" id="nest">
+    <app-navbar></app-navbar>
+    <main>
+      <app-sidebar></app-sidebar>
+      <div #all_p class="pages container-fluid pt-4 pb-4  pl-4 pr-4 neck "> 
+      <router-outlet></router-outlet> </div>
+       <!-- <div *ngIf="!this.api.isMobileResolution" class="pages container-fluid pt-4 pb-4  pl-4 pr-4"> 
+        <router-outlet></router-outlet>
+        <hr id="non-printable">
+
+    
+
+          -- <app-footer id="non-printable"></app-footer>   --
+       </div>  -->
+
+       <!-- <div *ngIf="this.api.isMobileResolution" style="width: 100%;position: absolute;padding: 2px;"> 
+        <router-outlet></router-outlet>        
+       </div>  -->
+
+       <!-- <div *ngIf="this.api.isMobileResolution" style="width: 100%;padding: 2px;"> 
+        <router-outlet></router-outlet>        
+       </div>  -->
+
+      <div class="overlay" (click)="toggleSidebar()"></div>
+    </main>
+  </div>

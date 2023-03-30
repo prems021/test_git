@@ -1,0 +1,399 @@
+
+<section style="position:fixed;
+top:0;left:0;right: 0;bottom: 0;
+width:100%;height: 100%; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">
+    
+     <section id="printa4" style="border:1px solid;height:398mm;"> 
+
+
+
+        <div style="width: 100%;height:11.2%; border-bottom:1px solid black;display: inline-block;text-align: center;padding-top: 10px;">       
+      
+         
+      <div style="width: 20%;display: inline-block;"> 
+         <img  [src]="this.api.api_logo_url" style="width: 200px;height: 100px;padding-left: 15px;" />   
+
+        <label style="font-size: 20px;font-weight: bold;"> </label> <br>
+        <label style="font-size: 18px;"> </label> <br>
+
+
+      </div> 
+     
+         
+        
+          
+          <div style="width: 80%;display: inline-block;"> 
+          <label style="font-size: 28px;font-weight: bold;">  {{this.api.Company_dets.company_name}}  </label> <br>
+       
+          <label  style="font-size: 22px;"> {{this.api.Company_dets.company_address_1}} ,  {{this.api.Company_dets.company_address_2}} </label> <br>
+       
+          <label style="font-size: 18px;"> Ph : {{  this.api.Company_dets.company_ph_1}} , {{this.api.Company_dets.company_ph_2}} </label> <br>
+          <label style="font-size: 18px;"> Email :  {{this.api.Company_dets.company_email}} </label> <br>
+          <label style="font-size: 20px;font-weight: bold;"> GSTIN :  {{this.api.Company_dets.company_gstin}} </label> <br>
+          
+         
+              </div> 
+       
+       </div>
+       
+       <div style="width: 100%;height:1.5%; border-bottom:1px solid black;"> 
+         <label style="font-weight: bold;text-align:center;width:100%;font-size: 20px;">Tax Invoice </label>       
+       </div>
+
+       <div style="width: 100%;height:10.6%; border-bottom:1px solid black;">
+        <div class="row">
+         <div class="col-md-6" style="height:160px;"> 
+
+          <div class="row"> 
+            <div class="col-md-12" style="height:100px;"> 
+          <p style="margin-top:5px;width: 100%;height: 25px;line-height: 17px;font-weight: bold;font-size: 20px;margin-left:5px;margin-top: 5px;">
+          Customer Name : {{ this.api.invo_head.customer_Name }} </p> 
+
+          <p style="float: left;width: 100%;height: 32px;line-height: 14px;font-size: 18px;margin-left:5px;"> 
+            Customer address : {{this.api.invo_head.customer_Address_1}} 
+             {{this.api.invo_head.customer_Address_2}} {{this.api.invo_head.customer_Address_3}} </p> 
+           </div>
+           </div>
+
+         
+             <div class="row"> 
+              <div class="col-md-6" style="height:38px;">   <p style="height: 26px;line-height: 18px;font-size: 18px;padding-left:5px;">  Ph No : {{this.api.invo_head.customer_Ph1}} ,
+                {{this.api.invo_head.customer_Ph2}}  </p>   </div>
+              <div class="col-md-6">   <p style="height: 10px;line-height: 14px;font-size: 18px;">  GSTIN : {{ this.api.invo_head.customer_Gstin }}  </p> </div>
+          
+            </div>
+
+            <div class="row"> 
+              <div class="col-md-12">
+            <p style="float: left;width: 100%;height: 20px;line-height: 15px;font-size: 17px;padding-left:5px;">  Place of Supply :  {{ this.api.invo_head.pos }} </p>  </div>
+            </div>
+
+     
+
+         </div> 
+
+         
+
+
+
+        <div class="col-md-6" style="border-left: 1px solid black;height:160px;"> 
+          
+          
+
+                    <div class="row" style="margin-top: 5px;"> 
+                      <div class="col-md-6"> <p style="width: 100%;height: 10px;font-size: 18px;"> State : {{this.api.state_name}}    </p>   </div>
+                      <div class="col-md-6"> <p style="width: 100%;height: 10px;font-size: 18px;"> StateCode : {{this.api.state_code}}</p>  </div>
+                  
+                  </div>
+
+
+                  <div class="row"> 
+                    <div class="col-md-12">
+
+                      <label  style="margin-top:5px;float: left;width: 100%;
+                      height: 25px;line-height: 16px;font-weight: bold;font-size: 20px;"> 
+                        Invoice Number : {{this.api.Company_dets.hb7_fy_strings[0].fy_string}}
+                         <span *ngIf="this.api.invo_head.type == 'B2B' ">/B/</span>
+                         <span *ngIf="this.api.invo_head.type == 'B2C' ">/C/ </span>
+                          {{this.api.invo_head.invoice_no_genrated}} </label>  
+                      </div>
+                      <div class="col-md-12">
+                        <label style="float: left;width: 100%;height: 20px;line-height: 14px;font-size: 18px;"> 
+                          <!-- Date :  {{  this.api.invo_head.invoice_date  | date:'fullDate' }} -->  Date :  {{  this.api.invo_head.invoice_date   | date: 'dd/MM/yyyy' }}    </label>  
+
+                         
+
+                        
+                      </div>
+                      <div class="col-md-6">
+                        <label style="height: 10px;line-height: 10px;font-size: 17px;">  Bundles : {{this.api.invo_head.bundles}} </label> 
+                        </div>
+
+                        <div class="col-md-6">
+                          <label style="height: 10px;line-height: 16px;font-size: 17px;">   LPO :  {{this.api.invo_head.lpo_no}} </label> 
+                          </div>
+                          <div class="col-md-12">
+                            <label style="height: 10px;line-height: 10px;font-size: 17px;">   Mode of Supply :  {{this.api.invo_head.mode_of_supply}}  </label> 
+
+                          </div>
+
+
+                    </div>
+
+
+
+                
+
+
+        </div>
+      
+      
+      
+      </div>
+      </div>
+       
+       
+     
+      
+      
+      
+      
+      
+        <div style="width: 100%;height: 43%;padding: 10px;"> 
+      
+      
+          <table class="table table-sm">
+            <thead>
+              <tr style="height: 40px;white-space: nowrap;text-align: center;">
+                <th scope="col" style="font-size: 22px;">#</th>
+                <th scope="col" style="font-size: 22px;">Description</th>
+                <th scope="col" style="font-size: 22px;">HSN/SAC</th>
+                <th scope="col" style="font-size: 22px;">Unit</th>
+                <th scope="col" style="font-size: 22px;">Tax%</th>
+                <th scope="col" style="font-size: 22px;">Qty</th>
+                <th scope="col" style="font-size: 22px;">Rate</th>
+                <th scope="col" style="font-size: 22px;">Taxable Value</th>
+                <th scope="col" style="font-size: 22px;">Net Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of this.api.Invoice_items_ary; let k=index;" style="text-align: center;">
+                <td scope="row" style="font-size: 20px;">{{k+1}}</td>
+                <td style="font-size: 23px;text-align: left!important;">{{item.product_name}}
+
+                <label *ngIf="item.product_description != null" style="font-style: italic;     
+                padding-left: 42px;
+                font-size:16px;"> SI No : {{item.product_description }} </label>   </td>
+
+                <td style="font-size: 20px;"> {{item.hsn_code}} </td>
+                <td style="font-size: 20px;">{{item.unit}}</td>
+                <td style="font-size: 20px;">{{item.tax}}</td>
+                <td style="font-size: 20px;">{{item.qty | number : '1.2-2'}}</td>
+                <td style="font-size: 20px;">{{item.rate | number : '1.2-2'}}</td>
+                <td style="font-size: 20px;">{{item.rate * item.qty | number : '1.2-2'}}</td>   
+                <td style="font-size: 20px;">{{item.value * item.qty | number : '1.2-2'}}</td>                
+                
+              </tr>
+              
+           
+              <tr style="border-top: 2px solid black;text-align: center;"> 
+                <th scope="row"></th>
+                <td style="font-size :22px;">Total</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td style="font-size :22px;">{{   this.api.total_qty  | number : '1.2-2'}}</td>
+                <td> </td>
+                <td style="font-size :22px;">{{ this.api.invo_head.total_taxable  | number : '1.2-2'}}</td>
+                <td style="font-size :22px;"> {{ this.api.invo_head.total_taxable + this.api.invo_head.total_tax_amt  | number : '1.2-2'}}</td>
+              </tr>
+      
+            </tbody>
+          </table>
+      
+        </div>
+      
+      
+      
+       
+      
+         <div style="width: 100%;height: 6.5%; border-top:1px solid black;"> 
+      
+          <div style="width: 70%;height:100%; border-right:1px solid black;display: inline-block;"> 
+            
+         <label style=" padding-top: 50px;font-size: 20px;
+         padding-left: 4px;
+         line-height: 20px;
+         font-weight: bold;">  Amount in figure : {{this.api.figure_grand}}  </label>  
+          
+          </div>
+          <div style="width: 30%;display: inline-block;position: absolute; "> 
+            
+            <!-- <label  *ngIf="this.ds.i_m.heads.TYPE_ === 'OUT STATE' && this.ds.i_m.heads.MODE_ == 'IN'"
+             style="padding-left: 3px;font-weight: bold;"> 
+              Total Tax (IGST) : {{100 | number : '1.2-2'}} </label>  -->
+      
+         
+      
+      
+            <label  style="padding-left: 3px;padding-top:3px;font-weight: bold;font-size: 20px;">
+               Total Tax (GST) : {{ this.api.invo_head.total_tax_amt   | number : '1.2-2'}} </label>
+      
+      
+      
+      
+            
+            <!-- <label  *ngIf="this.ds.i_m.heads.MODE_ == 'IN'" style="padding-left: 3px;font-weight: bold;">
+               KF.Cess : {{this.ds.i_m.heads.CESS_AMT | number : '1.2-2'}} </label>
+            <label  *ngIf="this.ds.i_m.heads.MODE_ == 'SR'" style="padding-left: 3px;font-weight: bold;">
+               KF.Cess (Rev) : {{this.ds.i_m.heads.CESS_AMT | number : '1.2-2'}} </label> -->
+            
+            <br>
+            <label style="padding-left: 3px;font-weight: bold;font-size: 20px;"> Round-off : {{ this.api.frac }}  </label> <br>
+            
+         
+      
+      <label  style="border-top: 1px solid black;width: 100%;padding-left: 3px;
+      padding-top: 4px;font-weight: bold;font-size: 22px;"> Grand Total : {{ this.api.invo_head.grand_amt | number : '1.2-2'}}  </label>
+      
+      
+   
+      
+      
+             <br>
+            
+            
+             </div>
+           
+        </div> 
+      
+      
+      
+      
+      
+        <div style="width: 100%;height:auto;"> 
+      
+      
+          <div style="width: 100%;height: 2px;border-bottom: 1px solid black;"> </div>
+      <label  style="text-align: center;height: 13px;font-weight: bold;line-height: 18px;width: 100%;
+      font-size: larger;"> Tax details (GST) </label>
+      
+     
+              
+      <div style="width: 100%;height: 2px;border-bottom: 1px solid black;"> </div>
+      
+      <table style="width: 100%;">
+      <thead style="font-size: 18px;font-weight: bold;border-bottom: 1px dotted black;">
+           <tr> <th  style="padding-left: 8px;"> Tax (%) </th> <th> Taxable Value </th> 
+            <th *ngIf="this.api.invo_head.type_ex === 'IGST'"> IGST </th>
+            <th *ngIf="this.api.invo_head.type_ex != 'IGST'"> CGST </th>
+              <th *ngIf="this.api.invo_head.type_ex != 'IGST'"> SGST </th> <!-- <th> K.F cess </th> -->
+           </tr>
+      </thead>
+      
+      
+      <tr  *ngFor="let itemz of ds.Tax_info.item; let k=index;">
+        <td style="padding-left: 8px;font-weight: bold;font-size: 18px;"> {{itemz.TAX }} </td> 
+        <td style="font-weight: bold;font-size: 18px;"> {{itemz.NET_VALUE | number : '1.2-2'}} </td> 
+       <td  *ngIf="this.api.invo_head.type_ex === 'IGST'" style="font-weight: bold;font-size: 18px;"> {{itemz.CGST * 2 |  number : '1.2-2'}} </td>
+       <td *ngIf="this.api.invo_head.type_ex != 'IGST'"  style="font-weight: bold;font-size: 18px;"> {{itemz.CGST | number : '1.2-2'}} </td>
+        <td *ngIf="this.api.invo_head.type_ex != 'IGST'"  style="font-weight: bold;font-size: 18px;"> {{itemz.SGST | number : '1.2-2'}} </td>
+        <!-- <td style="font-weight: bold;"> {{itemz.KFC | number : '1.2-2'}} </td> -->
+      </tr>
+      
+      <tr style="border-top:1px dotted black;"> 
+      
+         <td style="padding-left: 8px;font-weight: bold;font-size: 18px;"> Total  </td>
+          <td style="font-weight: bold;font-size: 18px;"> {{ this.api.invo_head.total_taxable | number : '1.2-2' }} </td> 
+          <td *ngIf="this.api.invo_head.type_ex === 'IGST'" style="font-weight: bold;font-size: 18px;"> {{  this.api.invo_head.total_tax_amt  | number : '1.2-2'}}  </td>
+         <td *ngIf="this.api.invo_head.type_ex != 'IGST'" style="font-weight: bold;font-size: 18px;"> {{  this.api.invo_head.total_tax_amt  / 2 | number : '1.2-2'}}  </td>
+          <td *ngIf="this.api.invo_head.type_ex != 'IGST'" style="font-weight: bold;font-size: 18px;"> {{  this.api.invo_head.total_tax_amt  / 2 | number : '1.2-2'}} </td> 
+         <!-- <td style="font-weight: bold;"> {{this.ds.i_m.heads.CESS_AMT | number : '1.2-2'}} </td> -->
+      
+      </tr> 
+      
+      
+      </table>
+      
+      <div style="width: 100%;
+      height: 30px;
+      border-bottom: 1px solid black;
+      border-top: 1px solid black;"> 
+      
+      <label   style="width: 100%;padding-left: 4px;padding-top: 2px;font-size: large;
+      font-weight: bold;"> Total Tax Amount : {{ this.api.invo_head.total_tax_amt  | number : '1.2-2' }} 
+         </label>       
+      
+      
+      </div> 
+      
+      
+      
+       </div>
+      
+      
+      
+       
+       <div class="footer">
+      
+      
+        <div style="width: 100%;height:100px; border-top:1px solid black;">  
+      
+          <div style="width: 50%;height:100%;border-right: 1px solid;display: inline-block;"> 
+            <label> Customer's Seal & Signature </label>
+            </div>
+      
+            <div style="width: 50%;height:100%;display: inline-block;position:absolute;"> 
+             
+            <label style="padding-left: 5px;font-size: 16px;font-weight: bold;"> For {{this.api.Company_dets.company_name}} </label> 
+            <label style="    float: right;
+            padding-right: 5px;"> Authorized Signatory </label> 
+      
+          </div>
+            
+            
+      
+         </div>
+      
+      
+         <div style="width: 100%;height:100px; border-top:1px solid black;"> 
+      
+          <div style="width: 50%;height:100%;border-right: 1px solid;display: inline-block;"> 
+            <label style="padding-left: 2px;"> Declartion </label>
+      
+            <label style="padding-left: 2px;"> 1.This invoice shows the actual price of the goods described and that
+              all particulars are true and correct.
+              2.If Pais after the due date, Interest @ 18% PA will be charged from the date of Invoice to the date of Payment.
+              3.Multicity Cheque/RTGS/NEFT Preferred. Kindly demand Official stamped reciept for Payments.
+               </label> 
+            </div>
+            <div style="width: 50%;height:100%;display: inline-block;position:absolute;padding-left: 4px;"> 
+              <label style="padding-top: 2px;
+              float: left;
+              position: absolute;"> Payment Details :   </label>
+              <!-- <label style="padding-top: 2px;
+              float: left;
+              position: absolute;"> Bank Name : {{this.api.Company_dets.company_bank_name}}  </label> -->
+              <label style="padding-top: 25px;font-weight: 600;
+              float: left;
+              position: absolute;">  Bank Name : {{this.api.Company_dets.company_bank_name}}            
+              </label>
+              <label style="padding-top: 51px;font-weight: 600;
+              float: left;
+              position: absolute;">  A/c No :  {{this.api.Company_dets.company_bank_ac_no}}
+              </label>
+              <label style="padding-top: 76px;font-weight: 600;
+              float: left;
+              position: absolute;">    Branch :  {{this.api.Company_dets.company_bank_branch_name}}  &nbsp;   &nbsp;  &nbsp;  &nbsp;  IFSC :  {{this.api.Company_dets.company_bank_ifsc_code}} </label>
+              </div>
+      
+         </div>
+      
+         <div style="width: 100%;height:20px; border-top:1px solid black;"> 
+      
+          <label style="float: left;
+          padding-left: 12px;
+          font-weight: bold;"> * This is a computer generated Invoice(T8)  </label>  <label style="float: right;
+          padding-right: 5px;"> csweb.in  </label> 
+      
+         </div>   
+        
+      </div>     
+      
+      
+      </section>
+      
+      
+ 
+
+
+
+
+</section>
+
+
+
+
+
+
+

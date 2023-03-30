@@ -1,0 +1,798 @@
+
+
+
+<nav  id="non-printable" aria-label="breadcrumb" style="height:25px;">
+  <ol class="breadcrumb" style="padding:0px;">
+    <li class="breadcrumb-item"><a href="#/home">Home</a></li>
+    <li class="breadcrumb-item"><a href="#/home">invoice</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Edit  &nbsp;--  Press F1 for Help</li>
+  </ol>
+</nav> 
+
+
+
+
+
+
+<section id="non-printable" style="width: 100%;
+height: auto;
+background-color: #f3f3f3;
+padding: 5px;
+color: #070d24;">
+
+<div class="row" *ngxPermissionsOnly="['Admin']">
+
+
+
+
+ <div  *ngIf="!date_edit" class="col-12 col-md-4 col-sm-4 col-lg-3"> 
+  <label>Date : {{  this.api.invo_head.invoice_date | date: 'fullDate' }}  </label>
+
+ <a matTooltip="back"  href="javascript:void(0)" (click)="edit_date()"><mat-icon  style="font-size: 18px;" >edit</mat-icon> </a>
+
+</div> 
+
+          
+<div  *ngIf="date_edit" class="col-12 col-md-3 col-sm-4">
+  <div class="input-group input-group-sm mb-6"  style="height:100%;">
+           <div class="input-group-prepend" style="height:100%;">
+            <span class="input-group-text" style="max-height: 33px;"  id="inputGroup-sizing-sm">
+                <button  matRipple [matRippleColor]="color" type="button" style="background-color: rgb(233, 244, 247);width: 100%;border: none;
+              border-radius: 8px;" (click)="dp.toggleCalendar()">
+                       <img src="../../assets/images/calendar.svg" style="width: 15px; height: 15px;" /> 
+          </button>  </span>
+           </div>
+           <input style="text-align: center;color: black;" class="form-control" placeholder="{{!myDatePickerOptions.dateRange ?
+           'Select a date' : 'Select a date range'}}" angular-mydatepicker name="mydate"
+             [(ngModel)]="invoice_date" [options]="myDatePickerOptions"  [locale]="locale"
+              #dp="angular-mydatepicker"
+             (dateChanged)="onDateChanged($event)"       
+             (inputFieldChanged)="onInputFieldChanged($event)"
+            [attr.disabled]="disabled?'':null" autocomplete="off"/>
+      </div>   
+  </div>
+
+ 
+  <div *ngIf="!this.cus_edit" class="col-11 col-md-4  col-sm-4 col-lg-3">
+
+    <label> Customer Name : {{this.api.invo_head.customer_Name}} </label>
+
+            <span>
+              <button matTooltip="edit customer" (click)="edit_customer()"
+              style="background: none;border: none;color:rgb(31, 16, 83)"> 
+                <i class="fa fa-edit"  style="color:#493e72;" aria-hidden="true"></i>
+            </button>        
+          </span>
+</div>
+
+
+
+   <div *ngIf="this.cus_edit" class="col-12 col-md-3 col-sm-4">
+    <div class="input-group input-group-sm mb-6"  style="height:100%;">
+             <div class="input-group-prepend" style="height:100%;">
+              <span class="input-group-text" style="max-height: 33px;" id="inputGroup-sizing-sm"> Search   </span>
+             </div>
+        <span class="form-control" style="padding: 0px;" > <input  type="text" ngui-auto-complete #vendors 
+          style="height:100%;color: black;width:100%;    padding: 4px;" type="text" 
+          name="customers"   [source]="arrayOfCusValues"  
+          (valueChanged)="_cus_selected($event)"  (customSelected)="customCallback($event)"           
+          list-formatter="id -- name -- street"
+          loading-text = "loading"
+          display-property-name="name"
+            aria-label="Small" aria-describedby="inputGroup-sizing-sm">  </span>  
+            <a href="javascript:void(0)" matTooltip="Update customer" (click)="update_customer()"><mat-icon  style="font-size: 18px;" >thumb_up_alt</mat-icon> </a> 
+            <a href="javascript:void(0)"  matTooltip="Back" (click)="edit_customer()"><mat-icon  style="font-size: 18px;" >reply</mat-icon> </a> 
+        </div> 
+        
+     
+
+
+    </div> 
+
+
+
+
+    <!-- <div class="col-12 col-md-4  col-sm-4 col-lg-2">
+         
+      <div style="padding-top: 5px;">
+         <mat-radio-group  [(ngModel)]="this.api.invo_head.cast">
+           <mat-radio-button color="primary"  [value]="1"> Invoice &nbsp;</mat-radio-button>
+           <mat-radio-button color="primary" [value]="2"> Performa</mat-radio-button>
+         </mat-radio-group>
+       </div>
+       
+       </div> -->
+
+       
+    <div class="col-12 col-md-4  col-sm-4 col-lg-2">
+         
+      <div style="padding-top: 5px;">
+         <mat-radio-group  [(ngModel)]="this.api.invo_head.cast">
+           <mat-radio-button color="primary"  [value]="1"> &nbsp; <span *ngIf="this.api.invo_head.cast == 1">  {{this.api.invo_head.type_ex}} </span>    Invoice &nbsp;</mat-radio-button>
+           <mat-radio-button color="primary" [value]="2">  &nbsp; <span *ngIf="this.api.invo_head.cast == 2">  {{this.api.invo_head.type_ex}} </span>  Performa</mat-radio-button>
+         </mat-radio-group>
+       </div>
+       
+       </div>
+
+
+
+
+
+       <div class="col-1 col-md-1  col-sm-1 col-lg-1">
+        <a href="javascript:void(0)" (click)="toogle_head_dets()" > <mat-icon>keyboard_arrow_down</mat-icon></a>
+      </div>  
+  
+
+</div>
+
+<div id="non-printable"  *ngIf="toogle_head_det" class="row">
+  
+          
+  
+  <div class="col-12 col-md-4 col-sm-6">
+      <div class="input-group input-group-sm mb-6" style="padding-top: 4px;">
+        <div class="input-group-prepend">
+         <span class="input-group-text" id="inputGroup-sizing-sm"> Name </span>
+        </div>
+      <input [disabled]="true" [(ngModel)]="this.api.invo_head.customer_Name"  type="text" class="form-control" 
+      aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+      </div>
+      </div>
+      
+      
+      <div class="col-12 col-md-4 col-sm-6">
+        <div class="input-group input-group-sm mb-6" style="padding-top: 4px;">
+          <div class="input-group-prepend">
+           <span class="input-group-text" id="inputGroup-sizing-sm"> Address_1 </span>
+          </div>
+        <input [disabled]="true" type="text"  [(ngModel)]="this.api.invo_head.customer_Address_1" class="form-control" 
+        aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+        </div>
+        </div>
+  
+        <div class="col-12 col-md-4 col-sm-6">
+          <div class="input-group input-group-sm mb-6" style="padding-top: 4px;">
+            <div class="input-group-prepend">
+             <span class="input-group-text" id="inputGroup-sizing-sm"> Address_2 </span>
+            </div>
+          <input [disabled]="true" type="text"  [(ngModel)]="this.api.invo_head.customer_Address_2" class="form-control" 
+          aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+          </div>
+          </div>
+        
+      
+        <div class="col-12 col-md-4 col-sm-6">
+          <div class="input-group input-group-sm mb-6" style="padding-top: 4px;">
+            <div class="input-group-prepend">
+             <span class="input-group-text" id="inputGroup-sizing-sm"> Mob </span>
+            </div>
+          <input [disabled]="true"  [(ngModel)]="this.api.invo_head.customer_Ph1" type="text" class="form-control" 
+          aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+          </div>
+          </div>
+
+          <div class="col-12 col-md-4 col-sm-6">
+            <div class="input-group input-group-sm mb-6" style="padding-top: 4px;">
+              <div class="input-group-prepend">
+               <span class="input-group-text" id="inputGroup-sizing-sm"> GST No </span>
+              </div>
+            <input [disabled]="true"  [(ngModel)]="this.api.invo_head.customer_Gstin" type="text" class="form-control"
+            aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+            </div>
+            </div>
+      
+        
+      
+          <div class="col-12 col-md-4 col-sm-6">
+            <div class="input-group input-group-sm mb-6" style="padding-top: 4px;">
+              <div class="input-group-prepend">
+               <span class="input-group-text" id="inputGroup-sizing-sm"> Lpo No </span>
+              </div>
+            <input [(ngModel)]="this.api.invo_head.lpo_no" type="text" class="form-control"
+            aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+            </div>
+            </div>
+      
+            <div class="col-12 col-md-4 col-sm-6">
+              <div class="input-group input-group-sm mb-6" style="padding-top: 4px;">
+                <div class="input-group-prepend">
+                 <span class="input-group-text" id="inputGroup-sizing-sm"> Place of Supply </span>
+                </div>
+              <input  [(ngModel)]="this.api.invo_head.pos"  type="text" class="form-control"
+              aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+              </div>
+              </div>
+      
+              <div class="col-12 col-md-4 col-sm-6">
+                <div class="input-group input-group-sm mb-6" style="padding-top: 4px;">
+                  <div class="input-group-prepend">
+                   <span class="input-group-text" id="inputGroup-sizing-sm"> Mode of Supply </span>
+                  </div>
+                <input  [(ngModel)]="this.api.invo_head.mode_of_supply" type="text" class="form-control" 
+                aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                </div>
+                </div>
+      
+      
+              <div class="col-12 col-md-4 col-sm-6">
+                <div class="input-group input-group-sm mb-6" style="padding-top: 4px;">
+                  <div class="input-group-prepend">
+                   <span class="input-group-text" id="inputGroup-sizing-sm"> Bundles: </span>
+                  </div>
+                <input [(ngModel)]="this.api.invo_head.bundles"  type="number" class="form-control" 
+                aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                </div>
+                </div>    
+      </div>
+     
+
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+<table *ngxPermissionsOnly="['Admin']" style="width:100%;" class="desk" id="non-printable">
+ 
+  <thead>
+      <tr>
+          
+          <th id="r1c2" scope="col">Product Code</th>
+          <th id="r1c3" scope="col">Item Name</th>
+          <th id="r1c4" scope="col">Qty</th>
+          <th style="white-space:nowrap;min-width: 70px;text-align: center;" id="r1c4" scope="col">Unit</th>
+          <th id="r1c5" scope="col">Tax </th>
+          <th id="r1c6" scope="col">Rate</th>
+          <th id="r1c7" scope="col">Value</th>
+          <th id="r1c8" scope="col">+</th>
+
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+         
+          <td><input type="text" style="width: 100%;text-align:center;"  aria-labelledby="r1c2"
+            ngui-auto-complete #autos type="text" name="autos"  [source]="arrayOfKeyValues"  
+         placeholder="barcode"      
+          (keyup.enter)="change_item_name(autos.value)" 
+          (keyup.esc)="move_to_payment()"
+          list-formatter="bar_code -- product_name"
+          loading-text = "loading"
+          max-num-list = 20
+          display-property-name="bar_code"
+           [(ngModel)]="pro_barcode"           
+            /></td>
+
+
+          <td><input type="text" style="width: 100%;text-align:center;" name="january-spent" aria-labelledby="r1c3" 
+            #item_name_model [disabled]="true" type="text" placeholder="Item name" 
+           [(ngModel)]="pro_name"> 
+          
+          </td>
+          <td>
+            <input type="number"  style="width: 100%;text-align:center;"  aria-labelledby="r1c4"
+             #item_qty_model 
+             type="number" placeholder="Quantity" (keyup.enter)="pushItem_down()"
+          [(ngModel)]="pro_qty">  
+          
+          </td>
+
+          <td style="text-align: center;">
+           
+            {{this.pro_unit}}
+          
+          </td>
+
+
+          <td><input type="text" aria-labelledby="r1c5"  type="number" style="width: 100%;text-align:center;" #box_net   [(ngModel)]="pro_tax"            
+          placeholder="" >            
+          </td>
+          <td><input type="number" style="width: 100%;text-align:center;"  aria-labelledby="r1c6"           
+           #box_net (keyup.enter)="pushItem_down()" (keyup)="keyup_rate()"   [(ngModel)]="pro_rate"
+           placeholder=" " >
+          
+          </td>
+          <td><input aria-labelledby="r1c7" 
+             type="number" style="text-align:center; width: 100%;" #box_net (keyup.enter)="pushItem_down()" (keyup)="keyup_net_price()" [(ngModel)]="pro_np"                     
+           placeholder=" " >  
+          </td>
+          <td>   <button [disabled]="push_disabled" matRipple [matRippleColor]="color" (click)="pushItem_down()" (keydown.ArrowDown)="pushItem_down()"  type="button" style="color: #636c93;
+          background-color: wheat;width: 100%;
+    border: 1px solid;">
+            Add
+          </button>   </td>
+
+      </tr>
+     
+  </tbody>
+</table>
+
+
+
+<section *ngIf="rev_display" class="desk" id="non-printable" style="height: 448px;
+overflow-y: scroll;"> 
+
+  <div   id="non-printable" *ngIf="this.ia>0"   class="table-responsive-sm">
+    <table class="container mt-2"  style="font-family: monospace;color:#0c047e;font-size: 10pt;
+    font-style: normal;
+    font-weight: bold;
+    text-align: center;">
+      
+        <thead>
+        <tr style="color: #cdffff;background-color: #594671;">
+          <th scope="col"># <a href="javascript:void(0)" (click)="swap_vert()"> <mat-icon style="font-size: 20px;color: seashell;">arrow_drop_up</mat-icon> </a> </th>
+          <th scope="col">Description</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Unit</th>
+          <th scope="col">Tax</th>
+          <th scope="col">Mrp</th>
+          <th scope="col">Rate</th>
+          <th scope="col">Value</th>
+          <th scope="col">Net Value</th>
+          <th scope="col">Edit</th>
+          <th scope="col">Delete</th>
+        </tr>
+        </thead>
+        <tbody> 
+          <tr *ngFor="let item of this.api.Invoice_items_ary.slice().reverse(); let k=index " height="10">
+            <td height="5" style="width:5%;">   {{item.index_no}} </td> 
+            <td> {{item.product_name}} </td>
+            <td> {{item.qty}} </td>
+            <td> {{item.unit}}    </td>    
+            <td> {{item.tax}}    </td> 
+            <td> {{item.mrp}} </td>      
+            <td> {{item.rate  | number : '1.2-4' }} </td>
+            <td> {{item.value | number : '1.2-2'}} </td>    
+            <td> {{item.value * item.qty  | number : '1.2-2'}} </td>
+         
+            <td *ngxPermissionsOnly="['Admin']">   <a href="javascript:void(0)" (click)="editItem(item)">  
+              <img src="../../assets/icons/edit.svg" style="width: 15px;
+             height: 15px;" />  </a>  </td>
+           <td *ngxPermissionsOnly="['Admin']">  <a href="javascript:void(0)" (click)="RemoveItem(item)">  
+             <img src="../../assets/icons/delete_dob.svg" style="width: 15px;
+            height: 15px;" />  </a>
+             </td>
+
+          </tr>     
+  
+        </tbody>
+    </table>
+  </div>
+  </section>
+
+  
+<section *ngIf="!rev_display" class="desk" id="non-printable" style="height: 448px;
+overflow-y: scroll;"> 
+
+  <div   id="non-printable" *ngIf="this.ia>0"   class="table-responsive-sm">
+    <table class="container mt-2"  style="font-family: monospace;color:#0c047e;font-size: 10pt;
+    font-style: normal;
+    font-weight: bold;
+    text-align: center;">
+      
+        <thead>
+        <tr style="color: #cdffff;background-color: #594671;">
+          <th scope="col"># <a href="javascript:void(0)" (click)="swap_vert()"> <mat-icon style="font-size: 20px;color: seashell;">arrow_drop_down</mat-icon> </a> </th>
+          <th scope="col">Description</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Unit</th>
+          <th scope="col">Tax</th>
+          <th scope="col">Mrp</th>
+          <th scope="col">Rate</th>
+          <th scope="col">Value</th>
+          <th scope="col">Net Value</th>
+          <th scope="col">Edit</th>
+          <th scope="col">Delete</th>
+        </tr>
+        </thead>
+        <tbody> 
+          <tr *ngFor="let item of this.api.Invoice_items_ary; let k=index " height="10">
+            <td height="5" style="width:5%;">   {{item.index_no}} </td> 
+            <td> {{item.product_name}} </td>
+            <td> {{item.qty}} </td>
+            <td> {{item.unit}}    </td>    
+            <td> {{item.tax}}    </td> 
+            <td> {{item.mrp}} </td>      
+            <td> {{item.rate  | number : '1.2-4' }} </td>
+            <td> {{item.value | number : '1.2-2'}} </td>    
+            <td> {{item.value * item.qty  | number : '1.2-2'}} </td>
+         
+            <td *ngxPermissionsOnly="['Admin']">   <a href="javascript:void(0)" (click)="editItem(item)">  
+              <img src="../../assets/icons/edit.svg" style="width: 15px;
+             height: 15px;" />  </a>  </td>
+           <td *ngxPermissionsOnly="['Admin']">  <a href="javascript:void(0)" (click)="RemoveItem(item)">  
+             <img src="../../assets/icons/delete_dob.svg" style="width: 15px;
+            height: 15px;" />  </a>
+             </td>
+
+          </tr>     
+  
+        </tbody>
+    </table>
+  </div>
+  </section>
+
+
+<br> <br> 
+
+
+
+
+<div class="footer" id="non-printable">
+  <div class="footer-in" style="overflow-x: scroll;">
+
+  <table class="bottom_table" style="width: 100%;
+  text-align: center;
+  line-height: 10px;
+  font-size: small;
+  white-space: nowrap;">
+    
+    <thead>
+
+      <tr style="color: #000000;
+      background-color: #bca3ed;
+      height: 4px;
+      font-size: 14px;font-family: monospace;
+      text-align: center;">
+        <th scope="col">Print</th>
+        <th scope="col">Taxable</th>
+        <th scope="col">Tax</th>
+        <th scope="col">Round off</th>         
+        <th> Grand Total</th>
+        <th> Pre Cash </th>
+        <!-- <th> Amt Recieved </th> -->
+        <th> Balance Amt</th>
+        <th> Due Amt</th>
+        <th> Save </th>
+
+    </thead>
+
+    <tr style="background-color: #e8f4ff;color: #133543;">
+
+      <td>
+        <div style="text-align: center;display: inline-flex;">
+          <div style="float: left;" *ngIf="this.ia>0" id="non-printable" style="padding-top:5px;margin-left: 5px">
+
+            <input type="radio" id="checkboxe" value="80mm"  [(ngModel)]="this.api.Company_dets.default_print_size">
+            <label for="checkboxe"> 3i </label>  
+          </div>
+
+          <div style="display: inline;" *ngIf="this.ia>0 && this.ia<11" id="non-printable"
+            style="padding-top:5px;margin-left: 5px">
+
+            <input type="radio"  id="checkboxa4" value="a5" [(ngModel)]="this.api.Company_dets.default_print_size">
+            <label for="checkboxa4"> A5 </label> </div>
+
+          <div style="float: right;" *ngIf="this.ia>0 && this.ia<52" id="non-printable"
+            style="padding-top:5px;margin-left: 5px">
+
+            <input type="radio"  id="checkboxa4"  value="a4" [(ngModel)]="this.api.Company_dets.default_print_size">
+            <label for="checkboxa4"> A4 </label> </div>   
+        </div>
+      </td>
+
+      <td style="font-size: 14px;"> {{  this.api.invo_head.total_taxable  | number : '1.2-2'}} </td>
+      <td style="font-size: 14px;"> {{  this.api.invo_head.total_tax_amt | number : '1.2-2' }} </td>
+      <td style="font-size: 14px;"> {{ this.api.frac | number : '1.2-2'}}</td>
+      <td style="font-weight: bold; color: slateblue;font-size: large;"> {{ this.api.invo_head.grand_amt | number : '1.2-2'}}</td> 
+
+      <td style="font-weight: bold;"> {{ this.api.invo_head.pre_cash_total | number : '1.2-2'}} <span> 
+
+        <button matTooltip="view  reciepts" (click)="pre_list()"
+        style="background: none;border: none;color:rgb(134, 130, 148)"> 
+           <i class="fa fa-eye"  style="color: #ba892e;" aria-hidden="true"></i>
+      </button> 
+
+      </span> </td> 
+
+      <!-- <td><input #bill_pay type="number" style="width:90%;margin-left: 5%;text-align: center;" class="form-control"
+        [(ngModel)]="this.api.invo_head.recieved_amt" (keyup)="change_in_payment()" aria-label="Small"
+        aria-describedby="inputGroup-sizing-sm"> </td> -->
+      <td style="font-size: 14px;"> {{ this.api.invo_head.balance_amt | number : '1.2-2' }} </td>       
+      <td style="    color: red;
+      font-size: 16px;"> {{ this.api.invo_head.due_amt | number : '1.2-2'}}</td> 
+      <td *ngxPermissionsOnly="['Admin']"> 
+          <!-- <button [disabled]="push_disabled_enter" style="width: 100px;" type="button"
+        class="btn btn-primary" (click)="update_Invoice_taxed()">
+        > F8
+      </button> -->
+
+      <button *ngIf="push_disabled_enter ==1" class="btn btn-primary pull-right" 
+(click)="update_Invoice_taxed()" type="button"><span class="glyphicon glyphicon-ok"></span> Update(F8) </button>
+
+<button  *ngIf="push_disabled_enter == 2" class="buttonload btn pull-right">
+  <i class="fa fa-spinner fa-spin"></i>Updating..
+</button>
+
+<button [disabled]="true" *ngIf="push_disabled_enter == 3" class="btn btn-warning pull-right" 
+ type="button"><span class="glyphicon glyphicon-ok"></span> Updated </button>
+    
+    
+    
+    </td>
+
+    <td *ngxPermissionsOnly="['CounterStaff']"> 
+  
+
+  <button *ngIf="push_disabled_enter ==1" class="btn btn-primary pull-right" 
+(click)="update_Invoice_taxed()" type="button"><span class="glyphicon glyphicon-ok"></span> Print </button>
+
+<button  *ngIf="push_disabled_enter == 2" class="buttonload btn pull-right">
+<i class="fa fa-spinner fa-spin"></i>printing..
+</button>
+
+<button [disabled]="true" *ngIf="push_disabled_enter == 3" class="btn btn-warning pull-right" 
+type="button"><span class="glyphicon glyphicon-ok"></span> Printed </button>
+
+
+
+</td>
+
+
+    
+    
+    </tr>
+    </table>
+
+  </div>
+</div>
+
+
+
+<div id="myModal_3" class="modal">
+  
+  
+  <!-- Modal content -->
+  <div class="modal-content">
+    <label class="btn btn-primary">
+      Edit Item
+    </label>
+
+    <div class="row">
+
+      <div class="col-sm-4">
+
+        <div class="input-group input-group-sm mb-6">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-sm"> Name </span>
+          </div>
+          <input [disabled]="true" type="text" class="form-control" [(ngModel)]="pro_name_model" aria-label="Small"
+            aria-describedby="inputGroup-sizing-sm">
+        </div>
+
+
+      </div>
+
+      <div class="col-sm-4">
+
+        <div class="input-group input-group-sm mb-6">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-sm"> hsn code </span>
+          </div>
+          <input #item_hsn_model_e type="text" class="form-control" [(ngModel)]="pro_hsn_code_model" aria-label="Small"
+            aria-describedby="inputGroup-sizing-sm">
+        </div>
+
+
+      </div>
+
+      <div class="col-sm-5">
+
+        <div class="input-group input-group-sm mb-6">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-sm"> Description </span>
+          </div>
+          <input  type="text" class="form-control" [(ngModel)]="pro_description_model" aria-label="Small"
+            aria-describedby="inputGroup-sizing-sm">
+        </div>
+
+
+      </div>
+
+
+      <div class="col-sm-3">
+
+        <div class="input-group input-group-sm mb-6">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-sm"> Qty </span>
+          </div>
+          <input #item_qty_model_e type="number" class="form-control" [(ngModel)]="pro_qty_model" aria-label="Small"
+            aria-describedby="inputGroup-sizing-sm">
+        </div>
+
+
+      </div>
+
+      <div class="col-sm-3">
+
+        <div class="input-group input-group-sm mb-6">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-sm">Rate</span>
+          </div>
+          <input type="number" class="form-control" [(ngModel)]="pro_p_model" (keyup)="keyup_price_e()"
+            aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+        </div>
+      </div>
+
+      <div class="col-sm-3">
+
+        <div class="input-group input-group-sm mb-6">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-sm">Value</span>
+          </div>
+          <input type="number" class="form-control" [(ngModel)]="pro_np_model" (keyup)="keyup_net_price_e()"
+            aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+        </div>
+      </div>
+
+
+    </div>
+
+    <br>
+
+
+    <button style="width: 150px;margin-left: 10px;" type="button" class="btn btn-primary" (click)="update_close_modal()">
+      Update & close
+    </button>
+
+  </div>
+
+
+
+
+</div>
+
+
+<div id="myModal_5_1" class="modal">
+  
+  
+  <!-- Modal content -->
+  <div class="modal-content">
+    <label class="btn btn-primary">
+      Edit Amount
+    </label>
+</div>
+</div>
+
+
+
+<div id="myModal_5" class="modal">
+  
+  
+  <!-- Modal content -->
+  <div class="modal-content">
+    <label class="btn btn-primary">
+      Transaction list
+    </label>
+
+
+
+        
+<section style="height:300px;overflow-y: scroll;" id="non-printable">
+
+  <table class="pdt_table">
+   
+    <thead>
+      <tr style="background-color: #c1d1e5;color: #171617;">
+     
+
+        <th scope="col" style="width: 40px;">#</th>
+        <th scope="col" style="width: 200px;">Date</th>
+        <th scope="col" style="width: 160px;">Amount</th>
+        <th scope="col"> Mode of pay </th> 
+        <th scope="col"> Type </th> 
+        <th scope="col"> Is bulk pay </th>      
+        <th  scope="col">Action</th>
+        
+
+      </tr>
+    </thead>
+    <tbody>
+    
+
+      <tr *ngFor="let itemz of this.api.Trans_dets; let ind_k=index">
+        <td data-label="#"> {{ind_k+1}} </td>
+        <td data-label="date"> {{itemz.date | date: 'fullDate'  }} </td>
+        <td data-label="amt"> {{itemz.amount  | number : '1.2-2' }} </td>
+        <td data-label="mode"> {{itemz.mode}} </td>
+        <td data-label="mode"> <span *ngIf="itemz.status == 0"> Advance </span> <span *ngIf="itemz.status != 0"> Part Pay </span> </td>
+
+        <td data-label="bulk"> <span *ngIf="itemz.is_bulk_pay"> Yes </span>   <span  *ngIf="!itemz.is_bulk_pay"> No </span> </td>
+      
+       
+                  
+          <td  data-label="Action">  &nbsp; &nbsp;  <a *ngIf="itemz.status != 0" href="javascript:void(0)" (click)="edit_pre_reciepts(itemz)">  
+            <img src="../../assets/icons/edit.svg" style="width: 15px;
+           height: 15px;" />  </a>   &nbsp; &nbsp;
+           <a *ngIf="itemz.status != 0" href="javascript:void(0)" (click)="remove_pre_reciepts(itemz)">  
+           <img src="../../assets/icons/delete_dob.svg" style="width: 15px;
+          height: 15px;" />  </a> &nbsp;&nbsp;
+
+             <a *ngIf="itemz.status == 0" href="javascript:void(0)" (click)="add_a_pays(itemz)">  
+               <img src="../../assets/icons/add.svg" style="width: 15px;
+             height: 15px;" />  </a>   &nbsp; &nbsp;
+
+             <a  href="javascript:void(0)" (click)="print_reciepts(itemz)">  
+               <img src="../../assets/icons/print.svg" style="width: 15px;
+             height: 15px;" />  </a>
+
+
+           </td>
+           </tr>
+
+
+     
+    </tbody>
+  </table>
+
+
+</section>
+
+
+<br>
+
+
+
+        <button style="width: 150px;margin-left: 10px;" type="button" class="btn btn-primary" (click)="close_modal_tran_list()">
+           close
+        </button>
+      </div>
+  </div>
+
+
+<section *ngIf="print_cash_reciept_flag == 0"> 
+
+<app-print-a5-type_1 *ngIf="this.api.Company_dets.default_print_type ==1 && this.api.Company_dets.default_print_size == 'a5'" id="printable"> </app-print-a5-type_1> 
+<app-print-a5-type_1 *ngIf="this.api.Company_dets.default_print_type ==2 && this.api.Company_dets.default_print_size == 'a5'" id="printable"> </app-print-a5-type_1> 
+<app-print-a5-type_1 *ngIf="this.api.Company_dets.default_print_type ==3 && this.api.Company_dets.default_print_size == 'a5'" id="printable"> </app-print-a5-type_1> 
+<app-print-a5-type_1 *ngIf="this.api.Company_dets.default_print_type ==4 && this.api.Company_dets.default_print_size == 'a5'" id="printable"> </app-print-a5-type_1> 
+<app-print-a5-type_1 *ngIf="this.api.Company_dets.default_print_type ==5 && this.api.Company_dets.default_print_size == 'a5'" id="printable"> </app-print-a5-type_1> 
+<app-print-a5-type_1 *ngIf="this.api.Company_dets.default_print_type ==6 && this.api.Company_dets.default_print_size == 'a5'" id="printable"> </app-print-a5-type_1> 
+<app-print-a5-type_2 *ngIf="this.api.Company_dets.default_print_type == 7 && this.api.Company_dets.default_print_size == 'a5'" id="printable"> </app-print-a5-type_2> 
+
+<app-print-a4-type_1 *ngIf="this.api.Company_dets.default_print_type ==1 && this.api.Company_dets.default_print_size == 'a4'" id="printable"> </app-print-a4-type_1> 
+<app-print-a4-type_2 *ngIf="this.api.Company_dets.default_print_type ==2 && this.api.Company_dets.default_print_size == 'a4'" id="printable"> </app-print-a4-type_2> 
+<app-print-a4-type_3 *ngIf="this.api.Company_dets.default_print_type ==3 && this.api.Company_dets.default_print_size == 'a4'" id="printable"> </app-print-a4-type_3> 
+<app-print-a4-type_4 *ngIf="this.api.Company_dets.default_print_type == 4 && this.api.Company_dets.default_print_size == 'a4'" id="printable"> </app-print-a4-type_4>
+<app-print-a4-type-5 *ngIf="this.api.Company_dets.default_print_type == 5 && this.api.Company_dets.default_print_size == 'a4'" id="printable"> </app-print-a4-type-5>
+<app-print-a4-type-6 *ngIf="this.api.Company_dets.default_print_type == 6 && this.api.Company_dets.default_print_size == 'a4'" id="printable"> </app-print-a4-type-6>
+<app-print-a4-type-7 *ngIf="this.api.Company_dets.default_print_type == 7 && this.api.Company_dets.default_print_size == 'a4'" id="printable"> </app-print-a4-type-7>
+<app-print-a4-type-8 *ngIf="this.api.Company_dets.default_print_type == 8 && this.api.Company_dets.default_print_size == 'a4'" id="printable"> </app-print-a4-type-8>
+<app-print-a4-type-9  [ia]="this.ia" [print]="this.print"  *ngIf="this.api.Company_dets.default_print_type == 9 && this.api.Company_dets.default_print_size == 'a4' && this.print" id="printable"> </app-print-a4-type-9>
+
+<app-print-eighty-type-1 *ngIf="this.api.Company_dets.default_print_type_80mm == 1 && this.api.Company_dets.default_print_size == '80mm'" id="printable"> </app-print-eighty-type-1> 
+<app-print-eighty-type-2 *ngIf="this.api.Company_dets.default_print_type_80mm == 2 && this.api.Company_dets.default_print_size == '80mm'" id="printable"> </app-print-eighty-type-2> 
+<app-print-eighty-type-3 *ngIf="this.api.Company_dets.default_print_type_80mm == 3 && this.api.Company_dets.default_print_size == '80mm'" id="printable"> </app-print-eighty-type-3> 
+
+</section>
+
+
+
+
+
+
+<section *ngIf="print_cash_reciept_flag == 1" id="printable"> 
+  <app-print-credit-voucher-type_1  id="printable"> </app-print-credit-voucher-type_1> 
+  </section>
+
+
+
+
+
+<ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>
+  
+<ng-keyboard-shortcuts-help [key]="'f1'" [closeKey]="'escape'" [title]="'Help'"></ng-keyboard-shortcuts-help>
+
+
+
+
+
+

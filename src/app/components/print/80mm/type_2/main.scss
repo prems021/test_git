@@ -1,0 +1,23 @@
+
+
+#printy { display: none; }
+
+@media print
+{   
+   *{
+width: 80mm;
+margin: 1mm;
+
+   }
+     
+    #non-printabley { display: none; }
+    #non-printable { display: none; }
+    #printable { display: block; }
+    #printy { display: block; }
+    .page-break { display: block; page-break-before: always; }
+}
+
+@page {
+size: 78mm 210mm;
+}
+

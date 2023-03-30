@@ -1,0 +1,109 @@
+<aside id="non-printable"  class="sidebar shadow-sm"     style="background: #fff0f0 !important;" >
+
+  <div class="sidebar-profile d-flex flex-column justify-content-center pt-5 pb-3">
+    <div class="picture-wrapper mb-4">
+      <div class="user-picture m-auto">
+        <img src="./assets/images/user.png"  class="img-fluid" alt="">
+      </div>
+    </div>
+    <div class="profile-details text-center pb-4">
+      <p class="mb-0 text-uppercase name">...</p>
+      <small class="text-uppercase role">Admin</small>
+    </div>
+  </div>
+  <div class="sidebar-search pt-1 pb-1 pl-3 pr-3">
+    <input type="search" class="form-control rounded-pill" name="search" placeholder="Search ...">
+  </div>
+  <nav class="sidebar-menu pt-3 pb-3">
+    <div class="menu-header mt-3 mb-2">
+      Menu  -- v.0.35
+    </div>
+    <ul class="menu-items">
+      <li >
+        <a href="#" routerLink="/home/dash" routerLinkActive="active">
+          <i class="fa fa-tv"></i>
+          <span>Dashboard</span>
+          <!-- <span class="badge badge-warning rounded-0 text-dark p-1">NEW</span> -->
+        </a>
+      </li>
+
+
+      <li>
+        <a href="#" routerLink="/home/new" routerLinkActive="active">
+          <i class="fa fa-minus" aria-hidden="true"></i>
+          <span>New </span>
+        </a>
+      </li>
+
+      <li>
+        <a href="#" routerLink="/home/view" routerLinkActive="active">
+          <i class="fa fa-retweet" aria-hidden="true"></i>
+          <span>View </span>
+        </a>
+      </li>
+
+      <li *ngxPermissionsOnly="['Admin']">
+        <a  routerLink="/home/report-main" routerLinkActive="active">
+          <i class="fa fa-file" aria-hidden="true"></i>
+          <span>Reports</span>
+        </a>
+      </li>
+
+      <!-- <li>
+        <a href="#" routerLink="/home/notifications" routerLinkActive="active">
+          <i class="fas fa-bell"></i>
+          <span>Notifications</span>
+        </a>
+      </li> -->
+
+      <li>
+        <a href="#" routerLink="/home/settings" routerLinkActive="active">
+          <i class="fas fa-cog"></i>
+          <span>Settings</span>
+        </a>
+      </li>
+
+      <!-- <li>
+        <a (click)="logout()">
+          <i class="fa fa-sign-out-alt" aria-hidden="true"></i>
+          <span>Logout</span>
+        </a>
+      </li> -->
+
+
+      <!-- <li>
+        <a href="#" routerLink="/forms" routerLinkActive="active">
+          <i class="fas fa-gem"></i>
+          <span>Forms</span>
+        </a>
+      </li>
+
+
+      <li>
+        <a href="#" routerLink="/tables" routerLinkActive="active">
+          <i class="fa fa-table"></i>
+          <span>Tables</span>
+        </a>
+      </li>
+      <li>
+        <a href="#" routerLink="/typography" routerLinkActive="active">
+          <i class="fa fa-align-center"></i>
+          <span>Typography</span>
+        </a>
+      </li>
+      <li>
+        <a href="#" routerLink="/maps" routerLinkActive="active">
+          <i class="fa fa-globe"></i>
+          <span>Maps</span>
+        </a>
+      </li> -->
+
+    </ul>
+    <!-- <div class="menu-header mt-4 mb-4">
+      Github Repo
+    </div> -->
+    <!-- <div class="view-source mb-3">
+      <a href="https://github.com/azouaoui-med/lightning-admin-angular" target="_blank" class="btn btn-block btn-lightning rounded-0">View Source</a>
+    </div> -->
+  </nav>
+</aside>

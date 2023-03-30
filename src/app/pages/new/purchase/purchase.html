@@ -1,0 +1,646 @@
+
+
+
+
+
+<nav aria-label="breadcrumb" style="height:25px;">
+  <ol class="breadcrumb" style="padding:0px;">
+    <li class="breadcrumb-item"><a href="#/home">Home</a></li>
+    <li class="breadcrumb-item"><a href="#/home">Purchase</a></li>
+    <li class="breadcrumb-item active" aria-current="page">New  &nbsp;--  Press F1 for Help</li>
+  </ol>
+</nav> 
+
+
+<section style="width: 100%;
+  height: auto;
+  background-color: #b4eed7;
+  padding: 5px;
+  color: #636c93;">
+
+<div class="row">
+
+
+
+
+
+
+       
+<div class="col-12 col-md-2 col-sm-3">
+
+  <div class="input-group input-group-sm mb-6"  style="height:100%;">
+           <div class="input-group-prepend" style="height:100%;">
+            <span class="input-group-text" id="inputGroup-sizing-sm">  <button  matRipple [matRippleColor]="color" type="button" style="background-color: rgb(233, 244, 247);width: 100%;border: none;
+              border-radius: 8px;" (click)="dp.toggleCalendar()">
+               <!-- <i class="fa fa-calendar"></i>  -->
+                 <img src="../../assets/images/calendar.svg" style="width: 15px; height: 15px;" /> 
+          </button>  </span>
+           </div>
+           <input style="text-align: center;color: black;" class="form-control" placeholder="{{!myDatePickerOptions.dateRange ?
+           'Select a date' : 'Select a date range'}}" angular-mydatepicker name="mydate"
+             [(ngModel)]="model_date" [options]="myDatePickerOptions"  [locale]="locale"
+              #dp="angular-mydatepicker"
+             (dateChanged)="onDateChanged($event)"       
+             (inputFieldChanged)="onInputFieldChanged($event)"
+            [attr.disabled]="disabled?'':null" autocomplete="off"/>
+      </div>
+  
+  
+  </div>
+
+
+  <div class="col-12 col-md-3 col-sm-4">
+
+    <div class="input-group input-group-sm mb-6"  style="height:100%;">
+             <div class="input-group-prepend" style="height:100%;">
+              <span class="input-group-text" id="inputGroup-sizing-sm">Vendor Search   </span>
+             </div>
+        <span class="form-control" style="padding: 0px;" > <input  type="text" ngui-auto-complete #vendors 
+          style="height:100%;color: black;width:100%;    padding: 4px;" type="text" 
+          name="vendors"   [source]="arrayOfVendors"  
+          (valueChanged)="change_vendor_name($event)"  (customSelected)="customCallback($event)"   
+        
+        list-formatter="id -- name -- street"
+        loading-text = "loading"
+        display-property-name="name"
+          aria-label="Small" aria-describedby="inputGroup-sizing-sm">  </span>  
+        </div>
+    
+    
+    </div>
+
+    
+
+        
+<div class="col-12 col-md-3 col-sm-3">
+
+<div class="input-group input-group-sm mb-6"  style="height:100%;">
+         <div class="input-group-prepend" style="height:100%;">
+          <span class="input-group-text" id="inputGroup-sizing-sm"> Invoice No   </span>
+         </div>
+      <input  style="height:100%;" type="text" class="form-control" [(ngModel)]="this.api.invo_head.invoice_no_pur" 
+       aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+    </div>
+
+
+</div>
+
+
+
+<div   class="col-1 col-md-1  col-sm-1 col-lg-1">
+     <mat-icon style="cursor: pointer;color: blue;font-weight: 800;" (click)="toogle_head_dets()">keyboard_arrow_down</mat-icon>
+</div>
+
+
+
+
+</div>
+
+
+
+<div id="non-printable"  *ngIf="toogle_head_det" class="row">
+
+        
+
+  <div class="col-12 col-md-4 col-sm-6">
+      <div class="input-group input-group-sm mb-6" style="padding-top: 4px;">
+        <div class="input-group-prepend">
+         <span class="input-group-text" id="inputGroup-sizing-sm"> Name </span>
+        </div>
+      <input [disabled]="true" [(ngModel)]="this.api.invo_head.customer_Name"  type="text" class="form-control" 
+      aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+      </div>
+      </div>
+      
+      
+      <div class="col-12 col-md-4 col-sm-6">
+        <div class="input-group input-group-sm mb-6" style="padding-top: 4px;">
+          <div class="input-group-prepend">
+           <span class="input-group-text" id="inputGroup-sizing-sm"> Address_1 </span>
+          </div>
+        <input [disabled]="true" type="text"  [(ngModel)]="this.api.invo_head.customer_Address_1" class="form-control" 
+        aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+        </div>
+        </div>
+  
+        <div class="col-12 col-md-4 col-sm-6">
+          <div class="input-group input-group-sm mb-6" style="padding-top: 4px;">
+            <div class="input-group-prepend">
+             <span class="input-group-text" id="inputGroup-sizing-sm"> Address_2 </span>
+            </div>
+          <input [disabled]="true" type="text"  [(ngModel)]="this.api.invo_head.customer_Address_2" class="form-control" 
+          aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+          </div>
+          </div>
+        
+      
+        <div class="col-12 col-md-4 col-sm-6">
+          <div class="input-group input-group-sm mb-6" style="padding-top: 4px;">
+            <div class="input-group-prepend">
+             <span class="input-group-text" id="inputGroup-sizing-sm"> Mob </span>
+            </div>
+          <input [disabled]="true"  [(ngModel)]="this.api.invo_head.customer_Ph1" type="text" class="form-control" 
+          aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+          </div>
+          </div>
+
+          <div class="col-12 col-md-4 col-sm-6">
+            <div class="input-group input-group-sm mb-6" style="padding-top: 4px;">
+              <div class="input-group-prepend">
+               <span class="input-group-text" id="inputGroup-sizing-sm"> GST No </span>
+              </div>
+            <input [disabled]="true"  [(ngModel)]="this.api.invo_head.customer_Gstin" type="text" class="form-control"
+            aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+            </div>
+            </div>
+      
+        
+      
+          <div class="col-12 col-md-4 col-sm-6">
+            <div class="input-group input-group-sm mb-6" style="padding-top: 4px;">
+              <div class="input-group-prepend">
+               <span class="input-group-text" id="inputGroup-sizing-sm"> Lpo No </span>
+              </div>
+            <input [(ngModel)]="this.api.invo_head.lpo_no" type="text" class="form-control"
+            aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+            </div>
+            </div>
+      
+            <div class="col-12 col-md-4 col-sm-6">
+              <div class="input-group input-group-sm mb-6" style="padding-top: 4px;">
+                <div class="input-group-prepend">
+                 <span class="input-group-text" id="inputGroup-sizing-sm"> Place of Supply </span>
+                </div>
+              <input  [(ngModel)]="this.api.invo_head.pos"  type="text" class="form-control"
+              aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+              </div>
+              </div>
+      
+              <div class="col-12 col-md-4 col-sm-6">
+                <div class="input-group input-group-sm mb-6" style="padding-top: 4px;">
+                  <div class="input-group-prepend">
+                   <span class="input-group-text" id="inputGroup-sizing-sm"> Mode of Supply </span>
+                  </div>
+                <input  [(ngModel)]="this.api.invo_head.mode_of_supply" type="text" class="form-control" 
+                aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                </div>
+                </div>
+      
+      
+              <div class="col-12 col-md-4 col-sm-6">
+                <div class="input-group input-group-sm mb-6" style="padding-top: 4px;">
+                  <div class="input-group-prepend">
+                   <span class="input-group-text" id="inputGroup-sizing-sm"> Bundles: </span>
+                  </div>
+                <input [(ngModel)]="this.api.invo_head.bundles"  type="number" class="form-control" 
+                aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                </div>
+                </div>    
+      </div>
+      <br>
+  
+
+      
+
+
+
+
+   
+
+<table style="width:100%;" class="desk">
+ 
+  <thead>
+      <tr>
+          
+          <th id="r1c2" scope="col">Product Code</th>
+          <th id="r1c3" scope="col">Item Name</th>
+          <th id="r1c4" scope="col">Qty</th>
+          <th style="white-space:nowrap;min-width: 70px;text-align: center;" id="r1c4" scope="col">Unit</th>
+          <th id="r1c5" scope="col">Tax </th>
+          <th id="r1c6" scope="col">Rate</th>
+          <th id="r1c7" scope="col">Value</th>
+          <th id="r1c8" scope="col">+</th>
+
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+         
+          <td><input type="text" style="width: 100%;text-align:center;"  aria-labelledby="r1c2"
+            ngui-auto-complete #autos type="text" name="autos"  [source]="arrayOfKeyValues"  
+         placeholder="barcode"      
+          (keyup.enter)="change_item_name(autos.value)" 
+          (keyup.esc)="move_to_round()"
+          list-formatter="bar_code -- product_name"
+          loading-text = "loading"
+          max-num-list = 20
+          display-property-name="bar_code"
+           [(ngModel)]="pro_barcode"           
+            /></td>
+
+
+          <td><input type="text" style="width: 100%;text-align:center;" name="january-spent" aria-labelledby="r1c3" 
+            #item_name_model [disabled]="true" type="text" placeholder="Item name" 
+           [(ngModel)]="pro_name"> 
+          
+          </td>
+          <td>
+            <input type="number"  style="width: 100%;text-align:center;"  aria-labelledby="r1c4"
+             #item_qty_model 
+             type="number" placeholder="Quantity" 
+          [(ngModel)]="pro_qty">  
+          
+          </td>
+
+          <td style="text-align: center;">
+           
+            {{this.pro_unit}}
+          
+          </td>
+
+
+          <td><input type="text" aria-labelledby="r1c5"  type="number" style="width: 100%;text-align:center;" #box_net   [(ngModel)]="pro_tax"            
+          placeholder="" >            
+          </td>
+          <td><input type="number" style="width: 100%;text-align:center;"  aria-labelledby="r1c6"           
+           #box_net (keyup.enter)="pushItem_down()" (keyup)="keyup_price()"   [(ngModel)]="pro_price"
+           placeholder=" " >
+          
+          </td>
+          <td><input aria-labelledby="r1c7" 
+             type="number" style="text-align:center; width: 100%;" #box_net (keyup.enter)="pushItem_down()" (keyup)="keyup_net_price()" [(ngModel)]="pro_np"                     
+           placeholder=" " >  
+          </td>
+          <td>   <button [disabled]="push_disabled" matRipple [matRippleColor]="color" (click)="pushItem_down()"
+           (keydown.ArrowDown)="pushItem_down()"  type="button" style="color: #636c93;
+          background-color: wheat;width: 100%;
+    border: 1px solid;">
+            Add
+          </button>   </td>
+
+      </tr>
+     
+  </tbody>
+</table>
+
+<section  class="mobile" id="non-printable"  style="width: 100%;height: 100px;background-color: rgb(193, 216, 236);">
+
+  <div class="row">
+    <div class="col-10 col-md-10 col-sm-10">
+      <input type="text" style="width: 100%;text-align:center;"  aria-labelledby="r1c2"
+      ngui-auto-complete #autos_2 type="text" name="autos"  [source]="arrayOfKeyValues"  
+   placeholder="barcode"      
+    (keyup.enter)="change_item_name(autos.value)" 
+    (keyup.esc)="move_to_round()"
+    list-formatter="bar_code -- product_name"
+    loading-text = "loading"
+    display-property-name="bar_code"
+     [(ngModel)]="pro_barcode"           
+      />
+
+    </div>
+    <div class="col-2 col-md-2 col-sm-2">   <a  (click)="change_item_name(autos_2.value)" > <mat-icon>search</mat-icon></a>  </div>
+
+    <div class="col-12 col-md-12 col-sm-12">
+    <div class="table-responsive">
+
+      <table class="table">
+        
+
+        <thead>
+          <tr>
+            <th scope="col">Item Name</th>
+            <th scope="col">Item Hsn</th>
+            <th scope="col">Qty</th>
+            <th scope="col">Unit</th>
+            <th scope="col">Tax</th>
+            <th scope="col">Rate</th>
+            <th scope="col">Value</th>
+            <th scope="col">+</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th style="white-space:nowrap;min-width: 100px;"> &nbsp;  {{pro_name}} &nbsp;  </th>
+            <td style="text-align: center;white-space:nowrap;min-width: 100px;">&nbsp; {{pro_hsn}}  &nbsp; </td>
+            <td style="white-space:nowrap;min-width: 100px;">    <input type="number"  style="width: 100%;text-align:center;"  aria-labelledby="r1c4"
+              #item_qty_model 
+              type="number" placeholder="Quantity" 
+           [(ngModel)]="pro_qty">   </td>
+           <td style="text-align: center;white-space:nowrap;min-width: 100px;">&nbsp; {{pro_unit}}  &nbsp; </td>
+            <td style="text-align: center;white-space:nowrap;min-width: 100px;">&nbsp; {{pro_tax}} %  &nbsp; </td>
+            <td><input type="number" style="width: 100%;text-align:center;white-space:nowrap;min-width: 100px;"  aria-labelledby="r1c6"           
+              #box_net (keyup.enter)="pushItem_down()" (keyup)="keyup_price()"   [(ngModel)]="pro_price"
+              placeholder="" ></td>
+            <td><input aria-labelledby="r1c7" 
+              type="number" style="text-align:center; width: 100%;white-space:nowrap;min-width: 100px;" #box_net
+               (keyup.enter)="pushItem_down()" (keyup)="keyup_net_price()" [(ngModel)]="pro_np"                     
+            placeholder=" " > </td>
+            <td><button [disabled]="push_disabled" matRipple [matRippleColor]="color" (click)="pushItem_down()" 
+            (keydown.ArrowDown)="pushItem_down()"  type="button" style="color: #636c93;
+              background-color: wheat;width: 100%;
+        border: 1px solid;">
+                Add
+              </button></td>
+          </tr>
+          </tbody>
+          </table>
+    </div>
+    </div>
+  </div>
+</section>
+
+         
+
+<section class="desk"> 
+
+<div   id="non-printable" *ngIf="this.ia>0"   class="table-responsive-sm"  style="height: 412px;
+  overflow-y: scroll;">
+  <table class="container mt-2"  style="font-family: monospace;color:#0c047e;font-size: 10pt;
+  font-style: normal;
+  font-weight: bold;
+  text-align: center;">
+    
+      <thead>
+      <tr style="color:#5b5f53;background-color: #43454c;">
+        <th scope="col">#</th>
+        <th scope="col">Description</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Unit</th>
+        <th scope="col">Tax</th>
+        <th scope="col">Price</th>
+        <th scope="col">Value</th>
+  
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+      </tr>
+      </thead>
+      <tbody> 
+        <tr *ngFor="let item of this.api.Invoice_items_ary; let k=index " height="10">
+          <td height="5" style="width:5%;">   {{item.index_no}} </td> 
+          <td> {{item.product_name}} </td>
+          <td> {{item.qty}} </td>
+          <td> {{item.unit}}    </td>    
+          <td> {{item.tax}}    </td>       
+          <td> {{item.rate  | number : '1.2-4' }} </td>
+          <td> {{item.value | number : '1.2-2'}} </td>    
+       
+          <td height="8" style="width:5%;" class="tds_plus">  
+            <button (click)="editItem(k)" (keydown.ArrowDown)="editItem(k)"
+          class="btn-outline-dark" style="background-color:violet"> 
+              <span class="navbar-toggler-icon">  
+              <img src="../../assets/icons/edit.svg" style="width: 15px;
+            height: 15px;" /> </span>
+            </button>                
+
+    
+
+        </td>
+          <td height="8" style="width:5%;" class="tds_plus" >  
+          <button (click)="RemoveItem(k)" class="btn-outline-dark"  style="background-color:salmon" >  
+            <span class="navbar-toggler-icon"> 
+              <img src="../../assets/icons/delete_dob.svg" style="width: 15px;
+            height: 15px;" /> </span></button>
+          </td>        
+        </tr>     
+
+      </tbody>
+  </table>
+</div>
+</section>
+
+
+
+<section class="mobile" style="height: 250px;overflow-y: scroll;">
+
+  <div *ngFor="let item of this.api.Invoice_items_ary; let m=index ">
+
+  <ion-card style="background-color: papayawhip;">
+    <ion-card-header style="padding: 10px !important;">
+      <ion-card-subtitle style="font-size: x-large;
+      color: navy;"> {{m+1}} </ion-card-subtitle>
+      <ion-card-title style="    color: mediumblue;">{{item.product_name}} </ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+    Quantity :  {{item.qty}} <br>
+    Rate  :   {{item.rate  | number : '1.2-4' }} 
+<span style="float: right;"> 
+    <button (click)="editItem(m)" 
+    class="btn-outline-dark" style="background-color:violet"> 
+        <span class="navbar-toggler-icon">  
+        <img src="../../assets/icons/edit.svg" style="width: 15px;
+      height: 15px;" /> </span>
+      </button>   &nbsp;
+      
+      <button (click)="RemoveItem(m)" class="btn-outline-dark"  style="background-color:salmon" >  
+        <span class="navbar-toggler-icon"> 
+          <img src="../../assets/icons/delete_dob.svg" style="width: 15px;
+        height: 15px;" /> </span></button> </span>
+
+    </ion-card-content>
+  </ion-card>
+
+ </div>
+
+ <div style="height: 20px;width: 100%;"> </div>
+
+</section> 
+
+
+<section class="mobile">
+<ion-footer style=" position: fixed;
+left: 0;
+bottom: 0;
+width: 100%;
+background-color: red;
+color: rgb(33, 9, 77);
+font-size: 16px;
+text-align: center;">
+  <ion-toolbar>
+    <ion-title>Footer</ion-title>
+  </ion-toolbar>
+</ion-footer>
+
+</section>
+
+
+<section class="desk"> 
+
+  <ion-footer style=" position: fixed;
+left: 0;
+bottom: 0;
+width: 100%;
+height: 64px;
+color: rgb(42, 11, 78);
+text-align: center;">
+  <!-- <ion-toolbar>
+    <ion-title>Footer</ion-title>
+  </ion-toolbar> -->
+
+  
+
+
+
+
+
+
+<div  class="footer table-responsive-sm">
+ 
+ 
+  <table  style="width:100%;margin-top:10px;">
+    <tr style="background-color: #c4cfc6;
+    color: black;">
+      <th style="white-space:nowrap;min-width: 120px;text-align: center;"> Taxable</th>  
+      <th style="white-space:nowrap;min-width: 120px;text-align: center;"> Tax 
+        <span *ngIf="this.api.invo_head.type == 'IGST'"> ( IGST ) </span> <span *ngIf="this.api.invo_head.type == 'B2B'">( CGST+SGST ) </span>    </th>  
+      <!-- <th> KF Cess </th>   -->
+      <th style="width:220px;"> Round- off (-)</th>
+      <th> Grand Total</th>
+      <th> Payed Amt</th>
+      <th> Due Bal </th>
+      <th> Save  </th>
+
+    </tr>
+
+    <tr style="background-color: #fed5d5;">
+      <td> {{  this.api.invo_head.total_taxable| number : '1.2-2'}} </td>
+      <td> {{  this.api.invo_head.total_tax_amt  | number : '1.2-2'}} </td>
+      <!-- <td>  <input type="number" style="width:90%;margin-left: 5%;text-align: center;"
+        class="form-control" [(ngModel)]="this.ds.i_m.heads.CESS_AMT" (keyup)="change_in_cess()"
+       aria-label="Small" aria-describedby="inputGroup-sizing-sm" > </td> -->
+
+      <td> <input type="number" style="width:90%;margin-left: 5%;text-align: center;"
+        class="form-control" [(ngModel)]="this.api.frac" (keyup)="change_in_ro()"
+       aria-label="Small" aria-describedby="inputGroup-sizing-sm" > </td>
+       
+      <td>{{this.api.invo_head.grand_amt  | number : '1.2-2'}}</td>
+
+      <td> <input #bill_round type="number" style="width:90%;margin-left: 5%;text-align: center;"
+        class="form-control" [(ngModel)]="this.api.invo_head.recieved_amt" (keyup)="change_in_payment()"  (blur)="change_in_payment()"
+       aria-label="Small" aria-describedby="inputGroup-sizing-sm">  
+     </td>
+      
+      <td>{{ this.api.invo_head.due_amt | number : '1.2-2'}}</td>
+      <td>
+        
+
+           <button *ngIf="push_disabled_enter ==1" class="btn btn-primary pull-right" 
+           (click)="save_Purchase_taxed()" type="button"><span class="glyphicon glyphicon-ok"></span> Save(F8) </button>
+           
+           <button  *ngIf="push_disabled_enter == 2" class="buttonload btn pull-right">
+             <i class="fa fa-spinner fa-spin"></i>Saving...
+           </button>
+           
+           <button [disabled]="true" *ngIf="push_disabled_enter == 3" class="btn btn-warning pull-right" 
+            type="button"><span class="glyphicon glyphicon-ok"></span> Saved </button>
+
+
+
+      </td>
+
+
+    </tr>   
+
+
+  </table>
+
+
+ 
+</div>
+</ion-footer>
+
+</section>
+
+
+
+
+
+
+
+
+<div id="myModal_3" class="modal">
+
+       
+  
+  <div class="modal-content">
+      <label  class="btn btn-primary" >
+         Edit Item
+      </label> 
+
+      <div class="row">
+
+          <div class="col-sm-3">
+
+              <div class="input-group input-group-sm mb-6">
+                       <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-sm"> Name </span>
+                       </div>
+                    <input [disabled]="true" type="text" class="form-control" [(ngModel)]="pro_name_model" 
+                     aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                  </div>
+    
+     
+            </div>
+
+        
+        <div class="col-sm-3">
+
+          <div class="input-group input-group-sm mb-6">
+                   <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-sm"> Qty </span>
+                   </div>
+                <input #item_qty_model_e type="number" class="form-control" [(ngModel)]="pro_qty_model" (keyup)="keyup_qty_e()" 
+                 aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+              </div>
+
+ 
+        </div>
+
+        <div class="col-sm-3">
+
+          <div class="input-group input-group-sm mb-6">
+                   <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">Rate</span>
+                   </div>
+                <input type="number" class="form-control" [(ngModel)]="pro_p_model" (keyup)="keyup_price_e()"  aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+              </div>
+        </div>
+
+        <div class="col-sm-3">
+          <div class="input-group input-group-sm mb-6">
+                   <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">net Value</span>
+                   </div>
+                <input type="number" class="form-control" [(ngModel)]="pro_np_model" (keyup)="keyup_net_price_e()"   aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+              </div>
+        </div>
+
+
+        <div class="col-sm-3">
+          <div class="input-group input-group-sm mb-6">
+                   <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">Total Value</span>
+                   </div>
+                <input type="number" class="form-control" [(ngModel)]="pro_np_tot_model" (keyup)="keyup_net_price_tot_e()"   aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+              </div>
+        </div>
+
+        
+</div>   
+
+<br>
+     
+
+        <button style="width: 150px;margin-left: 10px;" type="button" class="btn btn-primary" (click)="close_modal()">
+          Update & close
+        </button>
+
+  </div>
+  </div>
+
+
+
+
+
+

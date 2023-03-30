@@ -1,0 +1,52 @@
+
+    <div *ngIf="Onload">
+
+     <span>  
+      <a href="javascript:void(0)" (click)="export()"> <img src="../../../../../assets/icons/export.png" alt="Girl in a jacket" width="30" height="30"> </a> 
+        </span>
+
+       <div class="table-responsive" data-pattern="priority-columns" style="background-color: azure;">
+          <table id="_pes_list"  class="table table-bordered table-hover">
+            
+            <thead class="t_h">
+              <tr>
+                <th data-priority="5"> id </th> 
+                <th data-priority="5"> Barcode </th> 
+                <th data-priority="5"> Product name </th>
+                <th data-priority="5"> UQC </th>             
+                <th data-priority="5"> HSN </th>  
+                <th data-priority="5"> Tax_rate </th>     
+
+                <th data-priority="5"> Mrp </th>             
+                <th data-priority="5"> Rate </th>  
+                <th data-priority="5"> Net Value </th>    
+           
+       
+               
+                </tr>
+                </thead>
+      
+                <tbody>
+                  <tr *ngFor = "let items of items_">
+            
+                     <td> {{items.id}} </td>
+                    <td> {{items.bar_code}} </td>           
+                    <td>{{items.product_name }}</td>
+                    <td> {{items.hb7_unit.UQC_Code}} </td>
+                    <td> {{items.hsn_code}} </td>
+                    <td> {{items.tax_rate}} </td>
+                    <td> {{items.mrp}} </td>
+                    <td> {{items.rate}} </td>
+
+                    <td> {{items.rate + (items.rate * items.tax_rate) / 100  | number : '1.2-2'}}  </td>
+                    
+                    
+      
+              </tr>  
+                </tbody>
+                </table>
+                </div> 
+      
+      </div> 
+
+    

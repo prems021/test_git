@@ -1,0 +1,400 @@
+
+
+
+   
+  
+  <div class="tab">  
+    <button class="tablinks" (click)="openCity($event, 'London')" id="defaultOpen">Add New</button>
+    <button class="tablinks" (click)="openCity($event, 'Paris')" id="Classix" >Update Existing</button>
+         
+  </div>
+  
+  
+  
+  
+     
+  
+  
+  
+  
+  <section   id="London" class="container-fluid tabcontent" style="width: 100%;height: 100%;background-color:#e9ecef;">
+  
+    
+  
+    <form [formGroup]="customerForm"> 
+  
+          <div class="row">
+  
+   
+  
+  
+  
+                  <div class="form-group col-md-4 col-sm-4 col-lg-3 col-xs-12">
+      <label for="customer_name">Customer Name</label>
+      <input   formControlName="name" type="text" class="form-control" placeholder="Customer Name">
+       <small [hidden]="customerForm.controls.name.valid" class="text-danger">
+                                                 Name is required (minimum 3 characters).
+                                         </small>
+                     </div>
+  
+  
+  
+  
+    <div class="form-group col-md-6 col-sm-6 col-lg-3 col-xs-12">
+      <label >Street</label>
+      <input  formControlName="street" type="text" class="form-control" placeholder="street">
+    
+    </div>
+  
+  
+  
+     <div class="form-group col-md-6 col-sm-6 col-lg-3 col-xs-12">
+      <label >Address 1 </label>
+      <input formControlName="address_1" type="text" class="form-control" placeholder="line 1">
+       
+    </div>
+
+     
+    <div class="form-group col-md-6 col-sm-6 col-lg-3 col-xs-12">
+      <label >Address 2</label>
+      <input formControlName="address_2" type="text" class="form-control" placeholder="line 2">
+       
+    </div>
+
+    <div class="form-group col-md-6 col-sm-6 col-lg-3 col-xs-12">
+      <label >GSTIN</label>
+      <input formControlName="gst_in" type="text" class="form-control" placeholder="gst No">
+       
+    </div>
+
+     <div class="form-group col-md-6 col-sm-6 col-lg-3 col-xs-12">
+      <label >Cast </label>
+
+          
+      
+        <select class="form-control" formControlName="cast">                                    
+                                                  <option *ngFor="let cast of cast_ary" [value]="cast.id">{{cast.value}}</option>
+                                                  </select>
+        
+      </div>
+
+     
+       
+    
+ <!--
+    <div class="form-group col-md-6 col-sm-6 col-lg-3 col-xs-12">
+      <label >Emirates</label>
+      <input formControlName="EMIRATES" type="text" class="form-control" placeholder="city">
+       
+    </div>
+
+    <div  class="form-group col-md-6 col-sm-4 col-lg-3 col-xs-12">
+      <label >PO BOX No : </label>
+      <input formControlName="PO_BOX" type="text" class="form-control" placeholder="po box">
+       
+    </div> -->
+
+
+<!-- 
+   <div class="form-group col-md-6 col-sm-6 col-lg-3 col-xs-12">
+      <label>TRN</label>
+      <input  formControlName="TRN" type="text" class="form-control" placeholder="TRN">
+        
+    </div> -->
+
+    <div  class="form-group col-md-6 col-sm-4 col-lg-3 col-xs-12">
+      <label>Email</label>
+      <input  formControlName="email" type="email" class="form-control" placeholder="email">
+        
+    </div>
+  
+  
+  
+      <div class="form-group col-md-6 col-sm-4 col-lg-3 col-xs-12">
+      <label>Phone number</label>
+      <input  formControlName="ph" type="number" class="form-control" placeholder="phone number">
+        
+    </div>
+
+    <div class="form-group col-md-6 col-sm-4 col-lg-3 col-xs-12">
+      <label>Mobile number</label>
+      <input  formControlName="mob" type="number" class="form-control" placeholder="Mobile number">        
+    </div>
+
+   
+  
+  
+    <div  class="form-group col-md-6 col-sm-4 col-lg-3 col-xs-12">
+      <label>Opening Balance</label>
+      <input  formControlName="opening_balance" type="number" class="form-control" placeholder="Opening Balance">        
+    </div>
+
+  
+  
+  </div>
+  
+  </form>
+  
+  <button  *ngIf="!Onload" [disabled]="!this.customerForm.valid" class="btn btn-primary pull-right"
+   (click)="add_customer()" type="button"><span class="glyphicon glyphicon-ok"></span> Add </button>
+
+
+
+
+   <button  *ngIf="Onload" class="buttonload btn pull-right">
+    <i class="fa fa-spinner fa-spin"></i>Saving..
+  </button>
+
+  &nbsp; &nbsp;
+ 
+
+  <button  *ngIf="!Onload" [disabled]="!this.customerForm.valid" class="btn btn-warning pull-right"
+  (click)="reset_form()" type="button"><span class="glyphicon glyphicon-ok"></span> Reset </button>
+  
+  </section>  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <section  id="Paris" class="container-fluid tabcontent" style="width: 100%;height: 100%;background-color:#e9ecef;">   
+  
+    <form [formGroup]="customer_u_Form">   
+          <div class="row"> 
+
+    <section style="width: 100%; height: auto;background-color: #6a9459;padding: 5px;margin: 10px;color: #eaecf5;">           
+              <div class="row"> 
+              <div class="col-1 col-md-1 col-sm-1"> 
+                 <i class="fa fas fa-search" style="color: snow;
+                font-size: large;
+                padding: 7px;"></i>
+                 </div>       
+                 <div class="col-10 col-md-6 col-sm-6"  style="color: #545454;"> 
+                                  <input  ngui-auto-complete [source]="arrayOfCusValues"  type="text" style="min-width: 250px;"
+                                  class="form-control" placeholder="Search"
+                                 (blur)="cus_blur_update()"  [(ngModel)]="cus_vend_model" [ngModelOptions]="{standalone: true}"
+                                 list-formatter="id -- name  -- street --"
+                                   display-property-name="id">   </div>
+  
+            </div>
+       
+  </section>
+    
+  
+  
+  
+          <div  class="form-group col-md-6 col-sm-4 col-lg-3 col-xs-12">
+            <label >Name</label>
+            <input  formControlName="name" type="text" class="form-control" placeholder="Name">
+          
+          </div>
+  
+  
+    <div  class="form-group col-md-6 col-sm-4 col-lg-3 col-xs-12">
+      <label >Street</label>
+      <input  formControlName="street" type="text" class="form-control" placeholder="street">
+    
+    </div>
+  
+     <div  class="form-group col-md-6 col-sm-4 col-lg-3 col-xs-12">
+      <label > Address 1 </label>
+      <input formControlName="address_1" type="text" class="form-control" placeholder="city">
+       
+    </div>
+
+    <div class="form-group col-md-6 col-sm-6 col-lg-3 col-xs-12">
+      <label >Address 2</label>
+      <input formControlName="address_2" type="text" class="form-control" placeholder="city">
+       
+    </div>
+
+
+    <div class="form-group col-md-6 col-sm-6 col-lg-3 col-xs-12">
+      <label> Cast </label>     
+        <select class="form-control" formControlName="cast">                                    
+                                                  <option *ngFor="let cast of cast_ary" [value]="cast.id">{{cast.value}}</option>
+                                                  </select>
+        
+      </div>
+
+    <!-- <div class="form-group col-md-6 col-sm-6 col-lg-3 col-xs-12">
+      <label >Emirates</label>
+      <input formControlName="EMIRATES" type="text" class="form-control" placeholder="city">
+       
+    </div>
+
+    <div  class="form-group col-md-6 col-sm-4 col-lg-3 col-xs-12">
+      <label >PO BOX No : </label>
+      <input formControlName="PO_BOX" type="text" class="form-control" placeholder="po box">
+       
+    </div> -->
+
+
+  
+   <div  class="form-group col-md-6 col-sm-4 col-lg-3 col-xs-12">
+      <label>GSTIN </label>
+      <input   formControlName="gst_in" type="text" class="form-control" placeholder="GST No">
+        
+    </div>
+  
+
+    <div  class="form-group col-md-6 col-sm-4 col-lg-3 col-xs-12">
+      <label>Email</label>
+      <input  formControlName="email" type="email" class="form-control" placeholder="email">
+        
+    </div>
+  
+
+  
+  
+
+  
+    <div  class="form-group col-md-6 col-sm-4 col-lg-3 col-xs-12">
+      <label>Phone </label>
+      <input  formControlName="ph" type="text" class="form-control" placeholder="Phone 1">
+        
+    </div>
+
+    <div  class="form-group col-md-6 col-sm-4 col-lg-3 col-xs-12">
+      <label>Mobile </label>
+      <input  formControlName="mob" type="text" class="form-control" placeholder="Mobile">
+        
+    </div>
+  
+  
+
+  
+  
+    <div  class="form-group col-md-6 col-sm-4 col-lg-3 col-xs-12">
+      <label>Opening Balance</label>
+      <input  formControlName="opening_balance" type="text" class="form-control" placeholder="Opening Balance">
+        
+    </div>
+  
+ 
+  
+  
+  
+  
+  
+  
+        </div>
+      </form>
+       <button  *ngIf="!OnUPDATE" class="btn btn-warning pull-right"  (click)="update_customer()">Update</button>
+
+       <button  *ngIf="OnUPDATE" class="buttonload btn pull-right">
+        <i class="fa fa-spinner fa-spin"></i>Updating..
+      </button>
+
+       &nbsp; &nbsp;
+ 
+      <button  *ngIf="!OnDelete" class="btn btn-danger pull-right"  (click)="delete_customer()">Delete</button>
+
+      <button  *ngIf="OnDelete" class="buttonload btn pull-right">
+       <i class="fa fa-spinner fa-spin"></i>Deleting..
+     </button>
+
+
+    </section>
+   
+  
+  
+  
+  
+ 
+  
+  
+<!--        
+   <section id="Tokyo" class="tabcontent" style="width:100%; height:790px;display:inline-block;background-color:#f1f1f1;">
+      
+        <div class="col-sm-12">
+  
+  
+    
+  <div class="container-fluid col-xs-10 col-sm-10 col-md-4 col-lg-4 col-xs-offset-1 col-sm-offset-1 col-md-offset-4 
+  col-lg-offset-4 shadow"> 
+   <form [formGroup]="customer_u_Form">
+  
+  
+  
+  
+
+    <div class="form-group">
+      <label >Customer Name :</label>
+      <input  ngui-auto-complete [source]="arrayOfCusValues"  type="text"
+       class="form-control" placeholder="Search"
+      (blur)="cus_blur_update()"  [(ngModel)]="cus_vend_model" [ngModelOptions]="{standalone: true}"
+      list-formatter="ID --  NAME  -- CITY --"
+        display-property-name="ID">
+    
+    </div>
+   
+
+  
+    <div class="form-group">
+      <label >Street</label>
+      <input  formControlName="STREET" type="text" class="form-control" placeholder="street">
+    
+    </div>
+     <div class="form-group">
+      <label >City</label>
+      <input formControlName="CITY" type="text" class="form-control" placeholder="city">
+       
+    </div>
+   <div class="form-group">
+      <label>TRN</label>
+      <input  [attr.disabled]="true"  formControlName="TRN" type="text" class="form-control" placeholder="TRN">
+        
+    </div>
+  
+  
+  
+    <div class="form-group">
+      <label>Opening Balance</label>
+      <input  formControlName="OP_BAL" type="text" class="form-control" placeholder="Opening Balance">
+        
+    </div>
+
+
+    
+  
+  
+  
+    
+  <button *ngIf="!OnDelete" mat-fab class="add_but"
+   (click)="delete_customer()">Delete</button>
+
+   <button  *ngIf="OnDelete" class="buttonload btn pull-right">
+    <i class="fa fa-spinner fa-spin"></i>Deleting..
+  </button>
+  
+  
+  
+  
+  </form>
+  
+  </div>
+  
+  </div>
+  
+       
+   </section> -->
+   
+
+<!-- <section *ngIf="Onload">
+   <div class="folding">
+    <div class="sk-cube1 sk-cube"></div>
+    <div class="sk-cube2 sk-cube"></div>
+    <div class="sk-cube4 sk-cube"></div>
+    <div class="sk-cube3 sk-cube"></div>
+   </div>
+  </section> -->

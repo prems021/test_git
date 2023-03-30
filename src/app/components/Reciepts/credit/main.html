@@ -1,0 +1,378 @@
+
+
+<section class="top_sec" id="non-printable" >
+ 
+    <div class="home">
+       
+       <img src="../../assets/home.svg" style="width:25px;" />
+    <a routerLink="/dash" routerLinkActive="active">home</a>
+    </div>
+    
+</section> 
+
+<section *ngIf="!print_flag">
+
+
+
+<section id="non-printable" style="width:100%;height:75px;border-bottom: 1px solid brown">
+
+    <div style="width:100%;text-align: center;background-color: tan;height:38px;
+    font-size: 24px;"> Cash Reciept For Regular Customer   
+
+</div>
+<div style="width: 100%;
+text-align: center;
+background-color: #e4e0db;
+height: 33px;
+font-size: 24px;
+display: -webkit-inline-box;
+padding-top: 3px;">
+
+<section  style="width: 30%;">
+  
+  <div style="width:100%;" > Reciept No :  {{reciept_number}}  </div>
+
+</section>
+
+    </div>
+
+
+</section>
+
+<section  id="non-printable" style="width:100%;height:50px;border-bottom: 1px solid brown; margin-top: 13px;">
+<div class="row">
+<div class="col-md-6">
+    <label *ngIf="this.cash__model.is_reciept"> Buyer Name :  </label>  <label *ngIf="!this.cash__model.is_reciept" > Vendor Name: </label> 
+    
+       <div style="display:inline-block;width: 70%;padding-top: 2px;">
+      <input ngui-auto-complete #autos class="form-control" 
+             style="width:480px;font-size: 18px;border-color:#52c3bb;" [(ngModel)]="custoo" [source]="arrayOfCusValues"  
+            placeholder="Search"    
+              (blur)="cus_blur(autos.value)"
+              list-formatter="ID -- (CUSTOMER_NAME) STREET"
+              display-property-name="CUSTOMER_NAME"> 
+    </div> 
+</div> 
+    <div class="col-md-4">
+        <label style="font-size: 22px;
+        padding-top: 5px;">Payment Mode : </label> 
+    
+ <select class="form-control" style="width: 150px;display:inline-block" [(ngModel)]="selectedOption" (ngModelChange)="onChange_option($event)">
+ <option *ngFor="let pay_option of pay_options" [value]="">{{pay_option}}
+         
+        </option>
+</select>
+</div> 
+</div>
+
+</section>
+<section  id="non-printable" style="width: 100%;height: 50px;border-bottom: 1px solid brown;background-color: #ffd2ff;">
+
+
+
+
+
+</section>
+
+
+
+  <section  id="non-printable" style="width: 100%; height: 50px;margin-bottom: 15px;">
+
+ 
+<div style="display: inline-block;width: 20%;"> 
+     <label> Date of Payment:  &nbsp; </label>  
+<div style="display: inline-block;width: 30%;" *ngIf="date_change_flag === 0">
+     <input matInput [matDatepicker]="from_date"   id="non-printable" style="width:1px;border-style: none;"
+       placeholder="" (dateInput)="catch_invoice_date(from_date)">
+  <mat-datepicker-toggle matSuffix [for]="from_date" id="non-printable" ></mat-datepicker-toggle>
+  <mat-datepicker #from_date id="non-printable"></mat-datepicker>
+  
+</div>
+   
+ <label style="font-weight: bold;" *ngIf="date_change_flag  === 2" > {{cash_date  | date : 'longDate'}} </label> 
+  <button  *ngIf="date_change_flag  === 2" type="button"  (click)="change_cash_date()" class="btn btn-default btn-sm">
+          <span class="glyphicon glyphicon-pencil"></span> Edit
+        </button>
+</div>
+
+
+        <div *ngIf="cash__model.is_neft" style="display: inline-block;width: 50%;"> 
+
+            <label> Reference Number : </label>
+            <input #box4   placeholder="Reference number"
+              class="form-control" style="width:65%;display: inline-block" 
+              [(ngModel)]="cash__model.reference_number">   
+
+            
+        </div>
+
+</section>
+
+
+<section  id="non-printable" style="width: 100%; height: 50px;margin-bottom: 15px;">
+
+     <div style="margin-top:10px;margin-left:13px;width: 30%;display:inline-block;">
+         <label> Due Amount </label>
+         <input #box3  style="width:220px;display: inline-block;padding-left: 3px;margin-left: 6px;
+         padding-top: 3px;" placeholder="Amount" class="form-control" [disabled]='true'   [(ngModel)]="cash__model.due_balance">   
+    </div>
+
+
+    <div style="margin-top:10px;display:inline-block;margin-left: 13px;width: 30%">
+         <label> Amount Paid </label>
+         <input #box2  style="width:220px;display: inline-block;padding-left: 3px;margin-left: 6px;
+         padding-top: 3px;" placeholder="Amount" class="form-control"  (keyup)="change_two(box2.value)"  [(ngModel)]="cash__model.amount_payed">   
+    </div>
+
+     <div style="margin-top:10px;display:inline-block;margin-left: 13px;width: 30%">
+         <label>Balance Amount  </label>
+         <input #box2  style="width:220px;display: inline-block;padding-left: 3px;margin-left: 6px;
+         padding-top: 3px;" placeholder="Amount" class="form-control" [disabled]='true'  [(ngModel)]="cash__model.balance_amt">   
+    </div>
+
+</section>
+
+
+
+
+
+<section  id="non-printable" *ngIf="cheque_flag" style="width: 100%; height: 50px;">
+
+        <div  style="margin-top:15px;margin-left: 5px; display: inline-block;width: 25%;">
+                 <label> Cheque Number : </label>
+                 <input #box4   placeholder="Cheque number"
+                   class="form-control" style="width:70%;display: inline-block" 
+                   [(ngModel)]="cash__model.cheque_number">   
+       </div>
+
+
+
+
+
+
+<div style="display: inline-block;width: 20%;"> 
+     <label> Cheque Date  : </label>  
+<div style="display: inline-block;width: 30%;" *ngIf="date_c_change_flag === 0">
+     <input matInput [matDatepicker]="chek_date"   id="non-printable" style="width:1px;border-style: none;"
+       placeholder="" (dateInput)="catch_chek_date(chek_date)">
+  <mat-datepicker-toggle matSuffix [for]="chek_date" id="non-printable" ></mat-datepicker-toggle>
+  <mat-datepicker #chek_date id="non-printable"></mat-datepicker>
+  
+</div>
+   
+ <label *ngIf="date_c_change_flag === 2" > {{Cheque_Date  | date : 'longDate'}} </label> 
+     <button  *ngIf="date_c_change_flag === 2" type="button"  (click)="change_c_date()" class="btn btn-default btn-sm">
+          <span class="glyphicon glyphicon-pencil"></span> Edit
+        </button>
+</div>
+
+
+
+
+      <div  style="margin-top:15px;display: inline-block;margin-left: 5px;width: 50%;">
+            <label> Bank Name : </label>
+             <input #box6   placeholder="Bank Name" class="form-control" 
+              style="width:48%;display: inline-block"  [(ngModel)]="cash__model.bank_name">   
+     </div>
+
+</section>
+    
+    
+    
+    
+     <button   id="non-printable" class="btn btn-primary" [disabled]="isClickedOnce"   style="    margin-top: 15px;
+        margin-left: 80%;" (click)="cash_reciept()">Genrate cash recipt</button>
+
+</section>
+
+
+<section id="printable" style="width: 100%;height:450px;border: 2px solid; border-radius: 8px;">
+
+    <section  style="width: 100%;height:90px;border-bottom: 1px solid">
+       <label style="width: 100%;
+       height: 22px;
+       text-align: center;
+       font-size: 27px;
+       font-weight: bold;"> {{this.ss.i_m.company_info[0].COMPANY_NAME}} </label>
+
+       
+       <label style="width:100%;height:10px;text-align:center"> {{this.ss.i_m.company_info[0].COMPANY_ADR_1}} 
+        {{this.ss.i_m.company_info[0].COMPANY_ADR_2}} 
+        {{this.ss.i_m.company_info[0].COMPANY_ADR_3}} </label>  
+       <label style="width:100%;height:10px;text-align:center"> GSTIN : {{this.ss.i_m.company_info[0].COMPANY_GST}} </label>  
+       <label style="width:100%;height:10px;text-align:center"> Phone : {{this.ss.i_m.company_info[0].COMPANY_PH1}} , {{this.ss.i_m.company_info[0].COMPANY_PH2}}  </label>  
+        </section>
+ 
+
+        <section id="printable" style="width: 100%;height:40px;border-bottom: 1px solid">
+            <label *ngIf="this.cash__model.is_reciept"  style="    width: 100%;
+            height: 10px;
+            text-align: center;
+            font-size: larger;
+            font-weight: bold;text-decoration: underline;">  Reciept </label>
+             <label *ngIf="!this.cash__model.is_reciept"  style="    width: 100%;
+             height: 10px;
+             text-align: center;
+             font-size: larger;
+             font-weight: bold;text-decoration: underline;">  Payment </label>
+
+        </section>
+
+        <section id="printables" style="width: 100%;height:40px;">
+        <div style="width: 20%; display: inline-block; height: 25px; margin-top: 0px; padding-left:5px;">
+            Reciept No:  {{reciept_number}}
+            </div>  
+            <div style="width: 60%; display: inline-block; height: 20px; margin-top: 0px;">
+ 
+            </div>  
+            <div style="width: 20%; display: inline-block; height: 20px; margin-top: 0px;">
+           Date :   {{today | date : 'longDate'}}
+            </div>  
+            </section>
+
+            <section id="printables" style="width: 100%;height:40px;">
+            <div id="container">
+                <div id="navi"style="padding-left: 5px;">
+                    <label *ngIf="this.cash__model.is_reciept" >  Received from </label>   <label *ngIf="!this.cash__model.is_reciept" > Payed To </label>
+                        .............................................................................................................................................................................................. </div> 
+                <div id="infoi">
+                  {{cash__model.cus_name}}
+                </div>
+              </div>
+              </section>
+
+
+              <section id="printables" style="width: 100%;height:40px;">
+
+              <div id="container">
+                <div id="navi"style="padding-left: 5px;">Rupees .............................................................................................................................................................................................................</div> 
+                <div id="infoi">
+                 {{fig_main}} 
+                </div>
+              </div>
+               </section>
+
+               <section id="printables" style="width: 100%;height:45px;">
+
+               <div id="cont3">
+                <div id="navi3"style="padding-left: 5px;"> By Cheque No....................................................
+                </div>
+                
+                <div id="info3">
+                     {{cash__model.cheque_number}}
+                </div>
+                </div>    
+                
+                
+                <div id="cont4">
+                <div id="navi4"> Dated...........................................................
+                </div>
+                
+                <div id="info4">
+                     {{Cheque_Date  | date:'mediumDate'}}
+                </div>
+                </div>    
+                
+                
+                
+                <div id="cont5">
+                <div id="navi5"> Bank.........................................................................................
+                </div>
+                
+                <div id="info5">
+                {{ cash__model.bank_name }} 
+                </div>
+                <div id="info5" *ngIf="cash__model.is_neft">
+                    NEFT/RTGS Ref :   {{ cash__model.reference_number }} 
+                 </div>
+                </div>  
+
+                </section>
+
+
+ <section id="printables" style="width: 100%;height:45px;border-bottom: 1px solid">
+                
+ <div id="cont6">
+    <div id="navi6" style="padding-left: 5px;">Being the full/ part settlement upto Invoice No.........................................
+    </div>
+    
+    <div id="info6">
+    {{invo_number_prev}}
+    </div>
+    </div>    
+    
+    <div id="cont7">
+    <div id="navi7">dt.........................................................................
+    </div>
+    
+    <div id="info7">
+    {{cash_date | date:'mediumDate'}}
+    </div>
+    </div>    
+    
+</section>
+
+<section id="printables" style="width: 100%;height:50px;border-bottom: 1px solid">
+
+
+<div style=" width: 24.5%;
+height: 47px;
+margin-top: 2px;
+border: 2px solid;
+border-radius: 8px;">
+
+    <img src="../../../assets/rupee.svg" style="width: 45px;
+    height: 45px;
+    padding-top: 2px;
+    padding-left: 10px;" /> 
+
+    <label style="    padding-left: 20px;
+    font-size: 31px;
+    font-weight: bolder;
+    position: absolute;"> {{cash__model.amount_payed | number : '1.2-2'}} </label>
+
+</div>
+
+
+</section>
+
+
+
+<section id="printables" style="width: 100%;height:50px;">
+
+<div id="cont8">
+    <div id="navi8"> Balance of Rs...................................
+    </div>
+    
+    <div id="info8">
+        {{cash__model.balance_amt | number : '1.2-2'}}
+    </div>
+    </div>    
+    
+    
+    <div id="cont9">
+    <div id="navi9"> <label *ngIf="this.cash__model.is_reciept" >   Signature of Payee </label>
+        <label *ngIf="!this.cash__model.is_reciept" >   Signature of Reciever </label>
+        .........................................
+    </div>
+    
+    <div id="info9">
+        
+    </div>
+    </div>    
+    
+    
+    <div id="cont10">
+    <div id="navi10"> For COMPANY_NAME
+    </div>
+    
+    <div id="info9">
+    
+    </div>
+    </div>   
+
+
+
+</section>
+</section>
+

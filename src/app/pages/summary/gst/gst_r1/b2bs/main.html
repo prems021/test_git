@@ -1,0 +1,91 @@
+
+
+<mat-form-field>
+    <mat-label>Enter a date range</mat-label>
+    <mat-date-range-input [rangePicker]="picker" [max]="this.tomorrow">
+      <input  [(ngModel)]="this.sdate" matStartDate matInput placeholder="Start date">
+      <input  [(ngModel)]="this.edate" matEndDate matInput placeholder="End date">
+    </mat-date-range-input>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-date-range-picker #picker></mat-date-range-picker>
+  </mat-form-field>
+
+  <!-- <button mat-button color="primary" (click)="generate()" >Generate</button> -->
+
+  <button mat-button color="primary" *ngIf="Onload == 0"   (click)="generate()">Generate</button>
+
+  <button  *ngIf="Onload == 2" class="btn pull-right">
+      <i class="fa fa-spinner fa-spin"></i>Generating...
+    </button>
+
+    <button [disabled]="true" *ngIf="Onload == 3" class="btn  btn-warning pull-right" 
+    type="button"><span class="glyphicon glyphicon-ok"></span>  Generated </button>
+
+
+   <div *ngIf="Onload == 3">
+
+    <span>  
+      <a href="javascript:void(0)" (click)="export()"> <img src="../../../../../assets/icons/export.png" alt="Girl in a jacket" width="30" height="30"> </a> 
+        </span>
+
+  
+        <div class="table-responsive my_t" data-pattern="priority-columns">
+          <table id="e_gst_4"  class="table table-bordered table-hover">
+            
+            <thead class="t_h">
+              <tr>
+                <th data-priority="5"> GSTIN/UIN of Recipient </th> 
+                <th data-priority="5"> Receiver Name </th> 
+                <th data-priority="5"> Invoice Number </th> 
+                <th data-priority="5"> Invoice date</th>
+                <th data-priority="5"> Invoice Value </th>  
+
+                <th data-priority="5"> Place Of Supply </th>  
+
+                <th data-priority="5"> Reverse Charge </th> 
+                <th data-priority="5"> Applicable % of Tax Rate </th> 
+                <th data-priority="5"> Invoice Type </th> 
+                <th data-priority="5"> E-Commerce GSTIN </th> 
+                <th data-priority="5"> Rate </th> 
+                <th data-priority="5"> Taxable Value </th>
+                <th data-priority="5"> Cess Amount  </th>
+                <th data-priority="5"> Igst Amount  </th>
+                <th data-priority="5"> Cgst Amount  </th>
+                <th data-priority="5"> Sgst Amount  </th>
+                
+                
+                
+                </tr>
+                </thead>
+      
+                <tbody>
+                  <tr *ngFor = "let items of Process_list">
+            
+                     <td> {{items.GSTIN_of_Recipient}} </td>
+                     <td> {{items.Name_of_Recipient }} </td>                     
+                    <td> {{items.Invoice_Number}} </td>                        
+                    <td> {{items.Invoice_date | date: 'dd/MM/yyyy' }} </td>    
+                    <td>{{items.Invoice_Value  | number : '1.2-2'}}</td>
+                    <td> {{items.Place_Of_Supply}} </td>
+                    <td>{{items.Reverse_Charge }}</td>
+                    <td> {{items.Applicable_percent_of_Tax_Rate}} </td>
+                    <td> {{items.Invoice_Type}} </td>
+
+                    <td> {{items.E_Commerce_GSTIN}} </td>
+                    <td> {{items.Rate}} </td>
+                    <td> {{items.Taxable_Value  | number : '1.2-2'}} </td>
+                    <td> {{items.Cess_Amount}} </td>
+                    <td> {{items.Igst_amt  | number : '1.2-2'}} </td>
+                    <td> {{items.Sgst_amt  | number : '1.2-2'}} </td>
+                    <td> {{items.Cgst_amt  | number : '1.2-2'}} </td>
+                    
+                    
+                  
+                
+      
+              </tr>  
+                </tbody>
+                </table>
+                </div>
+      
+      </div> 

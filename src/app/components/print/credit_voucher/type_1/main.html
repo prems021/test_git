@@ -1,0 +1,432 @@
+
+<section style="position:fixed;
+top:0;left:0;right: 0;bottom: 0;
+width:100%;height: 100%;">
+
+
+   
+
+<section id="printa4" style="border:1px solid;height:170mm;"> 
+
+
+    <section  style="width: 100%;height:150px;border-bottom: 1px solid; text-align: center;">
+        <label style="width: 100%;
+        height: 22px;
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        font-size: 25px;
+        font-weight: bold;"> {{this.api.Company_dets.company_name}} </label> 
+  
+  <br>
+  <label  style="font-size: 22px;"> {{this.api.Company_dets.company_address_1}} ,  {{this.api.Company_dets.company_address_2}} </label> <br>  
+  <label style="font-size: 18px;"> Ph : {{  this.api.Company_dets.company_ph_1}} , {{this.api.Company_dets.company_ph_2}} </label> <br>  
+  <label style="font-size: 20px;font-weight: bold;"> GSTIN :  {{this.api.Company_dets.company_gstin}} </label> <br>
+  <label style="font-size: 18px;"> Email :  {{this.api.Company_dets.company_email}} </label> <br>
+ 
+  </section>
+
+  <section id="printa4" style="width: 100%;height:30px;border-bottom: 1px solid">
+     <label   style="width: 100%; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;  
+     text-align: center;
+     font-size: 22px;
+     font-weight: bold;">  Reciept </label>
+
+</section>
+
+<section id="printa4" style="width: 100%;height:40px;font-family:Arial, Helvetica, sans-serif;font-weight: bold;font-size: 20px;">
+    <div style="width: 25%; display: inline-block; height: 25px; margin-top: 0px; padding-left:5px;">
+        Reciept No:  {{this.api.cdmodels.serial_no}}
+        </div>  
+        <div style="width: 40%; display: inline-block; height: 20px; margin-top: 0px;">
+
+        </div>  
+        <div style="width: 35%; display: inline-block; height: 20px; margin-top: 0px;">
+            Date :  {{this.api.cdmodels.date  | date:'fullDate' }}
+             <!-- {{today | date : 'longDate'}} -- Date :  -->
+        </div>  
+        </section>
+
+        <section id="printa4" style="width: 100%;height:40px;">
+            <div id="container">
+                <div id="navi"style="padding-left: 5px;">
+                      Payed To 
+                        ................................................................................................................................................................................................................................................... </div> 
+                <div id="infoi">
+                   {{ this.api.invo_head.customer_Name }}
+                </div>
+              </div>
+              </section>
+
+
+          
+              <section id="printa4" style="width: 100%;height:40px;">
+
+                <div id="container">
+                  <div id="navi"style="padding-left: 5px;">Rupees .................................................................................................................................................................................................................................................................</div> 
+                  <div id="infoi">
+                  {{ this.api.cdmodels.figure_amt}}
+                  </div>
+                </div>
+                 </section>
+  
+                 <section id="printables" style="width: 100%;height:45px;">
+  
+                 <div id="cont3">
+                  <div id="navi3"style="padding-left: 5px;"> By Mode of...............................................................
+                  </div>
+                  
+                  <div id="info3">
+                    {{ this.api.cdmodels.pay_mode }}
+                  </div>
+                  </div>    
+                  
+                  
+                  <div id="cont4">
+                  <div id="navi4"> Dated...........................................................
+                  </div>
+                  
+                  <div id="info4">
+                       <!-- {{Cheque_Date  | date:'mediumDate'}}  Cheque_Date --> 
+                  </div>
+                  </div>    
+                  
+                  
+                  
+                  <div id="cont5">
+                  <div id="navi5"> Ref No.........................................................................................
+                  </div>
+                  
+                  <div id="info5">
+                    {{ this.api.cdmodels.ref_no }}
+                  </div>
+               
+                  </div>  
+  
+                  </section>    
+
+                  <section id="printa4" style="width: 100%;height:45px;">
+  
+                    <div id="cont3">
+                     <div id="navi3"style="padding-left: 5px;"> By Cheque No..........................................................
+                     </div>
+                     
+                     <div id="info3">
+                      <!--    cheque_number -->
+                     </div>
+                     </div>    
+                     
+                     
+                     <div id="cont4">
+                     <div id="navi4"> Dated...........................................................
+                     </div>
+                     
+                     <div id="info4">
+                          <!-- {{Cheque_Date  | date:'mediumDate'}}  Cheque_Date --> 
+                     </div>
+                     </div>    
+                     
+                     
+                     
+                     <div id="cont5">
+                     <div id="navi5"> Bank.........................................................................................
+                     </div>
+                     
+                     <div id="info5">
+                         <!-- bank_name  -->
+                     </div>
+                  
+                     </div>  
+     
+                     </section>  
+
+
+                     <section id="printa4" style="width: 100%;height:45px;border-bottom: 1px solid">
+                
+                        <div id="cont6">
+                           <div id="navi6" style="padding-left: 5px;">Being the full/ part settlement of Invoice No.........................................
+                           </div>
+                           
+                           <div id="info6">
+                           <!-- {{invo_number_prev}} --> {{this.api.invo_head.invoice_no_genrated}}
+                           </div>
+                           </div>    
+                           
+                           <div id="cont7">
+                           <div id="navi7">dt.........................................................................
+                           </div>
+                           
+                           <div id="info7">
+                           <!-- {{cash_date | date:'mediumDate'}} --> 
+                           </div>
+                           </div>    
+                           
+                       </section>
+
+                       <section id="printables" style="width: 100%;height:50px;border-bottom: 1px solid">
+
+
+                        <div style=" width: 24.5%;
+                        height: 47px;
+                        margin-top: 2px;
+                        border: 2px solid;
+                        border-radius: 8px;">
+                        
+                            <img src="../../../../assets/icons/rupee.svg" style="width: 45px;
+                            height: 45px;
+                            padding-top: 2px;
+                            padding-left: 10px;" /> 
+                        
+                            <label style="    padding-left: 20px;
+                            font-size: 31px;
+                            font-weight: bolder;
+                            position: absolute;">  {{ this.api.cdmodels.amount | number : '1.2-2'  }}  </label>
+                        
+                        </div>
+                        
+                        
+                        </section>
+                        
+                        
+                        
+                        <section id="printables" style="width: 100%;height:50px;font-size: 14px;padding-left: 5px;">
+                        
+                        <div id="cont8">
+                            <div id="navi8"> Balance of Rs...................................................................................................................
+                            </div>
+                            
+                            <div id="info8">
+                                <!-- balance_amt  -->
+                            </div>
+                            </div>    
+                            
+                            
+                            <div id="cont9">
+                            <div id="navi9"> 
+                                <label  >   Signature of Reciever </label>
+                                ...........................................................................................................
+                            </div>
+                            
+                            <div id="info9">
+                                
+                            </div>
+                            </div>    
+                            
+                            
+                            <div id="cont10">
+                            <div id="navi10"> For  {{this.api.Company_dets.company_name}}
+                            </div>
+                            
+                            <div id="info9">
+                            
+                            </div>
+                            </div>   
+                        
+                        
+                        
+                        </section>
+
+
+
+</section>
+ 
+
+
+
+
+
+
+
+
+<!-- 
+
+
+
+
+<section id="printable" style="width: 100%;height:450px;border: 2px solid; border-radius: 8px;">
+
+    <section  style="width: 100%;height:90px;border-bottom: 1px solid">
+       <label style="width: 100%;
+       height: 22px;
+       text-align: center;
+       font-size: 27px;
+       font-weight: bold;"> COMPANY_NAME </label>
+
+       
+       <label style="width:100%;height:10px;text-align:center"> COMPANY_ADR_1
+              COMPANY_ADR_2
+      COMPANY_ADR_3  </label>  
+       <label style="width:100%;height:10px;text-align:center"> GSTIN :  </label>  
+       <label style="width:100%;height:10px;text-align:center"> Phone :  ,   </label>  
+        </section>
+ 
+
+        <section id="printable" style="width: 100%;height:40px;border-bottom: 1px solid">
+            <label  style="    width: 100%;
+            height: 10px;
+            text-align: center;
+            font-size: larger;
+            font-weight: bold;text-decoration: underline;">  Reciept </label>
+             <label   style="    width: 100%;
+             height: 10px;
+             text-align: center;
+             font-size: larger;
+             font-weight: bold;text-decoration: underline;">  Payment </label>
+
+        </section>
+
+        <section id="printables" style="width: 100%;height:40px;">
+        <div style="width: 20%; display: inline-block; height: 25px; margin-top: 0px; padding-left:5px;">
+            Reciept No:  4
+            </div>  
+            <div style="width: 60%; display: inline-block; height: 20px; margin-top: 0px;">
+ 
+            </div>  
+            <div style="width: 20%; display: inline-block; height: 20px; margin-top: 0px;">
+           <-- Date :   {{today | date : 'longDate'}} -- Date : 
+            </div>  
+            </section>
+
+            <section id="printables" style="width: 100%;height:40px;">
+            <div id="container">
+                <div id="navi"style="padding-left: 5px;">
+                     Received from  Payed To 
+                        .............................................................................................................................................................................................. </div> 
+                <div id="infoi">
+                cus_name
+                </div>
+              </div>
+              </section>
+
+
+              <section id="printables" style="width: 100%;height:40px;">
+
+              <div id="container">
+                <div id="navi"style="padding-left: 5px;">Rupees .............................................................................................................................................................................................................</div> 
+                <div id="infoi">
+                 fig_main
+                </div>
+              </div>
+               </section>
+
+               <section id="printables" style="width: 100%;height:45px;">
+
+               <div id="cont3">
+                <div id="navi3"style="padding-left: 5px;"> By Cheque No....................................................
+                </div>
+                
+                <div id="info3">
+                     cash__model.cheque_number
+                </div>
+                </div>    
+                
+                
+                <div id="cont4">
+                <div id="navi4"> Dated...........................................................
+                </div>
+                
+                <div id="info4">
+                     <-- {{Cheque_Date  | date:'mediumDate'}} -- Cheque_Date
+                </div>
+                </div>    
+                
+                
+                
+                <div id="cont5">
+                <div id="navi5"> Bank.........................................................................................
+                </div>
+                
+                <div id="info5">
+                 cash__model bank_name  
+                </div>
+                <div id="info5" >
+                    <-- NEFT/RTGS Ref :   {{ cash__model.reference_number }}  -> NEFT/RTGS Ref
+                 </div>
+                </div>  
+
+                </section>
+
+
+ <section id="printables" style="width: 100%;height:45px;border-bottom: 1px solid">
+                
+ <div id="cont6">
+    <div id="navi6" style="padding-left: 5px;">Being the full/ part settlement upto Invoice No.........................................
+    </div>
+    
+    <div id="info6">
+    <-- {{invo_number_prev}} -- 6
+    </div>
+    </div>    
+    
+    <div id="cont7">
+    <div id="navi7">dt.........................................................................
+    </div>
+    
+    <div id="info7">
+    <-- {{cash_date | date:'mediumDate'}} -- cash_date
+    </div>
+    </div>    
+    
+</section>
+
+<section id="printables" style="width: 100%;height:50px;border-bottom: 1px solid">
+
+
+<div style=" width: 24.5%;
+height: 47px;
+margin-top: 2px;
+border: 2px solid;
+border-radius: 8px;">
+
+    <img src="../../../assets/rupee.svg" style="width: 45px;
+    height: 45px;
+    padding-top: 2px;
+    padding-left: 10px;" /> 
+
+    <label style="    padding-left: 20px;
+    font-size: 31px;
+    font-weight: bolder;
+    position: absolute;"> cash__model amount_payed  </label>
+
+</div>
+
+
+</section>
+
+
+
+<section id="printables" style="width: 100%;height:50px;">
+
+<div id="cont8">
+    <div id="navi8"> Balance of Rs...................................
+    </div>
+    
+    <div id="info8">
+        balance_amt 
+    </div>
+    </div>    
+    
+    
+    <div id="cont9">
+    <div id="navi9">  <-- <label *ngIf="this.cash__model.is_reciept" >   Signature of Payee </label> ->
+        <label  >   Signature of Reciever </label>
+        .........................................
+    </div>
+    
+    <div id="info9">
+        
+    </div>
+    </div>    
+    
+    
+    <div id="cont10">
+    <div id="navi10"> For COMPANY_NAME
+    </div>
+    
+    <div id="info9">
+    
+    </div>
+    </div>   
+
+
+
+</section>
+</section> -->

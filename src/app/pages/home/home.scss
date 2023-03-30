@@ -1,0 +1,36 @@
+#printable { display: none; }
+#nest { padding-top: 60px; }
+#all_p { overflow:scroll; }
+@media print
+{   
+     
+    #non-printable { display: none; }
+    #printable { display: block; }
+    #nest { padding-top: 6px; }
+
+    #all_p { overflow:hidden; }
+
+}
+.neck
+{
+   
+    // background: linear-gradient(-45deg, #deff88, #1fe79f, #f9dff7, #d0f3d3);
+    // background-size: 261% 400%;
+    // animation: gradient 45s ease infinite;
+    // background: linear-gradient(-45deg, #bbc7c3, #dfec9e, #f9dff7, #d0f3d3);
+    background: linear-gradient(-45deg, #e7e7e7, #fff4fc, #ffffff, #e5e5e5);
+   // background: linear-gradient(-45deg, #d1d1d4, #c1b5d5, #f9dff7, #d8ccdd);
+    background-size: 350% 300%;
+    animation: gradient 65s ease infinite;
+}
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}

@@ -1,0 +1,35 @@
+#printable { display: none; }
+  
+@media print
+{   
+     
+    #non-printable { display: none; }
+    #printable { display: block; }
+}
+
+
+
+p {
+    height: 30px;  
+    padding: 8px;
+    position: relative;
+    font-family: monospace;
+    font-size: x-large;  
+    overflow: hidden;
+    background: linear-gradient(90deg, #f0ce76, #fff, #6f8199);
+    background-repeat: no-repeat;
+    background-size: 80%;
+    animation: animate 5s linear infinite;
+    -webkit-background-clip: text;
+    background-clip: none;
+    -webkit-text-fill-color: rgba(255, 255, 255, 0);
+  }
+  
+  @keyframes animate {
+    0% {
+      background-position: -500%;
+    }
+    100% {
+      background-position: 500%;
+    }
+  }

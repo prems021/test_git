@@ -1,0 +1,234 @@
+
+
+
+
+  .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: hidden; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content/Box */
+  .modal-content {
+    background-color: #cce6e0;
+    margin: 15% auto;
+    padding: 15px;
+    border: 1px solid #231a1a;
+    width: 80%;
+  }
+  
+  /* The Close Button */
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  
+  .footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: red;
+    color: white;
+    text-align: center;
+  }
+
+
+
+
+  
+  
+    
+  #printable { display: none; }
+  
+  @media print
+  {   
+       
+      #non-printable { display: none; }
+      #printable { display: block; }
+  }
+
+  
+.input_grove
+{
+
+  display: inline-flex;
+  position: sticky;
+  z-index: 1;
+
+}
+
+
+.save_td > button:focus
+{
+background-color: rgb(67, 216, 9);
+color: black;
+border-color: #F9F9F9;
+
+}
+
+
+
+table.pdt_table {
+border: 1px solid #ccc;
+border-collapse: collapse;
+margin: 0;
+padding: 0;
+width: 100%;
+table-layout: fixed;
+}
+
+
+tr:nth-child(even) {
+background-color: #8bc5e3;
+color: #041d27;
+
+}
+tr:nth-child(odd) {
+  background-color: #c3c7d8;
+  color: #151a1c;
+
+}
+
+
+
+table th,
+table td {
+padding: .225em;
+text-align: center;
+border: 1px solid black;
+}
+
+table th {
+font-size: .85em;
+letter-spacing: .1em;
+height: 3px;
+
+}
+
+.bottom_section 
+{
+  height: 80px;
+  overflow-x:scroll;
+}
+
+@media screen and (max-width: 768px) {
+
+.bottom_section 
+{
+  height: 60px;
+  overflow-x:scroll;
+}
+
+
+table.pdt_table {
+  border: 0;
+}
+
+
+
+table.pdt_table caption {
+  font-size: 1.3em;
+}
+
+table.pdt_table thead {
+  border: none;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+
+table.pdt_table tr:nth-child(even) {
+  background-color: #b1adbd;
+  border-bottom: 3px solid #ddd;
+   display: block;
+  margin-bottom: .625em;
+}
+table.pdt_table tr:nth-child(odd) {
+  background-color: #f8deff;
+  border-bottom: 3px solid #ddd;
+  display: block;
+  margin-bottom: .625em;
+  color: revert;
+}
+
+table.pdt_table td {
+  border-bottom: 1px solid #ddd;
+  display: block;
+  font-size: .8em;
+  text-align: right;
+}
+
+
+
+table.pdt_table td::before {
+  
+  content: attr(data-label);
+  float: left;
+  font-weight: bold;
+ 
+}
+
+table.pdt_table td:last-child {
+  border-bottom: 0;
+}
+}
+
+
+
+
+
+.input-icons i {
+position: absolute;
+}
+
+.input-icons {
+width: 100%;
+margin-bottom: 10px;
+}
+
+.icon {
+padding: 10px;
+min-width: 40px;
+}
+
+.input-field {
+width: 100%;
+padding: 10px;
+text-align: center;
+}
+
+
+
+
+
+
+
+
+/* general styling */
+.all{
+font-family: "Open Sans", sans-serif;
+line-height: 1.25;
+}

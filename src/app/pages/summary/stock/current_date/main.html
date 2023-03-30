@@ -1,0 +1,88 @@
+
+<mat-form-field>
+  <input matInput [(ngModel)]="this.edate"
+    [matDatepicker]="picker"
+    placeholder="Select date"
+    (dateChange)="setDate($event.value)">
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>
+
+
+&nbsp; &nbsp;
+
+<button mat-button color="primary"  *ngIf="Onload == 1"   (click)="generate()">Generate</button>
+
+<button  *ngIf="Onload == 2" mat-button color="warning">
+    <i class="fa fa-spinner fa-spin"></i>Generating...
+  </button>
+
+  <button [disabled]="true" *ngIf="Onload == 3" class="btn btn-warning pull-right" 
+  type="button"><span class="glyphicon glyphicon-ok"></span>  Generated </button>
+
+ 
+
+  <div  class="container">
+      <div *ngIf="Onload == 3"  class="mb-2">
+     
+          <button class="btn btn-primary mx-1" (click)="exportToCSV()">CSV export</button>
+        </div>
+      <div class="columns">
+        <div class="column col-12">
+          <small>You can use comma separator, to filter by more than one value</small>
+        </div>
+      </div>
+      <div class="columns">
+        <div class="column col-12">
+          <ngx-table [configuration]="configuration" [data]="Process_list" [columns]="columns">
+            <ng-template let-row>
+        
+        
+                <td class="row__progressbar">
+                    {{ row.si_no }}
+                  </td>
+        
+                <td class="row__progressbar">
+                    {{ row.bar_code }}
+                  </td>
+        
+        
+              <td class="row__email">
+                <h5 class="color-green font-light">{{ row.product_name }}</h5>
+              </td>
+        
+              <td class="row__progressbar">
+                {{ row.unit_code }}
+              </td>
+        
+        
+              <td class="row__progressbar">
+                {{ row.op_bal }}
+              </td>
+              <td>
+                <div class="font-small">
+                  {{ row.pur_tot }}
+                </div>
+              </td>
+              <td>
+                <div class="d-inline circle" [style.color]="row.sales_tot >= 10 ? 'blue' : 'red'"></div>
+                {{ row.sales_tot }}
+              </td>
+        
+              <td>
+                <div class="d-inline circle" [style.color]="row.rem_count < 10 ? 'red' : 'blue'"></div>
+                {{ row.rem_count }}
+              </td>
+        
+      
+            </ng-template>
+          </ngx-table>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+

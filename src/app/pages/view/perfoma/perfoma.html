@@ -1,0 +1,73 @@
+
+
+<section id="non-printable" style="height: 35px;
+margin-bottom: 0px;
+margin-top: -12px;">
+
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#/home/dash">Home</a></li>
+    <li class="breadcrumb-item active">View invoices (taxed)</li>
+    <div style="float: right;" *ngFor="let item of Options;  let i = index">
+      <mat-checkbox style="margin-left: 10px;" [checked]="selected === i" (change)="select__(i)"> {{item.name}} </mat-checkbox>
+    </div>    
+  </ol>
+</nav>
+</section>
+
+
+<section *ngIf="view" style="height: 30px;width: auto;border-bottom: 2px solid springgreen;"> </section>
+
+<section *ngIf="view" style="height: 99%;
+width: auto;
+scroll-behavior: smooth;
+overflow-y: scroll;">
+
+<ngx-table [configuration]="configuration"
+[data]="data"
+[columns]="columns"  (event)="eventEmitted($event)">
+
+<ng-template let-row>
+
+  <td>
+    <div class="font-small">
+      {{row.id}}
+     
+    </div>
+  </td>
+
+
+
+
+  <td class="recruitments__table-row-progressbar" >
+    <span class="font-small">{{row.hb7_customer.name}}</span>  
+  </td>
+
+
+  <td>
+    <div class="font-small">
+      {{row.invoice_date | date}}
+     
+    </div>
+  </td>
+
+  <td> 
+    <strong>{{row.invoice_no}}</strong>
+  </td>
+
+  <td> 
+    <strong>{{row.grand_amt - row.discount_amt  | number : '1.2-2'}}</strong>
+  </td>
+ 
+
+  <!-- <td> 
+    <strong>{{row.due_amt}}</strong>
+  </td> -->
+ 
+</ng-template>
+
+
+</ngx-table>
+
+</section>

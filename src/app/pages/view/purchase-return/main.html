@@ -1,0 +1,40 @@
+
+
+<section id="non-printable" style="height: 35px;
+margin-bottom: 0px;
+margin-top: -12px;">
+
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#/home">Home</a></li>
+    <li class="breadcrumb-item"><a href="#/home">View Purchase Return (taxed)</a></li>
+
+    <div style="float: right;" *ngFor="let item of Options;  let i = index">
+      <mat-checkbox style="margin-left: 10px;" [checked]="selected === i" (change)="select__(i)"> {{item.name}} </mat-checkbox>
+    </div>
+    
+  </ol>
+
+
+
+
+</nav>
+
+
+</section>
+
+
+<section *ngIf="view" style="height: 30px;width: auto;border-bottom: 2px solid springgreen;"> </section>
+
+<section *ngIf="view" style="height: 99%;
+width: auto;
+scroll-behavior: smooth;
+overflow-y: scroll;">
+
+<ngx-table [configuration]="configuration"
+[data]="data"
+[columns]="columns"  (event)="eventEmitted($event)">
+</ngx-table>
+
+</section>

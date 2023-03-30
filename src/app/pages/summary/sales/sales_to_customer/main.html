@@ -1,0 +1,130 @@
+
+
+
+
+
+
+
+
+
+
+  <div class="example-container">
+   
+        <mat-form-field>
+        <mat-label>Enter a date range</mat-label>
+        <mat-date-range-input [rangePicker]="picker" [max]="this.tomorrow">
+          <input  [(ngModel)]="this.sdate" matStartDate matInput placeholder="Start date">
+          <input  [(ngModel)]="this.edate"  matEndDate matInput placeholder="End date">
+        </mat-date-range-input>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+        </mat-form-field>
+     
+  
+     
+  
+      <mat-form-field  style="min-width: 300px;">
+        <mat-label>Search For Customer</mat-label>
+        <input matInput placeholder="Search"   #customers type="text" ngui-auto-complete 
+        style="height:100%;color: black;width:100%;    padding: 4px;" type="text" 
+        name="customers"   [source]="arrayOfCusValues"  
+        (valueChanged)="_cus_selected($event)"  (customSelected)="customCallback($event)"           
+        list-formatter="id -- name -- street"
+        loading-text = "loading"
+        display-property-name="name"
+          aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+      </mat-form-field>
+    
+  &nbsp; &nbsp;
+
+
+        <button mat-raised-button color="primary" *ngIf="Onload == 1" (click)="generate()" >Generate</button> 
+
+  
+       
+  <button mat-button color="primary"  *ngIf="Onload == 2"   (click)="generate()">Generate</button>
+
+  <button  *ngIf="Onload == 2" mat-button color="warning">
+      <i class="fa fa-spinner fa-spin"></i>Generating...
+    </button>
+
+    <button [disabled]="true" *ngIf="Onload == 3" class="btn btn-warning pull-right" 
+    type="button"><span class="glyphicon glyphicon-ok"></span>  Generated </button>
+  
+      
+      
+
+  </div>
+  
+
+  &nbsp; &nbsp;
+
+
+  &nbsp; &nbsp;
+
+   
+
+    <div *ngIf="Onload == 3" class="container">
+        <div class="mb-2">
+       
+            <button class="btn btn-primary mx-1" (click)="exportToCSV()">CSV export</button>
+          </div>
+        <div class="columns">
+          <div class="column col-12">
+            <small>You can use comma separator, to filter by more than one value</small>
+          </div>
+        </div>
+        <div class="columns">
+          <div class="column col-12">
+            <!-- <ngx-table [configuration]="configuration" [data]="Report_model" [columns]="columns"> </ngx-table> -->
+
+
+
+            <ngx-table [configuration]="configuration" [data]="Report_model" #table [columns]="columns" >
+
+              <ng-template let-row let-index="index">
+                <td>
+                  <div class="font-small">  {{ row.si }}</div>
+                </td>
+                <td>
+                  <span class="font-small">{{ row.invoice_date  | date :'medium'  }}</span>
+                </td>
+                <td>
+                  <span class="font-small">{{ row.invoice_generation_date   | date :'medium'  }}</span>
+                </td>
+                <td>
+                  <span class="font-small">{{ row.invoice_value }}</span>
+                </td>
+                <td>
+                  <span class="font-small">{{ row.total_payed }}</span>
+                </td>
+                <td>
+                  <span class="font-small">{{ row.total_pay_cycle }}</span>
+                </td>
+                <td>
+                  <span class="font-small">{{ row.total_due }}</span>
+                </td>
+          
+          
+               
+        
+              
+               
+          
+          
+              </ng-template>
+            </ngx-table>
+
+
+
+
+
+
+
+
+
+
+
+          </div> 
+        </div>
+      </div>

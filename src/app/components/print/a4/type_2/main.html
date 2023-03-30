@@ -1,0 +1,360 @@
+
+<section style="position:fixed;
+top:0;left:0;right: 0;bottom: 0;
+width:100%;height: 100%; font-family: Arial, Helvetica, sans-serif;">
+    
+     <section id="printa4" style="border:1px solid;height:398mm;"> 
+
+
+        <div style="width: 100%;height:12%; border-bottom:1px solid black;display: inline-block;text-align: center;padding-top: 10px;">       
+      
+         
+          <!-- <div style="width: 100%;height:100%;display: inline-block;text-align: center;">  -->
+          
+            <!-- <span>
+           
+             <img src="../../../assets/images/sim.JPG" style="width:35%; height:16%;" alt="Girl in a jacket">
+       
+           </span>  -->
+          
+          
+          <label style="font-size: 28px;font-weight: bold;">  {{this.api.Company_dets.company_name}}  </label> <br>
+       
+          <label  style="font-size: 22px;"> {{this.api.Company_dets.company_address_1}} ,  {{this.api.Company_dets.company_address_2}} </label> <br>
+       
+          <label style="font-size: 18px;"> Ph : {{  this.api.Company_dets.company_ph_1}} , {{this.api.Company_dets.company_ph_2}} </label> <br>
+       
+          <label style="font-size: 20px;font-weight: bold;"> GSTIN :  {{this.api.Company_dets.company_gstin}} </label> <br>
+          <label style="font-size: 18px;"> Email :  {{this.api.Company_dets.company_email}} </label> <br>
+         
+        <!-- </div>  -->
+       
+       </div>
+       
+       <div style="width: 100%;height:1.5%; border-bottom:1px solid black;"> 
+         <label style="font-weight: bold;text-align:center;width:100%;">Tax Invoice </label>       
+       </div>
+       
+       
+       <div style="width: 100%;height:10%; border-bottom:1px solid black;padding-left: 2px;"> 
+        
+         <div style="width: 50%;height:100%;border-right: 1px solid;display: inline-block;padding-left: 4px;"> 
+        <label style="margin-top:5px;float: left;width: 100%;height: 25px;line-height: 16px;font-weight: bold;">
+            Customer Name : {{ this.api.invo_head.customer_Name }} </label>   
+        
+        <label style="float: left;width: 100%;height: 32px;line-height: 14px;"> 
+           Customer address : {{this.api.invo_head.customer_Address_1}} 
+            {{this.api.invo_head.customer_Address_2}} {{this.api.invo_head.customer_Address_3}} </label> 
+       
+          <label style="width: 50%;height: 10px;line-height: 14px;display: inline-block;">  Ph No : {{this.api.invo_head.customer_Ph1}} ,
+            {{this.api.invo_head.customer_Ph2}}  </label>   
+      
+             
+           
+      
+      
+          <label style="width: 50%;height: 10px;line-height: 14px;display: inline-block;">  GSTIN : {{ this.api.invo_head.customer_Gstin }}  </label> 
+       
+          <label style="width: 50%;height: 10px;line-height: 14px;display: inline-block;"> Email : {{ this.api.invo_head.customer_Email }}   </label>  
+       
+          <label style="float: left;width: 100%;height: 20px;line-height: 20px;">  Place of Supply :  {{ this.api.invo_head.pos }} </label> 
+       
+       
+          </div> 
+       
+       
+          <div style="width:49.5%;height:100%;display: inline-block;padding-left: 5px;"> 
+           
+       
+           <label  style="margin-top:5px;float: left;width: 100%;
+           height: 25px;line-height: 16px;font-weight: bold;"> 
+             Invoice Number : {{this.api.invo_head.invoice_no_genrated}} </label>   
+      
+         
+            
+           
+           <label style="float: left;width: 100%;height: 20px;line-height: 14px;"> 
+             Date :  {{  this.api.invo_head.invoice_date  | date:'fullDate' }}  </label> 
+          
+             <label style="width: 50%;height: 10px;line-height: 10px;display: inline-block;">  Bundles : {{this.api.invo_head.bundles}} </label> 
+             <label style="width: 50%;height: 10px;line-height: 10px;display: inline-block;">  LPO :  {{this.api.invo_head.lpo_no}}  </label> 
+          
+          
+             <label style="float: left;width: 100%;height: 20px;line-height: 20px;">  Mode of Supply :  {{this.api.invo_head.mode_of_supply}}  </label> 
+       
+       
+         </div>
+       
+       
+       
+       </div>
+      
+      
+      
+      
+      
+      
+        <div style="width: 100%;height: 40%;padding: 10px;"> 
+      
+      
+          <table class="table table-sm">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">HSN/SAC</th>
+                <th scope="col">Unit</th>
+                <th scope="col">Tax %</th>
+                <th scope="col">Qty</th>
+                <th scope="col">Rate</th>
+                <th scope="col">Net Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of this.api.Invoice_items_ary; let k=index;">
+                <th scope="row">{{k+1}}</th>
+                <td>
+                  
+                  <label style="font-size: larger;
+                  font-weight: 500;float: left;display: contents;"> {{item.product_name}} </label> <br>
+                  <label *ngIf="item.product_description != null" style="font-style: italic;     
+                  padding-left: 42px;
+                  font-size:15px;"> SI No : {{item.product_description }} </label>   
+
+
+
+
+<!-- <div  style="display:inline-block;width:46.5%;line-height: 18px; ">
+  <label style="font-size: larger;
+  font-weight: 500;float: left;display: contents;"> {{item.DESCRIPTION}} </label> <br>
+   <label *ngIf="item.SERIAL_NO != null"
+   style="font-style: italic;     
+  padding-left: 42px;
+  font-size:15px;">   SI No : {{item.SERIAL_NO}} </label> 
+ </div> -->
+
+                    
+                
+                </td>
+                <td> {{item.hsn_code}} </td>
+                <td>{{item.unit}}</td>
+                <td>{{item.tax}}</td>
+                <td>{{item.qty | number : '1.2-2'}}</td>
+                <td>{{item.rate | number : '1.2-2'}}</td>
+                <td>{{item.value * item.qty | number : '1.2-2'}}</td>                
+                
+              </tr>
+              
+           
+              <tr style="border-top: 2px solid black;"> 
+                <th scope="row"></th>
+                <td>Total</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>{{   this.api.total_qty  | number : '1.2-2'}}</td>
+                <td> </td>
+                <td>{{ this.api.invo_head.total_taxable + this.api.invo_head.total_tax_amt  | number : '1.2-2'}}</td>
+               
+              </tr>
+      
+            </tbody>
+          </table>
+      
+        </div>
+      
+      
+      
+       
+      
+         <div style="width: 100%;height: 6.5%; border-top:1px solid black;"> 
+      
+          <div style="width: 70%;height:100%; border-right:1px solid black;display: inline-block;"> 
+            
+         <label style=" padding-top: 50px;
+         padding-left: 4px;
+         line-height: 20px;
+         font-weight: bold;">  Amount in figure : {{this.api.figure_grand}}  </label>  
+          
+          </div>
+          <div style="width: 30%;display: inline-block;position: absolute; "> 
+            
+            <!-- <label  *ngIf="this.ds.i_m.heads.TYPE_ === 'OUT STATE' && this.ds.i_m.heads.MODE_ == 'IN'"
+             style="padding-left: 3px;font-weight: bold;"> 
+              Total Tax (IGST) : {{100 | number : '1.2-2'}} </label>  -->
+      
+         
+      
+      
+            <label  style="padding-left: 3px;padding-top:3px;font-weight: bold;">
+               Total Tax (GST) : {{ this.api.invo_head.total_tax_amt   | number : '1.2-2'}} </label>
+      
+      
+      
+      
+            
+            <!-- <label  *ngIf="this.ds.i_m.heads.MODE_ == 'IN'" style="padding-left: 3px;font-weight: bold;">
+               KF.Cess : {{this.ds.i_m.heads.CESS_AMT | number : '1.2-2'}} </label>
+            <label  *ngIf="this.ds.i_m.heads.MODE_ == 'SR'" style="padding-left: 3px;font-weight: bold;">
+               KF.Cess (Rev) : {{this.ds.i_m.heads.CESS_AMT | number : '1.2-2'}} </label> -->
+            
+            <br>
+            <label style="padding-left: 3px;font-weight: bold;"> Round-off : {{ this.api.frac }}  </label> <br>
+            
+         
+      
+      <label  style="border-top: 1px solid black;width: 100%;padding-left: 3px;
+      padding-top: 4px;font-weight: bold;font-size: large;"> Grand Total : {{ this.api.invo_head.grand_amt | number : '1.2-2'}}  </label>
+      
+      
+   
+      
+      
+             <br>
+            
+            
+             </div>
+           
+        </div> 
+      
+      
+      
+      
+      
+        <div style="width: 100%;height:auto;"> 
+      
+      
+          <div style="width: 100%;height: 2px;border-bottom: 1px solid black;"> </div>
+      <label  style="text-align: center;height: 13px;font-weight: bold;line-height: 18px;width: 100%;
+      font-size: larger;"> Tax details (GST) </label>
+      
+     
+              
+      <div style="width: 100%;height: 2px;border-bottom: 1px solid black;"> </div>
+      
+      <table style="width: 100%;">
+      <thead style="font-size: 18px;font-weight: bold;border-bottom: 1px dotted black;">
+           <tr> <th  style="padding-left: 8px;"> Tax (%) </th> <th> Taxable Value </th> 
+            <th *ngIf="this.api.invo_head.type_ex === 'IGST'"> IGST </th>
+            <th *ngIf="this.api.invo_head.type_ex != 'IGST'"> CGST </th>
+              <th *ngIf="this.api.invo_head.type_ex != 'IGST'"> SGST </th> <!-- <th> K.F cess </th> -->
+           </tr>
+      </thead>
+      
+      
+      <tr  *ngFor="let itemz of ds.Tax_info.item; let k=index;">
+        <td style="padding-left: 8px;font-weight: bold;"> {{itemz.TAX }} </td> 
+        <td style="font-weight: bold;"> {{itemz.NET_VALUE | number : '1.2-2'}} </td> 
+       <td  *ngIf="this.api.invo_head.type_ex === 'IGST'" style="font-weight: bold;"> {{itemz.CGST * 2 |  number : '1.2-2'}} </td>
+       <td *ngIf="this.api.invo_head.type_ex != 'IGST'"  style="font-weight: bold;"> {{itemz.CGST | number : '1.2-2'}} </td>
+        <td *ngIf="this.api.invo_head.type_ex != 'IGST'"  style="font-weight: bold;"> {{itemz.SGST | number : '1.2-2'}} </td>
+        <!-- <td style="font-weight: bold;"> {{itemz.KFC | number : '1.2-2'}} </td> -->
+      </tr>
+      
+      <tr style="border-top:1px dotted black;"> 
+      
+         <td style="padding-left: 8px;font-weight: bold;"> Total  </td>
+          <td style="font-weight: bold;"> {{ this.api.invo_head.total_taxable | number : '1.2-2' }} </td> 
+          <td *ngIf="this.api.invo_head.type_ex === 'IGST'" style="font-weight: bold;"> {{  this.api.invo_head.total_tax_amt  | number : '1.2-2'}}  </td>
+         <td *ngIf="this.api.invo_head.type_ex != 'IGST'" style="font-weight: bold;"> {{  this.api.invo_head.total_tax_amt  / 2 | number : '1.2-2'}}  </td>
+          <td *ngIf="this.api.invo_head.type_ex != 'IGST'" style="font-weight: bold;"> {{  this.api.invo_head.total_tax_amt  / 2 | number : '1.2-2'}} </td> 
+         <!-- <td style="font-weight: bold;"> {{this.ds.i_m.heads.CESS_AMT | number : '1.2-2'}} </td> -->
+      
+      </tr> 
+      
+      
+      </table>
+      
+      <div style="width: 100%;
+      height: 30px;
+      border-bottom: 1px solid black;
+      border-top: 1px solid black;"> 
+      
+      <label   style="width: 100%;padding-left: 4px;padding-top: 2px;font-size: large;
+      font-weight: bold;"> Total Tax Amount : {{ this.api.invo_head.total_tax_amt  | number : '1.2-2' }} 
+         </label>       
+      
+      
+      </div> 
+      
+      
+      
+       </div>
+      
+      
+      
+       
+       <div class="footer">
+      
+      
+        <div style="width: 100%;height:100px; border-top:1px solid black;"> 
+      
+          <div style="width: 50%;height:100%;border-right: 1px solid;display: inline-block;"> 
+            <label> Customer's Seal & Signature </label>
+            </div>
+      
+            <div style="width: 50%;height:100%;display: inline-block;position:absolute;"> 
+             
+            <label style="padding-left: 5px;"> For {{this.api.Company_dets.company_name}} </label> 
+            <label style="    float: right;
+            padding-right: 5px;"> Authorized Signatory </label> 
+      
+          </div>
+            
+            
+      
+         </div>
+      
+      
+         <div style="width: 100%;height:100px; border-top:1px solid black;"> 
+      
+          <div style="width: 50%;height:100%;border-right: 1px solid;display: inline-block;"> 
+            <label> Declartion </label>
+      
+            <label> 1.This invoice shows the actual price of the goods described and that
+              all particulars are true and correct.
+              2.Goods once sold will not be taken back.
+               </label> 
+            </div>
+            <div style="width: 50%;height:100%;display: inline-block;position:absolute;padding-left: 4px;"> 
+              <label style="padding-top: 2px;
+              float: left;
+              position: absolute;"> Bank Name : {{this.api.Company_dets.company_bank_name}}  </label>
+              <label style="padding-top: 25px;
+              float: left;
+              position: absolute;"> A/c No :  {{this.api.Company_dets.company_bank_ac_no}} </label>
+              <label style="padding-top: 51px;
+              float: left;
+              position: absolute;"> Branch :  {{this.api.Company_dets.company_bank_branch_name}} </label>
+              <label style="padding-top: 76px;
+              float: left;
+              position: absolute;"> IFSC :  {{this.api.Company_dets.company_bank_ifsc_code}} </label>
+              </div>
+      
+         </div>
+      
+         <div style="width: 100%;height:20px; border-top:1px solid black;"> 
+      
+          <label style="float: left;
+          padding-left: 12px;
+          font-weight: bold;"> * This is a computer generated Invoice  </label>  <label style="float: right;
+          padding-right: 5px;"> csweb.in </label> 
+      
+         </div> 
+      
+        
+      </div> 
+      
+      
+      
+      
+      </section>
+      
+      
+ 
+
+
+
+
+</section>
+

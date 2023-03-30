@@ -1,0 +1,254 @@
+
+  
+  <section style="width: 100%;height: 100%;color: #3a0058;padding: 20px;background-color: rgb(233, 236, 239);">
+  
+    <form [formGroup]="productForm"> 
+  
+  
+      <div class="row">
+
+        <div class="form-group col-md-6 col-sm-6 col-lg-4 col-xs-12">
+          
+          <label >Product Name</label>
+          <input  formControlName="product_name" type="text" class="form-control" placeholder="Name">
+          <small [hidden]="productForm.controls.product_name.valid" class="text-danger">
+            Product Name is required.
+                                             </small>
+      </div>
+
+
+    <!-- <div class="form-group col-md-6 col-sm-6 col-lg-4 col-xs-12">
+      <label >Description</label>
+      <input id="product_des" formControlName="description" type="text" class="form-control" placeholder="description">
+      <small [hidden]="productForm.controls.description.valid" class="text-danger">
+        Description is required.
+                                         </small>
+    </div> -->
+
+    <div class="form-group col-md-2 col-sm-2 col-lg-2 col-xs-12">
+      <label> Bar code/Product code </label>
+      <input  formControlName="bar_code"   type="text"  class="form-control" placeholder="bar code">
+   
+   </div>
+
+    <div class="form-group col-md-2 col-sm-2 col-lg-2 col-xs-12">
+      <label> Hsn code </label>
+      <input  formControlName="hsn_code"   type="text"  class="form-control" placeholder="hsn code">
+   
+   </div>
+  
+  
+    <div *ngIf="load_cat_flag" class="form-group col-md-4 col-sm-4 col-lg-3 col-xs-6">
+          <label> Category </label>
+          <select class="form-control" formControlName="category_id" id="type" type="number">
+                                      
+                                                    <option *ngFor="let type of PdtCategory_ary" [value]="type.id">{{type.category_name}}</option>
+                                                    </select>
+          
+        </div>
+  
+        <div  class="form-group col-md-1 col-sm-1 col-lg-1 col-xs-6">  
+        
+        <button  matTooltip="Info about the action"  class="float-left" mat-icon-button color="primary" aria-label="Add"
+         (click)="open_modal_add_category()"> <mat-icon>add_circle_outline</mat-icon> </button> 
+      </div> 
+  
+  
+ 
+  
+  
+        
+           <div class="form-group col-md-2 col-sm-2 col-lg-2 col-xs-12">
+            <label> MRP </label>
+            <input  formControlName="mrp"   type="number"  class="form-control" placeholder="mrp">
+         
+         </div>  
+  
+            <div class="form-group col-md-2 col-sm-2 col-lg-2 col-xs-12">
+              <label> Tax </label>
+              <input  formControlName="tax_rate" (keyup)="cal_price()"  type="number"  class="form-control" placeholder="Tax">
+           
+           </div>
+  
+  
+         
+
+           <div class="form-group col-md-2 col-sm-2 col-lg-2 col-xs-12">
+            <label> Price </label>
+            <input  formControlName="rate"  (keyup)="cal_net_price()" type="number"  class="form-control" placeholder="rate">
+         
+         </div>
+
+         <div class="form-group col-md-2 col-sm-2 col-lg-2 col-xs-12">
+          <label> Net Price </label>
+          <input  formControlName="net_price" (keyup)="cal_price()"  type="number"  class="form-control" placeholder="net price">
+       
+       </div>  
+
+
+  
+             <div class="form-group col-md-2 col-sm-2 col-lg-2 col-xs-12">
+             <label> Opening Stock </label>
+             <input  formControlName="opening_stock"    type="number"  class="form-control" placeholder="Opening Stock">
+             </div>      
+  
+  
+          
+          
+              
+       
+  
+  
+      
+    
+           
+           
+               
+   
+  
+        
+      <div *ngIf="load_unit_flag"  class="form-group col-md-4 col-sm-4 col-lg-3 col-xs-6">
+          <label> Unit  <span> <a href="https://cleartax.in/s/gst-unit-quantity-code-uqc/" target="_blank">Ref..</a> </span> </label>
+          <select class="form-control" formControlName="unit_id">
+                                      
+                                                    <option *ngFor="let unit of Unit_ary" [value]="unit.id">{{unit.Quantity}}</option>
+                                                    </select>
+          
+        </div>
+  
+
+       
+  
+<!--   
+        <div  class="form-group col-md-1 col-sm-1 col-lg-1 col-xs-6">  
+          <span>  <button class="float-left" mat-icon-button color="primary" aria-label="Add"
+             (click)="open_modal_unit()"> <mat-icon>add_circle_outline</mat-icon> </button>  </span>        
+      </div> -->
+  
+    
+  
+  
+    </div>
+  
+  
+  </form>
+  
+  
+    <button *ngIf="!Onload" class="btn btn-primary pull-right" 
+    (click)="add_product()" type="button"><span class="glyphicon glyphicon-ok"></span> Add </button>
+
+    &nbsp;
+  
+    <button  *ngIf="!Onload" [disabled]="!this.productForm.valid" class="btn btn-warning pull-right"
+    (click)="reset_form()" type="button"><span class="glyphicon glyphicon-ok"></span> Reset </button>
+    
+  </section>
+  
+  
+    
+    <div id="snackbar">{{snak_msg}}</div>
+    
+    
+    
+    
+    
+  
+  
+  
+  
+  
+  
+      <div id="myModal_7" class="modal">
+    
+    
+        <!-- Modal content -->
+        <div class="modal-content">
+  
+            <label  class="btn btn-primary" >
+                Add New Unit
+            </label> 
+  
+  
+  
+                        <section class="container-fluid" style="width: 100%;height: 145px;background-color:#e9ecef;">
+                          <form [formGroup]="Unit_Form">     
+                                <div class="row">              
+                        
+                            <div class="form-group col-md-12 col-sm-12 col-lg-8 col-xs-12">
+                              <label >Unit Name</label>
+                              <input  formControlName="unit" type="text" class="form-control" placeholder="Unit name">
+                              <small [hidden]="Unit_Form.controls.unit.valid" class="text-danger">
+                                Unit name is required.
+                                                                </small>
+                            </div>
+                        
+                        
+                          
+                        
+                        </div>
+                        
+                        </form>
+                        
+                        <button class="btn btn-primary pull-right; width: 150px;" 
+                        (click)="add_unit()" type="button"><span class="glyphicon glyphicon-ok"></span> Add
+                        </button>
+  
+                        <button style="width: 150px;margin-left: 10px;" type="button" class="btn btn-warning" 
+                        (click)="close_modal_unit()">
+                          Cancel
+                        </button>
+                        
+                        </section> 
+  
+                       
+  </div>
+  </div>
+  
+  
+  
+  
+  
+  
+  <div id="myModal_22" class="modal">
+    
+    
+    <!-- Modal content -->
+    <div class="modal-content">
+  
+        <label  class="btn btn-primary" >
+            Add New Category
+        </label> 
+  
+  
+  
+                    <section class="container-fluid" style="width: 100%;height: 145px;background-color:#e9ecef;">
+                      <form [formGroup]="product_add_Form">     
+                            <div class="row">              
+                    
+                        <div class="form-group col-md-12 col-sm-12 col-lg-8 col-xs-12">
+                          <label >Category Name</label>
+                          <input  formControlName="cat_name" type="text" class="form-control" placeholder="Category name">
+                          <small [hidden]="product_add_Form.controls.cat_name.valid" class="text-danger">
+                            Category name is required.
+                                                            </small>
+                        </div>
+                    
+                    
+                      
+                    
+                    </div>
+                    
+                    </form>
+                    
+                    <button class="btn btn-primary pull-right" (click)="add_product_category()" type="button"><span class="glyphicon glyphicon-ok"></span> Add
+                    </button>
+  
+                    <button style="width: 150px;margin-left: 10px;" type="button" class="btn btn-warning" (click)="close_modal_add_category()">
+                      Cancel
+                    </button>
+                    
+                    </section> 
+  
+                   
+  </div>
+  </div>

@@ -1,0 +1,173 @@
+<!-- <section id="non-printable" style="height: 35px;
+margin-bottom: 0px;
+margin-top: -12px;">
+
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <a href="javascript:void(0)" (click)="closeFunction()"><mat-icon>close</mat-icon> </a>
+    <li class="breadcrumb-item"><a href="#/home">Home</a></li>
+    <li class="breadcrumb-item active"><a href="#/home">Update Product</a></li>
+    
+  </ol>
+</nav>
+
+
+</section> -->
+
+
+
+<form [formGroup]="productForm"> 
+ 
+<section  style="width:100%;height:auto;background-color: #e4e5e8;;padding: 5px;
+color: #eaecf5;">
+
+
+<div class="row">
+
+  <div class="col-12 col-md-6
+   col-sm-6">
+    <div class="input-group input-group-sm mb-6" style="color: #0c0749;padding-top: 4px;">
+      <div class="input-group-prepend">
+       <span class="input-group-text" id="inputGroup-sizing-sm"> Product Search </span>
+      </div>
+      <input id="product_id" #box_ar formControlName="id"  ngui-auto-complete type="text" style="min-width: 280px;" class="form-control"  
+      [source]="arrayOfproductValues"   placeholder="Description / BarCode" 
+       (blur)="article_blur(box_ar.value)"
+                    list-formatter="id -- product_name -- bar_code"
+                    display-property-name="id">
+      <small [hidden]="productForm.controls.id.valid" class="text-danger">
+                                            id is required.
+                                        </small>
+  
+    </div>
+    </div>
+    </div>
+
+    
+</section>
+
+
+
+
+
+
+<section *ngIf="view_head" style="width: 100%;height: 100%;background-color:#c7dbe6;;;padding: 10px;">
+
+
+    <div class="row">
+
+
+                   <div class="form-group col-md-6 col-sm-6 col-lg-4 col-xs-12">
+                    <label >Product Name </label>
+                    <input id="product_name" #box_ar_n formControlName="product_name"  (keyup)="desc_blur(box_ar_n.value)"  type="text" class="form-control"  
+                     placeholder="Description">
+                  
+               </div> 
+
+               <div  class="form-group col-md-4 col-sm-4 col-lg-3 col-xs-6">
+                <label> Category </label>
+                <select class="form-control" formControlName="category_id" id="type" type="text">
+                                            
+                                                          <option *ngFor="let type of PdtCategory_ary" [value]="type.id">{{type.category_name}}</option>
+                                                          </select>
+                
+              </div>
+
+              
+    <div class="form-group col-md-3 col-sm-3 col-lg-3 col-xs-12">
+      <label> Bar code/Product code </label>
+      <input  formControlName="bar_code"   type="text"  class="form-control" placeholder="bar code">
+   
+   </div>
+
+    <div class="form-group col-md-2 col-sm-2 col-lg-2 col-xs-12">
+      <label> Hsn code </label>
+      <input  formControlName="hsn_code"   type="text"  class="form-control" placeholder="hsn code">
+   
+   </div>
+
+            <div class="form-group col-md-4 col-sm-4 col-lg-2 col-xs-12">
+                <label> Tax </label>
+                <input  formControlName="tax_rate"  type="number"  class="form-control" placeholder="Tax">
+              </div>
+
+              <div class="form-group col-md-2 col-sm-2 col-lg-2 col-xs-12">
+                <label> MRP </label>
+                <input  formControlName="mrp"   type="number"  class="form-control" placeholder="mrp">
+             
+             </div>  
+      
+              <div class="form-group col-md-4 col-sm-4 col-lg-2 col-xs-12">
+                <label> Price </label>
+                <input  formControlName="rate"  (keyup)="cal_net_price()"    type="number"  class="form-control" placeholder="price">
+              </div>
+
+              
+              <div class="form-group col-md-4 col-sm-4 col-lg-2 col-xs-12">
+                <label> Net Price </label>
+                <input  formControlName="net_price" (keyup)="cal_price()"  type="number"  class="form-control" placeholder="net price">
+              </div>
+
+
+
+
+            
+
+               <div  class="form-group col-md-4 col-sm-4 col-lg-3 col-xs-6">
+                <label> Unit </label>
+                <select class="form-control" formControlName="unit_id">
+                                            
+                                                          <option *ngFor="let unit of Unit_ary" [value]="unit.id">{{unit.Quantity}}</option>
+                                                          </select>
+                
+              </div>
+
+           
+        
+                 
+
+                 
+                     <div class="form-group col-md-4 col-sm-4 col-lg-2 col-xs-12">
+                    <label> Opening Stock </label>
+                    <input  formControlName="opening_stock"   type="number"  class="form-control" placeholder="opening stock">
+                  </div>
+
+
+                    
+         
+                
+                
+                
+            
+            
+                
+
+           
+    </div> 
+
+
+
+
+
+        <div class="row">
+          <div class="form-group col-md-4 col-sm-4 col-lg-2 col-xs-12">
+            <button class="btn btn-primary"   
+            (click)="Update_all()">Update</button>
+              </div>
+              <div class="form-group col-md-4 col-sm-4 col-lg-2 col-xs-12">
+            <button class="btn btn-danger"  
+            (click)="Delete_all()">Delete</button> </div>
+
+          </div>
+
+</section>
+
+</form>
+
+
+
+
+
+
+

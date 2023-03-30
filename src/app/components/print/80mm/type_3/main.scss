@@ -1,0 +1,64 @@
+
+
+#printy { display: none; }
+
+@media print
+{   
+   *{
+width: 80mm;
+margin: 1mm;
+
+   }
+     
+    #non-printabley { display: none; }
+    #non-printable { display: none; }
+    #printable { display: block; }
+    #printy { display: block; }
+    .page-break { display: block; page-break-before: always; }
+
+    #rowd {
+      width: 80mm;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+    }
+  //   #blockd {
+  //     width: 70px;
+  //   }
+  //   #blockdH {
+  //     width: 10px;
+  //   }
+  //   #blockdI {
+  //     width: 100px;
+  //   }
+  //  #blockdOne
+  //  {
+  //     width: 100%;
+  //  }
+    #horizontalBlocks {
+      display: inline-block;
+    }
+
+    .br {
+      display: block;
+      margin-bottom: 0em;
+  }
+    
+  .brmedium {
+      display: block;
+      margin-bottom: 1em;
+  }
+    
+  .brlarge {
+      display: block;
+      margin-bottom: 2em;
+  }
+
+}
+
+// @page {
+// size: 78mm 210mm;
+// }
+
+
+

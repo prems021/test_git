@@ -1,0 +1,40 @@
+
+<mat-form-field>
+    <input matInput [(ngModel)]="this.sdate"
+      [matDatepicker]="picker"
+      placeholder="Select date"
+      (dateChange)="setDate($event.value)">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+
+  &nbsp; &nbsp;
+
+  <button mat-button color="primary"  *ngIf="Onload == 1"   (click)="generate()">Generate</button>
+
+  <button  *ngIf="Onload == 2" mat-button color="warning">
+      <i class="fa fa-spinner fa-spin"></i>Generating...
+    </button>
+
+    <button [disabled]="true" *ngIf="Onload == 3" class="btn btn-warning pull-right" 
+    type="button"><span class="glyphicon glyphicon-ok"></span>  Generated </button>
+  
+   
+
+    <div *ngIf="Onload == 3" class="container">
+        <div class="mb-2">
+       
+            <button class="btn btn-primary mx-1" (click)="exportToCSV()">CSV export</button>
+          </div>
+        <div class="columns">
+          <div class="column col-12">
+            <small>You can use comma separator, to filter by more than one value</small>
+          </div>
+        </div>
+        <div class="columns">
+          <div class="column col-12">
+            <ngx-table [configuration]="configuration" [data]="Process_list" [columns]="columns"> </ngx-table>
+          </div>
+        </div>
+      </div>

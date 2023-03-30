@@ -1,0 +1,259 @@
+<nav aria-label="breadcrumb" style="height:25px;">
+    <ol class="breadcrumb" style="padding:0px;">
+      <li class="breadcrumb-item"><a href="#/home">Home</a></li>
+      <li class="breadcrumb-item"><a href="#/home">Purchase</a></li>
+      <li class="breadcrumb-item active" aria-current="page">New  &nbsp;--  Press F1 for Help</li>
+    </ol>
+</nav> 
+  
+
+<section style="width: 100%;
+    height: auto;
+    background-color: #b4eed7;
+    padding: 5px;
+    color: #636c93;">
+
+<div class="row">
+
+
+ <div class="col-12 col-md-3 col-sm-3">
+
+  <div class="input-group input-group-sm mb-6">
+           <div  style="width:15%;" class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-sm"> Date :  </span>
+           </div>
+     
+           <div style="width:85%;" class="input_grove">
+              <input style="width:100%;background-color: paleturquoise;"  placeholder="{{!myDatePickerOptions.dateRange ?
+                'Select a date' : 'Select a date range'}}" angular-mydatepicker name="mydate"
+                  [(ngModel)]="model_date" [options]="myDatePickerOptions"  [locale]="locale"
+                   #dp="angular-mydatepicker"
+                  (dateChanged)="onDateChanged($event)" 
+                  
+                  (inputFieldChanged)="onInputFieldChanged($event)"
+                 [attr.disabled]="disabled?'':null" autocomplete="off"/>
+    
+             
+                      <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="dp.toggleCalendar()">
+                            <!-- <i class="fa fa-calendar"></i> -->
+                               <img src="../../assets/images/calendar.svg" style="width: 15px; height: 15px;" /> 
+                        </button>
+                      </div>
+                      </div>
+
+
+
+
+      </div>
+
+
+</div>
+
+
+
+
+ <div class="col-12 col-md-3 col-sm-3">
+
+  <!-- <div class="input-group input-group-sm mb-6"  style="height:100%;">
+           <div class="input-group-prepend" style="height:100%;">
+            <span class="input-group-text" id="inputGroup-sizing-sm"> Vendor :  </span>
+           </div>
+        <input style="height:100%;" type="text" class="form-control" [(ngModel)]="this.ds.i_m.heads.CUS_NAME" 
+         aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+      </div> -->
+      <div class="input-group input-group-sm mb-6"  style="height:100%;color: #545454;">
+         <div class="input-group-prepend" style="height:100%;">
+          <span class="input-group-text" id="inputGroup-sizing-sm"> Vendor :  </span>
+         </div>
+     
+         
+
+         <input ngui-auto-complete #vendors 
+         style="height:100%;color: black;" type="text" class="form-control" 
+         name="vendors"   [source]="arrayOfVendors"  
+      placeholder="Search.."   (valueChanged)="change_vendor_name($event)"  (customSelected)="customCallback($event)"   
+       
+       list-formatter="ID -- NAME -- STREET"
+       loading-text = "loading"
+       display-property-name="NAME"
+         aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+
+
+
+    </div>
+
+</div>
+
+
+
+
+
+          
+ <div class="col-12 col-md-2 col-sm-2">
+
+  <div class="input-group input-group-sm mb-6"  style="height:100%;">
+           <div class="input-group-prepend" style="height:100%;">
+            <span class="input-group-text" id="inputGroup-sizing-sm"> Bill No :  </span>
+           </div>
+        <input  style="height:100%;" type="text" class="form-control" [(ngModel)]="this.ds.i_m.heads.INVOICE_NUMBER" 
+         aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+      </div>
+
+
+</div>
+
+
+</div>
+
+
+  <div id="myModal" class="modal">
+  
+  
+  <!-- Modal content -->
+  <div class="modal-content">
+  
+      <label  class="btn btn-primary" >
+          Edit Buyer Details
+      </label> 
+  
+  
+             
+         <div class="row">
+  
+          <div class="col-sm-4">
+  
+  
+                        <!-- <div class="input-group input-group-sm mb-6">
+                             <div class="input-group-prepend">
+                              <span class="input-group-text" id="inputGroup-sizing-sm">Buyer Street</span>
+                             </div>
+                          <input type="text" class="form-control" aria-label="Small" [(ngModel)]="this.ds.i_m.heads.CUSTOMER_STREET"  aria-describedby="inputGroup-sizing-sm">
+                        </div>
+   -->
+  
+              
+             </div>
+  
+          <div class="col-sm-3">
+  
+             <!-- <div class="input-group input-group-sm mb-6">
+                             <div class="input-group-prepend">
+                              <span class="input-group-text" id="inputGroup-sizing-sm">Buyer city</span>
+                             </div>
+                          <input type="text" class="form-control" [(ngModel)]="this.ds.i_m.heads.CUSTOMER_CITY"  aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                        </div> -->
+  
+           
+          </div>
+  
+          <div class="col-sm-3">
+                    <!-- <div class="input-group input-group-sm mb-6">
+                             <div class="input-group-prepend">
+                              <span class="input-group-text" id="inputGroup-sizing-sm">GSTIN </span>
+                             </div>
+                          <input type="text" class="form-control" [(ngModel)]="this.ds.i_m.heads.CUSTOMER_GST_IN"  aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                        </div>         -->
+  
+  
+  
+         </div>
+  
+      <div class="col-sm-12 col-lg-12 col-md-12 col-xs-12" style="height: 10px;"> </div>
+  
+  
+          <div class="col-sm-3">
+                    <!-- <div class="input-group input-group-sm mb-6">
+                             <div class="input-group-prepend">
+                              <span class="input-group-text" id="inputGroup-sizing-sm">PAN No</span>
+                             </div>
+                          <input type="text" class="form-control" [(ngModel)]="this.ds.i_m.heads.CUSTOMER_PAN" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                        </div>         -->
+  
+         </div>
+  
+  
+            <div class="col-sm-3">
+                    <!-- <div class="input-group input-group-sm mb-6">
+                             <div class="input-group-prepend">
+                              <span class="input-group-text" id="inputGroup-sizing-sm">PH No</span>
+                             </div>
+                          <input type="text" class="form-control" [(ngModel)]="this.ds.i_m.heads.CUSTOMER_PHONE" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                        </div>         -->
+  
+         </div>
+  
+       
+        
+          
+         
+  
+          </div>
+  
+      <br>
+  
+  
+      <label  class="btn btn-primary" >
+          Add Bill Details.......
+      </label> 
+  
+  
+  
+  
+         <div class="row">
+  
+          <div class="col-sm-4">
+  
+  
+                        <!-- <div class="input-group input-group-sm mb-6">
+                             <div class="input-group-prepend">
+                              <span class="input-group-text" id="inputGroup-sizing-sm">Place Of supply</span>
+                             </div>
+                          <input  type="text" [(ngModel)]="this.ds.i_m.heads.PLACE_SUPPLY" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                        </div> -->
+  
+  
+  
+             </div>
+  
+          <div class="col-sm-3">
+  
+             <!-- <div class="input-group input-group-sm mb-6">
+                             <div class="input-group-prepend">
+                              <span class="input-group-text" id="inputGroup-sizing-sm">Bundles</span>
+                             </div>
+                          <input type="number" [(ngModel)]="this.ds.i_m.heads.BUNDLES"  class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                        </div> -->
+  
+  
+          </div>
+  
+          <div class="col-sm-3">
+                    <!-- <div class="input-group input-group-sm mb-6">
+                             <div class="input-group-prepend">
+                              <span class="input-group-text" id="inputGroup-sizing-sm">Lpo No</span>
+                             </div>
+                          <input type="text" class="form-control" [(ngModel)]="this.ds.i_m.heads.LPO"  aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                        </div>        
+  
+   -->
+  
+         </div>
+        
+           
+  
+          
+            <button style="width: 150px;margin-left: 10px;" type="button" class="btn btn-primary" (click)="close_modal()">
+              Update & close
+            </button>
+            
+  
+  
+  </div>
+  
+  </div> 
+  
+  
+  </div>
+</section>
+           

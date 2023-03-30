@@ -1,0 +1,91 @@
+<!-- 
+	<div id="login" >
+        <h1 class="text-center text-white pt-5 heading">Horn Bill 7.0  </h1><br>
+        <div class="container">
+            <div id="login-row" class="row justify-content-center align-items-center">
+                <div id="login-column" class="col-md-6" style="background-color: rgb(148 148 148);
+                opacity: 0.7;">
+                    <div class=" col-md-12">
+                        <form id="login-form" class="form" action="" [formGroup]="loginForm" (ngSubmit)="onFormSubmit(loginForm.value)" method="post">
+    
+                            <div class="imgcontainer">
+    
+                              <img src="../../assets/images/user.png" alt="Avatar" class="avatar"><br><br>
+                              <h3 class="text-center text-info">Login</h3><br>
+                            </div>
+                            <div class="container">
+                              <div class="form-group">
+                                <label style=" opacity: 1;" for="username" class="text-info">Username:</label><br>
+                                <input type="text" formControlName="USER_NAME" name="username" id="username" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label style=" opacity: 1;" for="password" class="text-info">Password:</label><br>
+                                <input type="password" formControlName="PASSWORD" name="password" id="password" class="form-control">
+                            </div>
+                             <div class="form-group">
+                               
+                            <br>    <button type="submit" style=" opacity: 1;" name="submit" class="btn btn-info btn-md ny" style="margin:0px auto;display: block;"> Login </button>
+    
+                             </div>
+                            <div id="register-link" class="text-right">
+                                <a href="#" class="text-info"></a>
+                            </div>
+                            </div>
+    
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+     -->
+
+
+    <div class="global-container">
+        <div class="card login-form" style="background: #6c6a11;">
+            <h1 class="text-center text-info pt-5 heading">Horn Bill 7.0  </h1>
+            <div class="imgcontainer" style="text-align: center;">
+                <img src="../../assets/images/user.png" alt="Avatar" class="avatar">
+            </div>
+              
+        <div class="card-body">
+          
+         
+
+            <div class="card-text" style="    color: yellow;">
+                <!--
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">Incorrect username or password.</div> -->
+                <form id="login-form" class="form" action="" [formGroup]="loginForm" (ngSubmit)="onFormSubmit(loginForm.value)" method="post">
+                    <!-- to error: add class "has-danger" -->
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">User Name</label>
+                        <input type="text" class="form-control form-control-sm"  formControlName="USER_NAME" id="exampleInputEmail1" aria-describedby="username">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Password</label>
+                        <!-- <a href="#" style="float:right;font-size:12px;">Forgot password?</a> -->
+                        <input type="password" formControlName="PASSWORD" class="form-control form-control-sm" id="exampleInputPassword1">
+                    </div>
+                    <button *ngIf="push_disabled_enter ==1" type="submit" class="btn btn-primary btn-block">Sign in</button>
+
+                    <button  *ngIf="push_disabled_enter == 2" class="btn-block btn pull-right">
+                        <i class="fa fa-spinner fa-spin"></i>Logging...
+                      </button>
+
+                      <button [disabled]="true" *ngIf="push_disabled_enter == 3" class="btn btn-block btn-warning pull-right" 
+                      type="button"><span class="glyphicon glyphicon-ok"></span>  Invalid User </button>
+
+                      <button [disabled]="true" *ngIf="push_disabled_enter == 4" class="btn btn-block btn-warning pull-right" 
+                      type="button"><span class="glyphicon glyphicon-ok"></span>  User Offline </button>
+
+                    <div class="sign-up" style="color: whitesmoke;">
+                        Don't have an account? <a href="#" style="color: rgb(235, 177, 177);">Create One</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+    
+
+
