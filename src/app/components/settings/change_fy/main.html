@@ -1,0 +1,111 @@
+
+
+  <section style="width: 100%;height: 200px;color: #3a0058;padding: 20px;background-color: rgb(233, 236, 239);">
+
+
+  <div class="container">
+    <h2 style="text-align: center;">Add New Financial Year and String</h2>
+    <hr>
+ 
+    <form [formGroup]="finYearForm" (ngSubmit)="onSubmit()">
+      <div class="row"> 
+
+        <!-- <div class="col-12 col-md-4 col-sm-6">
+          <div class="input-group input-group-sm mb-6" style="padding-top: 4px;">
+            <div class="input-group-prepend">
+             <span class="input-group-text" id="inputGroup-sizing-sm"> Financial Year: </span>
+            </div>
+          <input  formControlName="company_gstin"   type="text" class="form-control" 
+          aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+          </div>
+          </div> -->
+
+          <div class="col-12 col-md-4 col-sm-6">
+            <div class="input-group input-group-sm mb-6" style="padding-top: 4px;">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-sm"> Financial Year: </span>
+              </div>
+              <select formControlName="fy" class="form-control">
+                <option *ngFor="let year of financialYears" [value]="year">{{ year }}</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-4 col-sm-6">
+            <div class="input-group input-group-sm mb-6" style="padding-top: 4px;">
+              <div class="input-group-prepend">
+               <span class="input-group-text" id="inputGroup-sizing-sm"> Fy prefix : </span>
+              </div>
+            <input  formControlName="fy_string"   type="text" class="form-control" 
+            aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+            </div>
+            </div>
+          
+
+
+      <div class="col-12 col-md-4 col-sm-6">
+      <button *ngIf="Onload ==1" class="btn btn-primary pull-right"   [disabled]="!finYearForm.valid"
+(click)="onSubmit()" type="button"><span class="glyphicon glyphicon-ok"></span> Add </button>
+
+<button  *ngIf="Onload == 2" class="buttonload btn pull-right">
+  <i class="fa fa-spinner fa-spin"></i>Updating..
+</button>
+
+<button [disabled]="true" *ngIf="Onload == 3" class="btn btn-warning pull-right" 
+ type="button"><span class="glyphicon glyphicon-ok"></span> Updated </button>
+ </div>
+
+
+      </div>
+    </form>
+  
+  </div>
+  </section>
+  
+
+
+
+
+
+
+
+   <table>
+    <thead>
+      <tr>
+        <th> SI </th>
+        <th> Name </th>
+        <th >Fin Year</th>
+        <th> Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of rows; let i = index" [class.selected]="i === selectedIndex">
+        <td>{{row.id}}</td>
+        <td>{{row.name}}</td>
+        <td>{{row.finYear}}</td>
+        <td *ngIf="!row.selected">  <button type="button" (click)="set_default(row)">Set as default</button> </td>
+        <td *ngIf="row.selected" style="background: rgb(41, 241, 94);">  Default  </td>
+        <!-- <td><input type="checkbox" [checked]="i === selectedIndex" (change)="selectRow(i,row.id)"></td> -->
+      </tr>
+    </tbody>
+  </table>
+  
+  <!-- <button (click)="addNewRow()">Add New Row</button>
+  
+  <div class="popup" *ngIf="showPopup">
+    <h2>Add New Row</h2>
+    <form>
+      <label>ID:</label>
+      <input type="number" [(ngModel)]="newRow.id">
+      <br>
+      <label>Name:</label>
+      <input type="text" [(ngModel)]="newRow.name">
+      <br>
+      <label>Fin Year:</label>
+      <input type="text" [(ngModel)]="newRow.finYear">
+      <br>
+      <button type="button" (click)="submitNewRow()">Submit</button>
+      <button type="button" (click)="closePopup()">Cancel</button>
+    </form>
+  </div>
+   -->

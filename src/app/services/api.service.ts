@@ -18,9 +18,9 @@ export class ApiService {
 
 
  
-     //  private postUrl = 'http://127.0.0.1:9001/api/post/';
-     //  private cUrl = 'http://127.0.0.1:9001/api/';
-     //  private adminUrl = 'http://127.0.0.1:9001/api/admin/';
+      //  private postUrl = 'http://127.0.0.1:9001/api/post/';
+      //  private cUrl = 'http://127.0.0.1:9001/api/';
+      //  private adminUrl = 'http://127.0.0.1:9001/api/admin/';
    
 
   
@@ -481,6 +481,25 @@ export class ApiService {
     return this.http.post<any>(this.cUrl + 'change_password', body, this.httpOptions).pipe(catchError(this.handleError('change_password', body)));
   }
 
+  add_new_fy(model:any)
+  {
+        model.com_id = this.user.hb7_company_detail.id;  
+        model.user_id = this.invo_head.user_id;        
+        let body = JSON.stringify(model);    
+    return this.http.post<any>(this.cUrl + 'add_new_fy', body, this.httpOptions).pipe(catchError(this.handleError('add_new_fy', body)));
+  }
+
+  set_fy_as_default(id:number)
+  {
+    const url = `${this.cUrl + 'set_fy_as_default'}/${id}/${this.user.hb7_company_detail.id}`;
+    return this.http.get<any>(url,this.httpOptions).pipe(catchError(this.handleError<any>('set_fy_as_default')));
+  } 
+
+  get_fy_list()
+  {
+    const url = `${this.cUrl + 'get_fy_list'}/${this.user.hb7_company_detail.id}`;
+    return this.http.get<any>(url,this.httpOptions).pipe(catchError(this.handleError<any>('get_fy_list'))); 
+  }
   
   add_product(model:any)
   {   

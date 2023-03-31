@@ -10,6 +10,7 @@ import { Invoice_Component } from './pages/new/invoice/invoice';
 import { Purchase_Component } from './pages/new/purchase/purchase';
 import { SettingsComponent } from './components/settings/main/main';
 import { Change_passwordComponent } from './components/settings/change_password/main';
+import { Change_fy_Component } from './components/settings/change_fy/main';
 import { Company_updation_Component } from './components/settings/company_updatation/main';
 
 import { Main_view_page_Component } from './pages/view/main-page/main';
@@ -83,6 +84,7 @@ const routes: Routes = [
       {path: 'view-purchase-return',component: View_Purchase_return_bills_Component, canActivate: [NgxPermissionsGuard], data: { permissions: {  only: ['CounterStaff', 'Admin'] } }  } ,
 
       {path: 'change-password',component: Change_passwordComponent, canActivate: [NgxPermissionsGuard], data: { permissions: {  only: ['CounterStaff', 'Admin'] } }  } ,
+      {path: 'fy-settings',component: Change_fy_Component, canActivate: [NgxPermissionsGuard], data: { permissions: {  only: ['Admin'] } }  } ,
       
       {path: 'new-purchase-return',component: Purchase_Return_Component, canActivate: [NgxPermissionsGuard], data: { permissions: {  only: ['CounterStaff', 'Admin'] } }  } ,
       {path: 'update-invoice',component: Invoice_update_Component, canActivate: [NgxPermissionsGuard], data: { permissions: {  only: ['CounterStaff', 'Admin'] } }  } ,

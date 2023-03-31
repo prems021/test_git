@@ -160,6 +160,7 @@ import { PrinteightyComponent_type_3 } from './components/print/80mm/type_3/main
 import { Reprint_component } from './components/Reprint/main';
 import { Summary_stocks_main } from './pages/summary/stock/main/main';
 import { Summary_stocks_current_date } from './pages/summary/stock/current_date/main';
+import { Change_fy_Component } from './components/settings/change_fy/main';
 
 
 
@@ -175,7 +176,7 @@ import { Summary_stocks_current_date } from './pages/summary/stock/current_date/
     Printa4Component_type_5,Printa4Component_type_6,Report_Stocks_main_Component,Printa4Component_type_8,Report_product_list_Component,
     Pre_reciept_edit_component,Pre_pay_edit_component,Print_debit_voucher_type_1,Pre_pay_add_component,Change_passwordComponent,
     Gst_report_detailed_Component,Print_credit_voucher_type_1,PrinteightyComponent_type_1,PrinteightyComponent_type_2,Summary_main_Component,
-    Summary_sales_period_stock,SmallLoaderComponent,Sales_return_Component,Report_Sales_to_customerComponent,
+    Summary_sales_period_stock,SmallLoaderComponent,Sales_return_Component,Report_Sales_to_customerComponent,Change_fy_Component,
     Summary_b2bs_colum,Summary_gst_main,Summary_b2c_small,Summary_sales_main,Summary_sales_daily_stock,Summary_sales_daily_cash,Summary_gst_hsn_wise_sales,
     PrinteightyComponent_type_3,Reprint_component,Summary_gst_hsn_wise_sales_b2c,Summary_gst_hsn_wise_sales_b2b,Summary_stocks_main,Summary_stocks_current_date 
 
